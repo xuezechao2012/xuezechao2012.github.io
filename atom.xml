@@ -5,15 +5,66 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-01-04T13:35:34.590Z</updated>
+  <updated>2017-02-12T12:38:58.926Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
-    <name>John Doe</name>
+    <name>��¿������</name>
     
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="http://yoursite.com/2017/02/12/CSS3%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B/"/>
+    <id>http://yoursite.com/2017/02/12/CSS3盒子模型/</id>
+    <published>2017-02-12T12:38:58.766Z</published>
+    <updated>2017-02-12T12:38:58.926Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="盒子模型"><a href="#盒子模型" class="headerlink" title="盒子模型"></a>盒子模型</h3><hr>
+<p>CSS中有一种基础设计模式叫盒模型，盒模型定义了Web页面中的元素中如何来解析。CSS中每一个元素都是一个盒模型，包括html和body标签元素。在盒模型中主要包括width、height、border、background、padding和margin这些属性，而且他们之间的层次关系可以相互影响，来看一张盒模型的3D展示图：</p>
+<p><img src="http://img.mukewang.com/5365d7b10001e8d506350529.jpg" alt="image"></p>
+<p>从图中可以看出padding属性和content属性层叠background-image属性，层叠background-color属性，这个是存在的，它们四者之间构成了Ｚ轴（垂直屏幕的坐标）多重层叠关系。但是border属性与margin属性、padding属性三者之间应该是平面上的并级关系，并不能构成Ｚ轴的层叠关系。</p>
+<p><strong>box-sizing：</strong></p>
+<p>在CSS中盒模型被分为两种，第一种是w3c的标准模型，另一种是IE的传统模型，它们相同之处都是对元素计算尺寸的模型，具体说不是对元素的width、height、padding和border以及元素实际尺寸的计算关系，它们不同之处是两者的计算方法不一致，原则上来说盒模型是分得很细的，这里所看到的主要是外盒模型和内盒模型，如下面计算公式所示：</p>
+<p>在CSS3中新增加了box-sizing属性，能够事先定义盒模型的尺寸解析方式，其语法规则如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">box-sizing: content-box | border-box | inherit</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>属性值</th>
+<th>属性值说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>content - box</td>
+<td>默认值，其让元素维持W3C的标准盒模型，也就是说元素的宽度和高度（width/height）等于元素边框宽度（border）加上元素内距（padding）加上元素内容宽度或高度（content width/ height），也就是element width/height = border + padding + content width / height</td>
+</tr>
+<tr>
+<td>border-box</td>
+<td>重新定义CSS2.1中盒模型组成的模式，让元素维持IE传统的盒模型（IE6以下版本和IE6-7怪异模式），也就是说元素的宽度或高度等于元素内容的宽度或高度。从上面盒模型介绍可知，这里的内容宽度或高度包含了元素的border、padding、内容的宽度或高度（此处的内容宽度或高度＝盒子的宽度或高度—边框—内距）。</td>
+</tr>
+<tr>
+<td>inherit</td>
+<td>使元素继承父元素的盒模型模式</td>
+</tr>
+</tbody>
+</table>
+<p><img src="http://img.mukewang.com/5365d98000018fa606460416.jpg" alt="image"></p>
+<p><strong>flex项目称动到左边或右边也取决于主轴的方向。如果flex-direction设置为row，设置justify-content控制方向；如果设置为column，设置align-items控制方向。</strong></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;盒子模型&quot;&gt;&lt;a href=&quot;#盒子模型&quot; class=&quot;headerlink&quot; title=&quot;盒子模型&quot;&gt;&lt;/a&gt;盒子模型&lt;/h3&gt;&lt;hr&gt;
+&lt;p&gt;CSS中有一种基础设计模式叫盒模型，盒模型定义了Web页面中的元素中如何来解析。CSS中每一个元素都是一个盒模型，
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Hello World</title>

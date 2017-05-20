@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-05-20T05:52:52.027Z</updated>
+  <updated>2017-05-20T06:08:33.838Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2017/02/12/CSS3%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B/"/>
     <id>http://yoursite.com/2017/02/12/CSS3盒子模型/</id>
     <published>2017-02-12T12:38:58.766Z</published>
-    <updated>2017-05-20T05:52:52.027Z</updated>
+    <updated>2017-05-20T06:08:33.838Z</updated>
     
     <content type="html"><![CDATA[<h3 id="盒子模型"><a href="#盒子模型" class="headerlink" title="盒子模型"></a>盒子模型</h3><hr>
 <p>CSS中有一种基础设计模式叫盒模型，盒模型定义了Web页面中的元素中如何来解析。CSS中每一个元素都是一个盒模型，包括html和body标签元素。在盒模型中主要包括width、height、border、background、padding和margin这些属性，而且他们之间的层次关系可以相互影响，来看一张盒模型的3D展示图：</p>
@@ -62,6 +62,8 @@
 &lt;p&gt;CSS中有一种基础设计模式叫盒模型，盒模型定义了Web页面中的元素中如何来解析。CSS中每一个元素都是一个盒模型，
     
     </summary>
+    
+      <category term="CSS知识" scheme="http://yoursite.com/categories/CSS%E7%9F%A5%E8%AF%86/"/>
     
     
       <category term="CSS3" scheme="http://yoursite.com/tags/CSS3/"/>

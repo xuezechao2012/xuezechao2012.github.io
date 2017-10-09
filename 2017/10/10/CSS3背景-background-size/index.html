@@ -1,0 +1,822 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="CSS," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="薛泽超" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="设置背景图片的大小，以长度值或百分比显示，还可以通过cover和contain来对图片进行伸缩。
+语法：1background-size: auto | &amp;lt;长度值&amp;gt; | &amp;lt;百分比&amp;gt; | cover | contain
+取值说明：
+
+auto：默认值，不改变背景图片的原始高度和宽度；
+
+&amp;lt;长度值&amp;gt;：成对出现如200px 50px，将背景图片宽高依次设置为前面两个值">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS3背景 background-size">
+<meta property="og:url" content="http://yoursite.com/2017/10/10/CSS3背景-background-size/index.html">
+<meta property="og:site_name" content="薛泽超">
+<meta property="og:description" content="设置背景图片的大小，以长度值或百分比显示，还可以通过cover和contain来对图片进行伸缩。
+语法：1background-size: auto | &amp;lt;长度值&amp;gt; | &amp;lt;百分比&amp;gt; | cover | contain
+取值说明：
+
+auto：默认值，不改变背景图片的原始高度和宽度；
+
+&amp;lt;长度值&amp;gt;：成对出现如200px 50px，将背景图片宽高依次设置为前面两个值">
+<meta property="og:image" content="http://img2.ph.126.net/BXyXv1heZyVLMSHfZylPCA==/6631792343865292724.png">
+<meta property="og:image" content="http://img1.ph.126.net/NMftgkmMh07-gBcvozmZpw==/6631898996490074668.png">
+<meta property="og:image" content="http://img1.ph.126.net/DupZ1FQJTaT9STA_CRrHpw==/6631918787699379391.png">
+<meta property="og:image" content="http://img2.ph.126.net/snqPL_tEJXAU8j7SilIksQ==/6632181570978413006.png">
+<meta property="og:image" content="http://img0.ph.126.net/nE7pGHG2Ip3Tr-rD6-NRAA==/6631935280373787144.png">
+<meta property="og:image" content="http://img1.ph.126.net/Urk5bna8SFUKE4WyGdt_yQ==/6631990255955177983.png">
+<meta property="og:updated_time" content="2017-10-09T15:57:15.018Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSS3背景 background-size">
+<meta name="twitter:description" content="设置背景图片的大小，以长度值或百分比显示，还可以通过cover和contain来对图片进行伸缩。
+语法：1background-size: auto | &amp;lt;长度值&amp;gt; | &amp;lt;百分比&amp;gt; | cover | contain
+取值说明：
+
+auto：默认值，不改变背景图片的原始高度和宽度；
+
+&amp;lt;长度值&amp;gt;：成对出现如200px 50px，将背景图片宽高依次设置为前面两个值">
+<meta name="twitter:image" content="http://img2.ph.126.net/BXyXv1heZyVLMSHfZylPCA==/6631792343865292724.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/10/10/CSS3背景-background-size/"/>
+
+
+
+
+
+  <title>CSS3背景 background-size | 薛泽超</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?602797b063754130d4f083587fce8838";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">薛泽超</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">认真做事，仔细撸码</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/10/CSS3背景-background-size/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="骑驴看代码">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="薛泽超">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">CSS3背景 background-size</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-10T00:22:27+08:00">
+                2017-10-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSS3/" itemprop="url" rel="index">
+                    <span itemprop="name">CSS3</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>设置背景图片的大小，以长度值或百分比显示，还可以通过cover和contain来对图片进行伸缩。</p>
+<p>语法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">background-size: auto | &lt;长度值&gt; | &lt;百分比&gt; | cover | contain</div></pre></td></tr></table></figure></p>
+<p>取值说明：</p>
+<ol>
+<li><p>auto：默认值，不改变背景图片的原始高度和宽度；</p>
+</li>
+<li><p>&lt;长度值&gt;：成对出现如200px 50px，将背景图片宽高依次设置为前面两个值，当设置一个值时，将其作为图片<strong>宽度值来等比缩放</strong>；</p>
+</li>
+<li><p>&lt;百分比&gt;：0％~100％之间的任何值，<strong>将背景图片宽高依次设置为所在元素宽高乘以前面百分比得出的数值</strong>，当设置一个值时同上；</p>
+</li>
+<li><p>cover：顾名思义为覆盖，即将背景图片等比缩放以<strong>填满整个容器</strong>；</p>
+</li>
+<li><p>contain：容纳，即将背景图片<strong>等比缩放至某一边紧贴容器边缘</strong>为止。</p>
+</li>
+</ol>
+<p>代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html&gt;</div><div class="line">&lt;head&gt; </div><div class="line">&lt;meta charset=&quot;utf-8&quot;&gt;</div><div class="line">&lt;title&gt;背景图片大小&lt;/title&gt;</div><div class="line">&lt;style type=&quot;text/css&quot;&gt;</div><div class="line">.demo &#123;</div><div class="line">    background: url(http://static.mukewang.com/static/img/logo_index.png) no-repeat;</div><div class="line">    width: 300px;</div><div class="line">    height: 140px;</div><div class="line">    border: 1px solid #999;</div><div class="line">    background-size: 300px 140px;</div><div class="line">    background-size: cover;</div><div class="line">    background-size: contain;</div><div class="line">    background-size: 100% 100%;</div><div class="line">&#125; </div><div class="line">&lt;/style&gt;    </div><div class="line">&lt;/head&gt;   </div><div class="line">&lt;body&gt;</div><div class="line">&lt;div class=&quot;demo&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<ul>
+<li>auto 默认样式：</li>
+</ul>
+<p><img src="http://img2.ph.126.net/BXyXv1heZyVLMSHfZylPCA==/6631792343865292724.png" alt="image"></p>
+<ul>
+<li>px （300px） 或 百分比 （100%）  只设置一个的情况下：</li>
+</ul>
+<p><img src="http://img1.ph.126.net/NMftgkmMh07-gBcvozmZpw==/6631898996490074668.png" alt="image"></p>
+<ul>
+<li>px 或百分比 全都设置的情况下：</li>
+</ul>
+<p><img src="http://img1.ph.126.net/DupZ1FQJTaT9STA_CRrHpw==/6631918787699379391.png" alt="image"></p>
+<ul>
+<li>cover 情况下：</li>
+</ul>
+<p><img src="http://img2.ph.126.net/snqPL_tEJXAU8j7SilIksQ==/6632181570978413006.png" alt="image"></p>
+<ul>
+<li>contain 情况下：</li>
+</ul>
+<p><img src="http://img0.ph.126.net/nE7pGHG2Ip3Tr-rD6-NRAA==/6631935280373787144.png" alt="image"></p>
+<p><strong>CSS3 多背景写法：</strong></p>
+<p>语法缩写如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">background ： [background-color] | [background-image] | [background-position][/background-size] | [background-repeat] | [background-attachment] | [background-clip] | [background-origin],...</div></pre></td></tr></table></figure>
+<p>代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html&gt;</div><div class="line">&lt;head&gt; </div><div class="line">&lt;meta charset=&quot;utf-8&quot;&gt;</div><div class="line">&lt;title&gt;多重背景&lt;/title&gt;</div><div class="line">&lt;style type=&quot;text/css&quot;&gt;</div><div class="line">.demo&#123;</div><div class="line">    width: 300px; </div><div class="line">    height: 140px;</div><div class="line">    border: 1px solid #999;</div><div class="line">    </div><div class="line">    background-image: url(http://img.mukewang.com/54cf2365000140e600740095.jpg),</div><div class="line">                      url(http://img.mukewang.com/54cf238a0001728d00740095.jpg),</div><div class="line">                      url(http://img.mukewang.com/54cf23b60001fd9700740096.jpg);</div><div class="line">    background-position: left top, 100px 0, 200px 0;</div><div class="line">    background-repeat: no-repeat, no-repeat, no-repeat;</div><div class="line">    </div><div class="line">    margin:0 0 20px 0;</div><div class="line">&#125;</div><div class="line">.task &#123;</div><div class="line">    width: 300px;</div><div class="line">    height: 140px;</div><div class="line">    border: 1px solid #999;</div><div class="line">    </div><div class="line">    background:url(http://static.mukewang.com/static/img/logo_index.png) no-repeat, </div><div class="line">               url(http://static.mukewang.com/static/img/logo_index.png) no-repeat;</div><div class="line">               </div><div class="line">    background-position:left top,50% 70px;</div><div class="line">&#125;</div><div class="line"> </div><div class="line"></div><div class="line">&lt;/style&gt;  </div><div class="line">&lt;/head&gt; </div><div class="line">&lt;body&gt;</div><div class="line">&lt;div class=&quot;demo&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;div class=&quot;task&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure></p>
+<p>输出：</p>
+<p><img src="http://img1.ph.126.net/Urk5bna8SFUKE4WyGdt_yQ==/6631990255955177983.png" alt="image"></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CSS/" rel="tag"># CSS</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/10/CSS3 渐变颜色/" rel="next" title="CSS3 渐变颜色">
+                <i class="fa fa-chevron-left"></i> CSS3 渐变颜色
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/10/CSS3选择器/" rel="prev" title="CSS3选择器">
+                CSS3选择器 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yODc2NC81MzM1"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="骑驴看代码" />
+          <p class="site-author-name" itemprop="name">骑驴看代码</p>
+           
+              <p class="site-description motion-element" itemprop="description">种一棵树最好的时间是10年前，其次是现在！</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">骑驴看代码</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/three/three.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,844 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="CSS," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="薛泽超" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="文章来源于网络，如侵犯了您的权益，请联系本人。一、float需要注意浮动元素的高度不一样的问题浮动虽然看起来很简单，但是稍微不注意就会用错，而且如果不知道原理的话很难找到原因，例如：五个li元素浮动，我们要的效果应该是这样
+
+
+可是现实问题确实这样：紫色的li调到下面去了。
+
+也许大部分人就像我一样只记得浮动会让父元素塌陷，无法撑开高度这个特性，可是我们却忘了还有一个重要的特性：
+
+因此，蓝色的l">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS易错点">
+<meta property="og:url" content="http://yoursite.com/2017/10/10/CSS易错点/index.html">
+<meta property="og:site_name" content="薛泽超">
+<meta property="og:description" content="文章来源于网络，如侵犯了您的权益，请联系本人。一、float需要注意浮动元素的高度不一样的问题浮动虽然看起来很简单，但是稍微不注意就会用错，而且如果不知道原理的话很难找到原因，例如：五个li元素浮动，我们要的效果应该是这样
+
+
+可是现实问题确实这样：紫色的li调到下面去了。
+
+也许大部分人就像我一样只记得浮动会让父元素塌陷，无法撑开高度这个特性，可是我们却忘了还有一个重要的特性：
+
+因此，蓝色的l">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3152923-6e0a8b3ef44a2865?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3152923-c2889ba223b33613?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3152923-ac1b426863a17216?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3152923-98860d8b06a023a8?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3152923-9cc6af5a4acc596a?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3152923-6ae5e649a58f1719?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3152923-951cfae82ba0fd05?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3152923-ea58f3937e976086?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3152923-8cf0256f1abea364?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3152923-828f4653ce2f9235?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3152923-ec8b75635b50d248?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3152923-5ba1a1a3692b6c9f?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3152923-a07109727ab5bb27?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3152923-af681d6423e47d4e?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3152923-054d0ce66359d961?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-10-09T15:49:34.108Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSS易错点">
+<meta name="twitter:description" content="文章来源于网络，如侵犯了您的权益，请联系本人。一、float需要注意浮动元素的高度不一样的问题浮动虽然看起来很简单，但是稍微不注意就会用错，而且如果不知道原理的话很难找到原因，例如：五个li元素浮动，我们要的效果应该是这样
+
+
+可是现实问题确实这样：紫色的li调到下面去了。
+
+也许大部分人就像我一样只记得浮动会让父元素塌陷，无法撑开高度这个特性，可是我们却忘了还有一个重要的特性：
+
+因此，蓝色的l">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/3152923-6e0a8b3ef44a2865?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/10/10/CSS易错点/"/>
+
+
+
+
+
+  <title>CSS易错点 | 薛泽超</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?602797b063754130d4f083587fce8838";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">薛泽超</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">认真做事，仔细撸码</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/10/CSS易错点/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="骑驴看代码">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="薛泽超">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">CSS易错点</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-10T00:22:27+08:00">
+                2017-10-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSS知识/" itemprop="url" rel="index">
+                    <span itemprop="name">CSS知识</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="文章来源于网络，如侵犯了您的权益，请联系本人。"><a href="#文章来源于网络，如侵犯了您的权益，请联系本人。" class="headerlink" title="文章来源于网络，如侵犯了您的权益，请联系本人。"></a>文章来源于网络，如侵犯了您的权益，请联系本人。</h1><p>一、float需要注意浮动元素的高度不一样的问题<br>浮动虽然看起来很简单，但是稍微不注意就会用错，而且如果不知道原理的话很难找到原因，例如：五个li元素浮动，我们要的效果应该是这样</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3152923-6e0a8b3ef44a2865?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3152923-c2889ba223b33613?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>可是现实问题确实这样：紫色的li调到下面去了。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3152923-ac1b426863a17216?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>也许大部分人就像我一样只记得浮动会让父元素塌陷，无法撑开高度这个特性，可是我们却忘了还有一个重要的特性：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3152923-98860d8b06a023a8?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>因此，蓝色的li触碰到了蛋白质那个li，导致它被卡在那里，紫色自然被移到下一行</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3152923-9cc6af5a4acc596a?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>解决办法，固定高度</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3152923-6ae5e649a58f1719?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>二、透明度<br>比如一个块级元素你使用了opacity来做透明度的话，它会使子元素跟着也透明，即使子元素设置不透明。同样的，上代码</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3152923-951cfae82ba0fd05?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3152923-ea58f3937e976086?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>解决办法是使用rgba来做透明度，它将不会影响其子元素（完美）！</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3152923-8cf0256f1abea364?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3152923-828f4653ce2f9235?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>三、动态rem适配移动端<br>我们知道移动端的像素转换非常复杂难算，以前大多数人都会使用媒体查询来适配不同的设备屏幕宽，然后使用em做单位，这样的不足之处是你需要写很多媒体查询，很繁琐，而且em根据的是父元素的font-size。而rem是相对于根元素来配备，能方便很多。PS：忘掉font-size吧，一切以屏幕的宽度为基准，我保证你会非常爽！</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3152923-ec8b75635b50d248?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>width/10是为了保证10rem占宽满屏，不除的话，1rem就等于屏幕宽度了。然后我们只需要动态加上上面的js代码，就不需要做各种媒体查询就能适配各种设备宽度。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3152923-5ba1a1a3692b6c9f?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3152923-a07109727ab5bb27?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>接下来就是通过视觉稿里量到的尺寸来适配rem,比如设计稿的屏幕宽是1000px 元素宽为500px，你只需要10/1000*500就能得到多少rem了，是不是很easy。这里需要说明一下10是10rem，因为这样方便计算。</p>
+<p>动态rem还有一个好处是完美实现1像素边框，我这里就不再描述了，大家可以去谷歌一下四、块级元素垂直居中问题块级元素垂直居然有很多方法，我简单说两个:</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3152923-af681d6423e47d4e?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>上图代码显示用绝对定位，top,left50%，然后负margin宽高的一半，light-height为元素的高就能实现垂直居中。相信大家都知道，但是有个问题，如果元素的宽高变了，那我们也要手动的去改margin。这里有一个更方便的办法，如果不考虑IE低版本的浏览器的情况下，可以用translate来实现，这样无论元素怎么变，都不会有影响。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3152923-054d0ce66359d961?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>还有一种方案可选，设置display：table-cell; vertical-align:middle;大家可以去查查这个属性的用法</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CSS/" rel="tag"># CSS</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/10/CSS3中的动画--transition/" rel="next" title="CSS3中的动画--transition">
+                <i class="fa fa-chevron-left"></i> CSS3中的动画--transition
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/10/JavaScript从数组中删除指定值元素的方法/" rel="prev" title="JavaScript从数组中删除指定值元素的方法">
+                JavaScript从数组中删除指定值元素的方法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yODc2NC81MzM1"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="骑驴看代码" />
+          <p class="site-author-name" itemprop="name">骑驴看代码</p>
+           
+              <p class="site-description motion-element" itemprop="description">种一棵树最好的时间是10年前，其次是现在！</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#文章来源于网络，如侵犯了您的权益，请联系本人。"><span class="nav-number">1.</span> <span class="nav-text">文章来源于网络，如侵犯了您的权益，请联系本人。</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">骑驴看代码</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/three/three.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

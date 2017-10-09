@@ -1,0 +1,810 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="APICould," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="薛泽超" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="1. 导航栏被遮挡的问题使用MUI框架时候，app导航栏会被手机状态栏遮挡住。
+解决办法： 
+把沉浸式状态栏关闭&amp;lt;preference name=&amp;quot;statusBarAppearance&amp;quot; value=&amp;quot;false&amp;quot;/&amp;gt;
+2. app微信支付的问题有时候调用不起来微信，显示未安装。
+解决：
+检查配置里面签名、包名、还有appsecret、同事检查">
+<meta property="og:type" content="article">
+<meta property="og:title" content="APICould填坑合集">
+<meta property="og:url" content="http://yoursite.com/2017/10/10/APICould填坑合集/index.html">
+<meta property="og:site_name" content="薛泽超">
+<meta property="og:description" content="1. 导航栏被遮挡的问题使用MUI框架时候，app导航栏会被手机状态栏遮挡住。
+解决办法： 
+把沉浸式状态栏关闭&amp;lt;preference name=&amp;quot;statusBarAppearance&amp;quot; value=&amp;quot;false&amp;quot;/&amp;gt;
+2. app微信支付的问题有时候调用不起来微信，显示未安装。
+解决：
+检查配置里面签名、包名、还有appsecret、同事检查">
+<meta property="og:updated_time" content="2017-10-09T15:37:44.628Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="APICould填坑合集">
+<meta name="twitter:description" content="1. 导航栏被遮挡的问题使用MUI框架时候，app导航栏会被手机状态栏遮挡住。
+解决办法： 
+把沉浸式状态栏关闭&amp;lt;preference name=&amp;quot;statusBarAppearance&amp;quot; value=&amp;quot;false&amp;quot;/&amp;gt;
+2. app微信支付的问题有时候调用不起来微信，显示未安装。
+解决：
+检查配置里面签名、包名、还有appsecret、同事检查">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/10/10/APICould填坑合集/"/>
+
+
+
+
+
+  <title>APICould填坑合集 | 薛泽超</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?602797b063754130d4f083587fce8838";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">薛泽超</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">认真做事，仔细撸码</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/10/APICould填坑合集/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="骑驴看代码">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="薛泽超">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">APICould填坑合集</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-10T00:22:27+08:00">
+                2017-10-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/APICould/" itemprop="url" rel="index">
+                    <span itemprop="name">APICould</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="1-导航栏被遮挡的问题"><a href="#1-导航栏被遮挡的问题" class="headerlink" title="1. 导航栏被遮挡的问题"></a>1. 导航栏被遮挡的问题</h3><p>使用MUI框架时候，app导航栏会被手机状态栏遮挡住。</p>
+<p>解决办法： </p>
+<p>把沉浸式状态栏关闭<br><code>&lt;preference name=&quot;statusBarAppearance&quot; value=&quot;false&quot;/&gt;</code></p>
+<h3 id="2-app微信支付的问题"><a href="#2-app微信支付的问题" class="headerlink" title="2. app微信支付的问题"></a>2. app微信支付的问题</h3><p>有时候调用不起来微信，显示未安装。</p>
+<p>解决：</p>
+<p>检查配置里面签名、包名、还有appsecret、同事检查微信平台上面的应用审核状态。</p>
+<h3 id="3-云编译失败有可能的原因"><a href="#3-云编译失败有可能的原因" class="headerlink" title="3. 云编译失败有可能的原因"></a>3. 云编译失败有可能的原因</h3><p>如果把不合法的文件，如：（myHtml.mine）上传到云端上去然后进行打包操作，会报错，编译失败，这个问题不好发现。</p>
+<h3 id="4-配置键盘弹出问题，仅支持-iOS"><a href="#4-配置键盘弹出问题，仅支持-iOS" class="headerlink" title="4.配置键盘弹出问题，仅支持 iOS"></a>4.配置键盘弹出问题，仅支持 iOS</h3><p><code>&lt;preference name=&quot;softInputBarEnabled&quot; value=&quot;false&quot; /&gt;</code></p>
+<p>关闭键盘弹出上面的工具条。</p>
+<h3 id="5-从A页面执行B页面的js代码"><a href="#5-从A页面执行B页面的js代码" class="headerlink" title="5. 从A页面执行B页面的js代码"></a>5. 从A页面执行B页面的js代码</h3><p>尽量用自定义事件来做，<br><code>api.send({})    api.addEventListener({})</code></p>
+<h3 id="6-从当前页面进入到4个tab界面"><a href="#6-从当前页面进入到4个tab界面" class="headerlink" title="6. 从当前页面进入到4个tab界面"></a>6. 从当前页面进入到4个tab界面</h3><p>尽量用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">api.closeToWin(&#123;</div><div class="line">    name: root</div><div class="line">&#125;)</div><div class="line">// 就是把当前页面到根页面之间的win都给关了</div></pre></td></tr></table></figure></p>
+<p>不要用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">api.openWin(&#123;</div><div class="line">    name: &quot;root&quot;,</div><div class="line">    url: &apos;index.html&apos;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h3 id="7-安卓手机连续按返回键退出app"><a href="#7-安卓手机连续按返回键退出app" class="headerlink" title="7. 安卓手机连续按返回键退出app"></a>7. 安卓手机连续按返回键退出app</h3><p>注意： 应用ID不能搞错</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">api.closeWidget(&#123;</div><div class="line">	id: &apos;A6934506303563&apos;, //这里改成自己的应用ID</div><div class="line">	retData: &#123;</div><div class="line">    		name: &apos;closeWidget&apos;</div><div class="line">    	&#125;,</div><div class="line">    	silent: true</div><div class="line">    &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="8-在使用-api-showProgress-的时候一定要调用一次-api-hideProgress"><a href="#8-在使用-api-showProgress-的时候一定要调用一次-api-hideProgress" class="headerlink" title="8. 在使用 api.showProgress()的时候一定要调用一次 api.hideProgress()"></a>8. 在使用 <code>api.showProgress()</code>的时候一定要调用一次 <code>api.hideProgress()</code></h3><h3 id="9-有些模块删除不了，可能是你在config-xml里面加了那个配置，所以模块管理里面没有-的标识。你可以把config-xml里面的配置删除，提交svn，然后再在后台移除模块。"><a href="#9-有些模块删除不了，可能是你在config-xml里面加了那个配置，所以模块管理里面没有-的标识。你可以把config-xml里面的配置删除，提交svn，然后再在后台移除模块。" class="headerlink" title="9. 有些模块删除不了，可能是你在config.xml里面加了那个配置，所以模块管理里面没有-的标识。你可以把config.xml里面的配置删除，提交svn，然后再在后台移除模块。"></a>9. 有些模块删除不了，可能是你在config.xml里面加了那个配置，所以模块管理里面没有-的标识。你可以把config.xml里面的配置删除，提交svn，然后再在后台移除模块。</h3><h3 id="10-数据展示页面要进行网络状态判断"><a href="#10-数据展示页面要进行网络状态判断" class="headerlink" title="10. 数据展示页面要进行网络状态判断"></a>10. 数据展示页面要进行网络状态判断</h3><p>分别判断： 加载中、无网络，无数据，有数据等情况下的展示。页面增加超时判断。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/APICould/" rel="tag"># APICould</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/10/移动端下隐藏系统键盘的方法/" rel="next" title="移动端下，隐藏系统键盘的方法">
+                <i class="fa fa-chevron-left"></i> 移动端下，隐藏系统键盘的方法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/10/APICould应用导航栏遮挡问题/" rel="prev" title="APICould应用导航栏遮挡问题">
+                APICould应用导航栏遮挡问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yODc2NC81MzM1"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="骑驴看代码" />
+          <p class="site-author-name" itemprop="name">骑驴看代码</p>
+           
+              <p class="site-description motion-element" itemprop="description">种一棵树最好的时间是10年前，其次是现在！</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-导航栏被遮挡的问题"><span class="nav-number">1.</span> <span class="nav-text">1. 导航栏被遮挡的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-app微信支付的问题"><span class="nav-number">2.</span> <span class="nav-text">2. app微信支付的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-云编译失败有可能的原因"><span class="nav-number">3.</span> <span class="nav-text">3. 云编译失败有可能的原因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-配置键盘弹出问题，仅支持-iOS"><span class="nav-number">4.</span> <span class="nav-text">4.配置键盘弹出问题，仅支持 iOS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-从A页面执行B页面的js代码"><span class="nav-number">5.</span> <span class="nav-text">5. 从A页面执行B页面的js代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-从当前页面进入到4个tab界面"><span class="nav-number">6.</span> <span class="nav-text">6. 从当前页面进入到4个tab界面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-安卓手机连续按返回键退出app"><span class="nav-number">7.</span> <span class="nav-text">7. 安卓手机连续按返回键退出app</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-在使用-api-showProgress-的时候一定要调用一次-api-hideProgress"><span class="nav-number">8.</span> <span class="nav-text">8. 在使用 api.showProgress()的时候一定要调用一次 api.hideProgress()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-有些模块删除不了，可能是你在config-xml里面加了那个配置，所以模块管理里面没有-的标识。你可以把config-xml里面的配置删除，提交svn，然后再在后台移除模块。"><span class="nav-number">9.</span> <span class="nav-text">9. 有些模块删除不了，可能是你在config.xml里面加了那个配置，所以模块管理里面没有-的标识。你可以把config.xml里面的配置删除，提交svn，然后再在后台移除模块。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-数据展示页面要进行网络状态判断"><span class="nav-number">10.</span> <span class="nav-text">10. 数据展示页面要进行网络状态判断</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">骑驴看代码</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/three/three.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

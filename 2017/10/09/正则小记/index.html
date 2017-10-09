@@ -1,0 +1,870 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JavaScript," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="薛泽超" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="创建方式根据 JavaScript高程 上面介绍，有两种方式创建正则表达式：
+
+new RegExp()1var reg = new RegExp(&amp;apos;n&amp;apos;, &amp;apos;gi&amp;apos;); // 全局匹配字母n，且不区分大小写。
+
+
+
+其中第二个参数是可选的，三种值： g：全文查找、i：不区分大小写、m：多行查找；
+
+
+/xxx/gi
+
+1var reg = /a/g; //">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js中的正则表达式">
+<meta property="og:url" content="http://yoursite.com/2017/10/09/正则小记/index.html">
+<meta property="og:site_name" content="薛泽超">
+<meta property="og:description" content="创建方式根据 JavaScript高程 上面介绍，有两种方式创建正则表达式：
+
+new RegExp()1var reg = new RegExp(&amp;apos;n&amp;apos;, &amp;apos;gi&amp;apos;); // 全局匹配字母n，且不区分大小写。
+
+
+
+其中第二个参数是可选的，三种值： g：全文查找、i：不区分大小写、m：多行查找；
+
+
+/xxx/gi
+
+1var reg = /a/g; //">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3152923-61e5eb857971a377.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-10-09T15:09:48.748Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="js中的正则表达式">
+<meta name="twitter:description" content="创建方式根据 JavaScript高程 上面介绍，有两种方式创建正则表达式：
+
+new RegExp()1var reg = new RegExp(&amp;apos;n&amp;apos;, &amp;apos;gi&amp;apos;); // 全局匹配字母n，且不区分大小写。
+
+
+
+其中第二个参数是可选的，三种值： g：全文查找、i：不区分大小写、m：多行查找；
+
+
+/xxx/gi
+
+1var reg = /a/g; //">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/3152923-61e5eb857971a377.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/10/09/正则小记/"/>
+
+
+
+
+
+  <title>js中的正则表达式 | 薛泽超</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?602797b063754130d4f083587fce8838";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">薛泽超</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">认真做事，仔细撸码</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/09/正则小记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="骑驴看代码">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="薛泽超">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">js中的正则表达式</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-09T23:10:30+08:00">
+                2017-10-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript知识/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript知识</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="创建方式"><a href="#创建方式" class="headerlink" title="创建方式"></a>创建方式</h3><p>根据 JavaScript高程 上面介绍，有两种方式创建正则表达式：</p>
+<ol>
+<li><code>new RegExp()</code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var reg = new RegExp(&apos;n&apos;, &apos;gi&apos;); // 全局匹配字母n，且不区分大小写。</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<ul>
+<li>其中第二个参数是可选的，三种值： <code>g</code>：全文查找、<code>i</code>：不区分大小写、<code>m</code>：多行查找；</li>
+</ul>
+<ol>
+<li><code>/xxx/gi</code></li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var reg = /a/g; // 代表全局搜索a</div></pre></td></tr></table></figure>
+<h3 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h3><ol>
+<li><p><code>test()</code>方法用于检测一个字符串是否匹配某个模式，如果字符串中含有匹配的文本，则返回<code>true</code>，否则返回 <code>false</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var str = &apos;my name is Dave&apos;;</div><div class="line">var reg = new RegExp(&apos;n&apos;, &apos;gi&apos;);</div><div class="line">reg.test(str);  // true</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>search()</code>方法检索与正则表达式相匹配的子字符串，并返回子串的起始位置。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var str= &apos;my name is busynnn&apos;;</div><div class="line">console.log(str.search(/is/g)); // 8</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>match()</code> 存放匹配结果的数组。该数组的内容依赖于 regexp 是否具有全局标志 g。 如果没找到匹配结果返回 null 。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var str = &quot;The rain in SPAIN stays mainly in the plain&quot;; </div><div class="line">var n=str.match(/ain/gi);  //  ain,AIN,ain,ain</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>4.<code>replace()</code>用传入的字符串替换正则匹配的字符串：<br><strong>eg:</strong> 替换敏感字<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">var prag = &apos;大约一个月前，小米在小米5X发布会上同时发布了MIUI9系统，和以往的系统相比，MIUI9系统的一大特点是应用启动速度快，同时还可以通过新的几大功能，如传送门、信息助手、快速查找照片、分屏等功能全面提升手机使用效率。&apos;</div><div class="line">		+ &apos;自2010年8月16日发布以来， MIUI系统已连续更新超过340周。 小米联合创始人、 MIUI负责人洪锋透露， 截至目前， MIUI全球用户已经突破2 .8 亿， 覆盖142个国家地区。&apos;</div><div class="line">		+ &apos;MIUI发布至今已经过去整整七年时间， 从第一代到第九代， MIUI所承载的角色也发生了变化， 但洪锋觉得无论如何， 作为一个手机系统， MIUI的宗旨还是要满足80 % 以上用户的实际需求， 提升用户使用手机的效率。&apos;</div><div class="line">		+ &apos;36 氪对洪锋进行了一次专访， 谈了谈手机系统行业目前的整体局势。 在语音交互和AI大行其道的今天， 作为手机的系统还能有哪些新的突破和畅想空间。 &apos;;</div><div class="line">		</div><div class="line">var reg3 = /小米|MIUI/g;  // 替换字符串中的 ‘小米’和‘MIUI’</div><div class="line">console.log(prag.replace(reg3, &apos;**&apos;));</div><div class="line">var newPrag = prag.replace(reg3, function(s) &#123; // 传一个函数，函数的参数s代表匹配的 关键字</div><div class="line">			var temp = &apos;&apos;;</div><div class="line">			for (var i = 0; i &lt; s.length; i++) &#123;</div><div class="line">				temp += &apos;*&apos;;</div><div class="line">			&#125;</div><div class="line">			return temp;</div><div class="line">		&#125;);</div></pre></td></tr></table></figure></p>
+<p>运行结果：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3152923-61e5eb857971a377.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="替换"></p>
+<h3 id="一些常用符号"><a href="#一些常用符号" class="headerlink" title="一些常用符号"></a>一些常用符号</h3><p><strong>[], (), {}, ^, $</strong></p>
+<ul>
+<li><p><code>[]</code>是定义匹配的字符范围。[0-9]表示查找任何从 0 至 9 的数字。</p>
+</li>
+<li><p><code>{}</code> 一般用来表示匹配的长度。<code>/a{n}/</code>表示匹配连续<code>n个a</code>。<code>/a{n, m}/</code>表示匹配连续<code>m-n</code>个 <code>a</code></p>
+</li>
+<li><code>()</code> 的作用是提取匹配的字符串。表达式中有几个()就会得到几个相应的匹配字符串。比如(\s+)表示连续空格的字符串</li>
+<li><code>^</code> 匹配一个字符串的开头，比如 (^a) 就是匹配以字母a开头的字符串</li>
+<li><code>$</code>匹配一个字符串的结尾,比如 (b$) 就是匹配以字母b结尾的字符串</li>
+<li><code>^</code> 还有另个一个作用就是取反，比如[^xyz]表示匹配的字符串不包含xyz</li>
+</ul>
+<p><strong>需要注意的是：如果^出现在[]中一般表示取反，而出现在其他地方则是匹配字符串的开头。</strong></p>
+<ul>
+<li><code>\d</code>匹配一个非负整数， 等价于 [0-9]；</li>
+<li><code>\s</code>匹配一个空白字符；<code>\S</code> 和它相反</li>
+<li><code>\w</code> 匹配一个英文字母或数字，等价于[0-9a-zA-Z]； <code>\W</code> 和它相反</li>
+<li><p><code>.</code> 匹配除换行符以外的任意字符，等价于[^\n]</p>
+</li>
+<li><p><code>*</code>表示匹配前面元素0次或多次，比如(\s*)就是匹配0个或多个空格；</p>
+</li>
+<li><p><code>+</code>表示匹配前面元素1次或多次，比如(\d+)就是匹配由至少1个整数组成的字符串；</p>
+</li>
+<li><p><code>?</code>表示匹配前面元素0次或1次，相当于{0,1}，比如(\w?) 就是匹配最多由1个字母或数字组成的字符串 。</p>
+</li>
+</ul>
+<h3 id="使用情况"><a href="#使用情况" class="headerlink" title="使用情况"></a>使用情况</h3><p>1.验证<br>用于验证时，通常需要在前后分别加上^和$，以匹配整个待验证字符串；<br>2.搜索替换<br>搜索/替换时是否加上此限定则根据搜索的要求而定，此外，也有可能要在前后加上\b而不是^和$<br>字符类匹配<br>[…] 查找方括号之间的任何字符<br>[^…] 查找任何不在方括号之间的字符<br>[a-z] 查找任何从小写 a 到小写 z 的字符<br>[A-Z] 查找任何从大写 A 到大写 Z 的字符<br>[A-z] 查找任何从大写 A 到小写 z 的字符<br>. 查找单个字符，除了换行和行结束符<br>\w 查找单词字符，等价于[a-zA-Z0-9]<br>\W 查找非单词字符，等价于[^a-zA-Z0-9]<br>\s 查找空白字符<br>\S 查找非空白字符<br>\d 查找数字，等价于[0-9]<br>\D 查找非数字字符，等价于[^0-9]<br>\b 匹配单词边界<br>\r 查找回车符<br>\t 查找制表符<br>\0 查找 NULL 字符<br>\n 查找换行符<br>重复字符匹配<br>{n,m} 匹配前一项至少n次，但不能超过m次<br>{n,} 匹配前一项n次或更多次<br>{n} 匹配前一项n次<br>n？ 匹配前一项0次或者1次，也就是说前一项是可选的，等价于{0，1}<br>n+ 匹配前一项1次或多次，等价于{1，}<br>n<em> 匹配前一项0次或多次，等价于{0，}<br>n$ 匹配任何结尾为 n 的字符串<br>^n 匹配任何开头为 n 的字符串<br>?=n 匹配任何其后紧接指定字符串 n 的字符串<br>?!n 匹配任何其后没有紧接指定字符串 n 的字符串<br>匹配特定数字<br>^[1-9]\d</em>$　 　 匹配正整数<br>^-[1-9]\d<em>$ 　 匹配负整数<br>^-?[0-9]\d</em>$　　 匹配整数<br>^[1-9]\d<em>|0$　 匹配非负整数（正整数 + 0）<br>^-[1-9]\d</em>|0$　　 匹配非正整数（负整数 + 0）<br>^[1-9]\d<em>.\d</em>|0.\d<em>[1-9]\d</em>$　　匹配正浮点数<br>^-([1-9]\d<em>.\d</em>|0.\d<em>[1-9]\d</em>)$　匹配负浮点数<br>^-?([1-9]\d<em>.\d</em>|0.\d<em>[1-9]\d</em>|0?.0+|0)$　 匹配浮点数<br>^[1-9]\d<em>.\d</em>|0.\d<em>[1-9]\d</em>|0?.0+|0$　　 匹配非负浮点数（正浮点数 + 0）<br>^(-([1-9]\d<em>.\d</em>|0.\d<em>[1-9]\d</em>))|0?.0+|0$　　匹配非正浮点数（负浮点数 + 0）<br>匹配特定字符串<br>^[A-Za-z]+$　　匹配由26个英文字母组成的字符串<br>^[A-Z]+$　　匹配由26个英文字母的大写组成的字符串<br>^[a-z]+$　　匹配由26个英文字母的小写组成的字符串<br>^[A-Za-z0-9]+$　　匹配由数字和26个英文字母组成的字符串<br>^\w+$　　匹配由数字、26个英文字母或者下划线组成的字符串</p>
+<p>参考内容：</p>
+<p><a href="http://www.cnblogs.com/onepixel/p/5218904.html" target="_blank" rel="external">JS正则表达式常用总结</a></p>
+<p><a href="http://www.runoob.com/jsref/jsref-obj-regexp.html" target="_blank" rel="external">菜鸟教程 - JavaScript RegExp 对象</a></p>
+<p><a href="http://www.jb51.net/article/97901.htm" target="_blank" rel="external">js正则表达式学习和总结(必看篇)</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/09/CSS布局相关/" rel="next" title="CSS 布局小知识">
+                <i class="fa fa-chevron-left"></i> CSS 布局小知识
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/09/Event-对象详解/" rel="prev" title="js中的Event对象">
+                js中的Event对象 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yODc2NC81MzM1"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="骑驴看代码" />
+          <p class="site-author-name" itemprop="name">骑驴看代码</p>
+           
+              <p class="site-description motion-element" itemprop="description">种一棵树最好的时间是10年前，其次是现在！</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建方式"><span class="nav-number">1.</span> <span class="nav-text">创建方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用方法"><span class="nav-number">2.</span> <span class="nav-text">常用方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一些常用符号"><span class="nav-number">3.</span> <span class="nav-text">一些常用符号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用情况"><span class="nav-number">4.</span> <span class="nav-text">使用情况</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">骑驴看代码</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/three/three.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

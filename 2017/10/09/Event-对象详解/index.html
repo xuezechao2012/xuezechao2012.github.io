@@ -1,0 +1,857 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JavaScript," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="薛泽超" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="Event 对象：
+
+Event 对象代表事件的状态，比如事件在其中发生的元素、键盘按键的状态、鼠标的位置、鼠标按钮的状态。事件通常与函数结合使用，函数不会在事件发生前被执行！
+
+例如：当用户单击某个元素的时候,我们给这个元素注册的事件就会触发,该事件的本质就是一个函数,而该函数的形参接收一个event对象.
+
+
+事件句柄
+鼠标 / 键盘属性
+IE 属性
+标准Event 属性
+标准Event方法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js中的Event对象">
+<meta property="og:url" content="http://yoursite.com/2017/10/09/Event-对象详解/index.html">
+<meta property="og:site_name" content="薛泽超">
+<meta property="og:description" content="Event 对象：
+
+Event 对象代表事件的状态，比如事件在其中发生的元素、键盘按键的状态、鼠标的位置、鼠标按钮的状态。事件通常与函数结合使用，函数不会在事件发生前被执行！
+
+例如：当用户单击某个元素的时候,我们给这个元素注册的事件就会触发,该事件的本质就是一个函数,而该函数的形参接收一个event对象.
+
+
+事件句柄
+鼠标 / 键盘属性
+IE 属性
+标准Event 属性
+标准Event方法">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3152923-c1566766c8cb6261.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3152923-75cc892468acceb1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3152923-35c4ef16cdfb1a0b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3152923-d6077acdda862e78.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3152923-283b95bdc6a3eb1e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-10-09T15:08:00.635Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="js中的Event对象">
+<meta name="twitter:description" content="Event 对象：
+
+Event 对象代表事件的状态，比如事件在其中发生的元素、键盘按键的状态、鼠标的位置、鼠标按钮的状态。事件通常与函数结合使用，函数不会在事件发生前被执行！
+
+例如：当用户单击某个元素的时候,我们给这个元素注册的事件就会触发,该事件的本质就是一个函数,而该函数的形参接收一个event对象.
+
+
+事件句柄
+鼠标 / 键盘属性
+IE 属性
+标准Event 属性
+标准Event方法">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/3152923-c1566766c8cb6261.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/10/09/Event-对象详解/"/>
+
+
+
+
+
+  <title>js中的Event对象 | 薛泽超</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?602797b063754130d4f083587fce8838";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">薛泽超</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">认真做事，仔细撸码</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/09/Event-对象详解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="骑驴看代码">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="薛泽超">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">js中的Event对象</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-09T23:10:31+08:00">
+                2017-10-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript知识/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript知识</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>Event 对象：</strong></p>
+<blockquote>
+<p>Event 对象代表事件的状态，比如事件在其中发生的元素、键盘按键的状态、鼠标的位置、鼠标按钮的状态。<br>事件通常与函数结合使用，函数不会在事件发生前被执行！</p>
+<ul>
+<li>例如：当用户单击某个元素的时候,我们给这个元素注册的事件就会触发,该事件的本质就是一个函数,而该函数的形参接收一个<code>event</code>对象.</li>
+</ul>
+</blockquote>
+<h4 id="事件句柄"><a href="#事件句柄" class="headerlink" title="事件句柄"></a>事件句柄</h4><p><img src="http://upload-images.jianshu.io/upload_images/3152923-c1566766c8cb6261.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="事件句柄"></p>
+<h4 id="鼠标-键盘属性"><a href="#鼠标-键盘属性" class="headerlink" title="鼠标 / 键盘属性"></a>鼠标 / 键盘属性</h4><p><img src="http://upload-images.jianshu.io/upload_images/3152923-75cc892468acceb1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="鼠标 / 键盘属性"></p>
+<h4 id="IE-属性"><a href="#IE-属性" class="headerlink" title="IE 属性"></a>IE 属性</h4><p><img src="http://upload-images.jianshu.io/upload_images/3152923-35c4ef16cdfb1a0b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="IE 属性"></p>
+<h4 id="标准Event-属性"><a href="#标准Event-属性" class="headerlink" title="标准Event 属性"></a>标准Event 属性</h4><p><img src="http://upload-images.jianshu.io/upload_images/3152923-d6077acdda862e78.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="标准Event 属性"></p>
+<h4 id="标准Event方法"><a href="#标准Event方法" class="headerlink" title="标准Event方法"></a>标准Event方法</h4><p><img src="http://upload-images.jianshu.io/upload_images/3152923-283b95bdc6a3eb1e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="标准Event方法"></p>
+<p><strong>事件冒泡</strong></p>
+<ul>
+<li>意思就是说,假如用户单击了一个元素,该元素拥有一个click事件,那么同样的事件也将会被它的祖先触发,这个事件从该元素开始一直冒泡到DOM树的最上层,这一过程称为事件冒泡。</li>
+</ul>
+<p><strong>事件捕获</strong></p>
+<ul>
+<li>事件捕获和事件是相反的,也就是说,当用户触发了一个事件的时候,这个事件是从DOM树的最上层开始触发一直到捕获到事件源。</li>
+</ul>
+<p><strong>事件流的写法以及实现方式</strong></p>
+<ul>
+<li><p>标准实现方式使用关键词addEventListener,假如你想要给某一个元素添加事件,现在就可以这样写<code>element.addEventListener(eventType, fn, false)</code><br>dom对象.<code>addEventListener(事件类型, 回调函数, 事件机制)</code>这里的事件类型表示你要使用哪种事件类型比如click, 回调函数里面写着触发此事件你要做什么事情, 事件机制分为冒泡和捕获,如果为false表示事件冒泡,为true表示事件捕获</p>
+</li>
+<li><p>dom对象.attachEvent(eventType, fn)第一个参数表示事件类型,第二个是回调.这种写法兼容IE, IE没有实现事件捕获。</p>
+</li>
+</ul>
+<p><strong>下面是注册事件和删除事件的兼容性写法</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">// 绑定事件</div><div class="line">if(dom.addEventListener) &#123;</div><div class="line">    dom.addEventListener(eventType, fn);</div><div class="line">&#125; else &#123;</div><div class="line">    if(dom.attachEvent) &#123;</div><div class="line">       dom.attachEvent(&apos;on&apos; + eventType, fn);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 下面是删除事件</div><div class="line">if(dom.removeEventListener) &#123;</div><div class="line">    dom.removeEventListener(eventType, fn, false);</div><div class="line">&#125; else &#123;</div><div class="line">    if(dom.detachEvent) &#123;</div><div class="line">        dom.detachEvent(&quot;on&quot; + eventType, fn)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>// 关于事件冒泡和事件捕获Demo</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html lang=&quot;en&quot;&gt;</div><div class="line"></div><div class="line">&lt;head&gt;</div><div class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</div><div class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</div><div class="line">    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;</div><div class="line">    &lt;title&gt;Document&lt;/title&gt;</div><div class="line">    &lt;style&gt;</div><div class="line">        * &#123;</div><div class="line">            margin: 0;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        #one &#123;</div><div class="line">            width: 500px;</div><div class="line">            height: 500px;</div><div class="line">            background: #f00;</div><div class="line">            border: 1px solid transparent;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        #two &#123;</div><div class="line">            width: 400px;</div><div class="line">            height: 400px;</div><div class="line">            margin: 0 auto;</div><div class="line">            margin-top: 50px;</div><div class="line">            background: rgb(255, 50, 50);</div><div class="line">            border: 1px solid transparent;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        #three &#123;</div><div class="line">            width: 300px;</div><div class="line">            height: 300px;</div><div class="line">            margin: 0 auto;</div><div class="line">            margin-top: 50px;</div><div class="line">            background: rgb(255, 100, 100);</div><div class="line">            border: 1px solid transparent;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        #four &#123;</div><div class="line">            width: 200px;</div><div class="line">            height: 200px;</div><div class="line">            margin: 0 auto;</div><div class="line">            margin-top: 50px;</div><div class="line">            background: rgb(255, 150, 150);</div><div class="line">        &#125;</div><div class="line">    &lt;/style&gt;</div><div class="line">&lt;/head&gt;</div><div class="line"></div><div class="line">&lt;body&gt;</div><div class="line">    &lt;div id=&quot;one&quot;&gt;</div><div class="line">        one</div><div class="line">        &lt;div id=&quot;two&quot;&gt;</div><div class="line">            two</div><div class="line">            &lt;div id=&quot;three&quot;&gt;</div><div class="line">                three</div><div class="line">                &lt;div id=&quot;four&quot;&gt;four&lt;/div&gt;</div><div class="line">            &lt;/div&gt;</div><div class="line">        &lt;/div&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;script&gt;</div><div class="line">    var one = document.getElementById(&apos;one&apos;);</div><div class="line">    var two = document.getElementById(&apos;two&apos;);</div><div class="line">    var three = document.getElementById(&apos;three&apos;);</div><div class="line">    var four = document.getElementById(&apos;four&apos;);</div><div class="line"></div><div class="line">    var useCapture = true; //false为冒泡获取【目标元素先触发】    true为捕获获取【父级元素先触发】</div><div class="line">    one.addEventListener(&apos;click&apos;, function(event) &#123;</div><div class="line">        event || (event = window.event);</div><div class="line">        console.log(event);</div><div class="line">        console.log(&apos;one&apos;);</div><div class="line">    &#125;, useCapture);</div><div class="line">    two.addEventListener(&apos;click&apos;, function() &#123;</div><div class="line">        console.log(&apos;two&apos;);</div><div class="line">    &#125;, useCapture);</div><div class="line">    three.addEventListener(&apos;click&apos;, function() &#123;</div><div class="line">        console.log(&apos;three&apos;);</div><div class="line">    &#125;, useCapture);</div><div class="line">    four.addEventListener(&apos;click&apos;, function() &#123;</div><div class="line">        console.log(&apos;four&apos;);</div><div class="line">    &#125;, useCapture);</div><div class="line"></div><div class="line">    /*</div><div class="line">    false</div><div class="line">    冒泡</div><div class="line">    点击four div</div><div class="line">    输出结果：four three two one        </div><div class="line"></div><div class="line">    true</div><div class="line">    捕获</div><div class="line">    点击four div</div><div class="line">    输出结果： one two three four</div><div class="line">    */</div><div class="line">&lt;/script&gt;</div><div class="line"></div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<h3 id="Event-对象的兼容性写法"><a href="#Event-对象的兼容性写法" class="headerlink" title="Event 对象的兼容性写法"></a>Event 对象的兼容性写法</h3><ul>
+<li>获得event对象兼容性写法<br><code>event || (event = window.event);</code></li>
+<li>获得target兼容型写法<br><code>event.target||event.srcElement</code></li>
+<li>阻止浏览器默认行为兼容性写法<br><code>event.preventDefault ? event.preventDefault() : (event.returnValue = false);</code></li>
+<li>阻止冒泡写法<br><code>event.stopPropagation ? event.stopPropagation() : (event.cancelBubble = true);</code></li>
+<li>注册和删除事件方法的形式<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">function on(id, eventType, fn) &#123;</div><div class="line">        var dom = document.getElementById(&apos;test&apos;);</div><div class="line">        if(dom.addEventListener) &#123;</div><div class="line">            dom.addEventListener(eventType, fn);</div><div class="line">        &#125; else &#123;</div><div class="line">            if (dom.attachEvent) &#123;</div><div class="line">                dom.attachEvent(&apos;on&apos;+eventType, fn);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    function un(id, eventType, fn) &#123;</div><div class="line">        var dom = document.getElementById(&apos;test&apos;);</div><div class="line">        if(dom.removeEventListener) &#123;</div><div class="line">            dom.removeEventListener(eventType, fn, false);</div><div class="line">        &#125; else &#123;</div><div class="line">            if(dom.detachEvent) &#123;</div><div class="line">                dom.detachEvent(&apos;on&apos;+ eventType, fn);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>参考文章：<a href="http://www.cnblogs.com/chaoyuehedy/p/5692899.html" target="_blank" rel="external"><a href="http://www.cnblogs.com/chaoyuehedy/p/5692899.html" target="_blank" rel="external">javascript event（事件对象）详解</a></a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/09/正则小记/" rel="next" title="js中的正则表达式">
+                <i class="fa fa-chevron-left"></i> js中的正则表达式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/09/JavaScript数组小结/" rel="prev" title="js中的数组">
+                js中的数组 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yODc2NC81MzM1"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="骑驴看代码" />
+          <p class="site-author-name" itemprop="name">骑驴看代码</p>
+           
+              <p class="site-description motion-element" itemprop="description">种一棵树最好的时间是10年前，其次是现在！</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#事件句柄"><span class="nav-number">1.</span> <span class="nav-text">事件句柄</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#鼠标-键盘属性"><span class="nav-number">2.</span> <span class="nav-text">鼠标 / 键盘属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#IE-属性"><span class="nav-number">3.</span> <span class="nav-text">IE 属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#标准Event-属性"><span class="nav-number">4.</span> <span class="nav-text">标准Event 属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#标准Event方法"><span class="nav-number">5.</span> <span class="nav-text">标准Event方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Event-对象的兼容性写法"><span class="nav-number"></span> <span class="nav-text">Event 对象的兼容性写法</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">骑驴看代码</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/three/three.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

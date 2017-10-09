@@ -1,0 +1,846 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="CSS," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="薛泽超" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="混合宏–多参数(单参数类似，还可以给参数指定默认值，当不传参数的时候会调用默认值。)Sass混合宏传多个参数的使用方法，例如：一个垂直居中的例子
+
+HTML 代码
+
+123&amp;lt;div class=&amp;quot;box&amp;quot;&amp;gt;	&amp;lt;div class=&amp;quot;center&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;&amp;lt;/div&amp;gt;
+
+Scss 代码
+
+123456789">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Sass学习2">
+<meta property="og:url" content="http://yoursite.com/2017/10/09/Sass学习查缺补漏/index.html">
+<meta property="og:site_name" content="薛泽超">
+<meta property="og:description" content="混合宏–多参数(单参数类似，还可以给参数指定默认值，当不传参数的时候会调用默认值。)Sass混合宏传多个参数的使用方法，例如：一个垂直居中的例子
+
+HTML 代码
+
+123&amp;lt;div class=&amp;quot;box&amp;quot;&amp;gt;	&amp;lt;div class=&amp;quot;center&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;&amp;lt;/div&amp;gt;
+
+Scss 代码
+
+123456789">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3152923-69f845b550393181.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://img.mukewang.com/55263aa30001913307940364.jpg">
+<meta property="og:updated_time" content="2017-10-09T15:12:46.071Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Sass学习2">
+<meta name="twitter:description" content="混合宏–多参数(单参数类似，还可以给参数指定默认值，当不传参数的时候会调用默认值。)Sass混合宏传多个参数的使用方法，例如：一个垂直居中的例子
+
+HTML 代码
+
+123&amp;lt;div class=&amp;quot;box&amp;quot;&amp;gt;	&amp;lt;div class=&amp;quot;center&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;&amp;lt;/div&amp;gt;
+
+Scss 代码
+
+123456789">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/3152923-69f845b550393181.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/10/09/Sass学习查缺补漏/"/>
+
+
+
+
+
+  <title>Sass学习2 | 薛泽超</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?602797b063754130d4f083587fce8838";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">薛泽超</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">认真做事，仔细撸码</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/09/Sass学习查缺补漏/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="骑驴看代码">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="薛泽超">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Sass学习2</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-09T23:13:03+08:00">
+                2017-10-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSS预编译器/" itemprop="url" rel="index">
+                    <span itemprop="name">CSS预编译器</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="混合宏–多参数-单参数类似，还可以给参数指定默认值，当不传参数的时候会调用默认值。"><a href="#混合宏–多参数-单参数类似，还可以给参数指定默认值，当不传参数的时候会调用默认值。" class="headerlink" title="混合宏–多参数(单参数类似，还可以给参数指定默认值，当不传参数的时候会调用默认值。)"></a>混合宏–多参数(单参数类似，还可以给参数指定默认值，当不传参数的时候会调用默认值。)</h2><p>Sass混合宏传多个参数的使用方法，例如：一个垂直居中的例子</p>
+<ul>
+<li>HTML 代码</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div class=&quot;box&quot;&gt;</div><div class="line">	&lt;div class=&quot;center&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<ul>
+<li>Scss 代码</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">@mixin box-wrapper($width,$height) &#123;</div><div class="line">	width: $width;</div><div class="line">	height: $height;</div><div class="line">	background: gray;</div><div class="line">	margin: 50px auto;</div><div class="line">	position: relative;</div><div class="line">&#125;</div><div class="line">.box &#123;</div><div class="line">	@include box-wrapper(500px,500px);</div><div class="line">&#125;</div><div class="line">@mixin center($width,$height) &#123;</div><div class="line">	width: $width;</div><div class="line">	height: $height;</div><div class="line">	position: absolute;</div><div class="line">	top: 50%;</div><div class="line">	left: 50%;</div><div class="line">	background: red;</div><div class="line">	margin: &#123;</div><div class="line">		top: -($height) / 2;</div><div class="line">		left: -($width) / 2;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">.center &#123;</div><div class="line">	@include center(200px,200px);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面的Scss代码中，我创建了一个<code>box-wrapper</code> ，还有一个<code>center</code>的混合宏，并传递了宽高两个参数。</p>
+<ul>
+<li>编译后的CSS</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">.box &#123;</div><div class="line">  width: 500px;</div><div class="line">  height: 500px;</div><div class="line">  background: gray;</div><div class="line">  margin: 50px auto;</div><div class="line">  position: relative; &#125;</div><div class="line"></div><div class="line">.center &#123;</div><div class="line">  width: 200px;</div><div class="line">  height: 200px;</div><div class="line">  position: absolute;</div><div class="line">  top: 50%;</div><div class="line">  left: 50%;</div><div class="line">  background: red;</div><div class="line">  margin-top: -100px;</div><div class="line">  margin-left: -100px; &#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>浏览器运行结果</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/3152923-69f845b550393181.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="垂直居中"></p>
+<p>从这个例子可以看出Sass代码的优势，当后面的页面中还需要垂直居中的样式，就可以直接给<strong>父元素盒子</strong>添加<code>@include box-wrapper(width,height);</code>,要<strong>垂直居中的盒子</strong>添加<code>@include center(width,height);</code>。这就好比写一个模板，等到需要使用的时候把模板套上去就好了，效率很高。</p>
+<h2 id="Sass继承-扩展"><a href="#Sass继承-扩展" class="headerlink" title="Sass继承/扩展"></a>Sass继承/扩展</h2><p>在Sass中的继承是通过<code>@extend</code>关键字来做到的；<br>例如： </p>
+<ul>
+<li>Scss</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">.btn &#123;</div><div class="line">	border: 1px solid #ccc;</div><div class="line">	padding: 6px 10px;</div><div class="line">	font-size: 14px;</div><div class="line">&#125;</div><div class="line">button &#123;</div><div class="line">	width: 500px;</div><div class="line">&#125;</div><div class="line">.btn-primary &#123;</div><div class="line">	background-color: #f36;</div><div class="line">	color: #fff;</div><div class="line">	@extend .btn;</div><div class="line">	@extend button;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>编译后的CSS</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">/*在 Sass 中的继承，可以继承类样式块中所有样式代码，</div><div class="line">而且编译出来的 CSS 会将选择器合并在一起，形成组合选择器*/</div><div class="line">.btn, .btn-primary &#123;</div><div class="line">  border: 1px solid #ccc;</div><div class="line">  padding: 6px 10px;</div><div class="line">  font-size: 14px; &#125;</div><div class="line"></div><div class="line">button, .btn-primary &#123;</div><div class="line">  width: 500px; &#125;</div><div class="line"></div><div class="line">.btn-primary &#123;</div><div class="line">  background-color: #f36;</div><div class="line">  color: #fff; &#125;</div></pre></td></tr></table></figure>
+<h2 id="占位符-placeholder"><a href="#占位符-placeholder" class="headerlink" title="占位符 %placeholder"></a>占位符 %placeholder</h2><p><code>%placeholder</code>声明的代码，如果不被 <code>@extend</code> 调用的话，不会产生任何代码，<strong>编译出来的代码会将相同的代码合并在一起。</strong>有效的解决代码冗余的问题。</p>
+<p>例如：</p>
+<ul>
+<li>Scss </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">%mt5 &#123;</div><div class="line">  margin-top: 5px;</div><div class="line">&#125;</div><div class="line">%pt5&#123;</div><div class="line">  padding-top: 5px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.btn &#123;</div><div class="line">  @extend %mt5;</div><div class="line">  @extend %pt5;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.block &#123;</div><div class="line">  @extend %mt5;</div><div class="line"></div><div class="line">  span &#123;</div><div class="line">    @extend %pt5;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>编译后的CSS</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">.btn, .block &#123;</div><div class="line">  margin-top: 5px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.btn, .block span &#123;</div><div class="line">  padding-top: 5px;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="混合宏-VS-继承-VS-占位符"><a href="#混合宏-VS-继承-VS-占位符" class="headerlink" title="混合宏 VS 继承 VS 占位符"></a>混合宏 VS 继承 VS 占位符</h2><p>具体参考<a href="http://www.imooc.com/code/7041" target="_blank" rel="external">慕课网</a></p>
+<p> <img src="http://img.mukewang.com/55263aa30001913307940364.jpg" alt="三种方式选择的对比"></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CSS/" rel="tag"># CSS</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/09/Sass进阶篇---之一/" rel="next" title="Sass学习1">
+                <i class="fa fa-chevron-left"></i> Sass学习1
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/09/Vue中key使用的一个小场景/" rel="prev" title="Vue中key使用场景">
+                Vue中key使用场景 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yODc2NC81MzM1"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="骑驴看代码" />
+          <p class="site-author-name" itemprop="name">骑驴看代码</p>
+           
+              <p class="site-description motion-element" itemprop="description">种一棵树最好的时间是10年前，其次是现在！</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#混合宏–多参数-单参数类似，还可以给参数指定默认值，当不传参数的时候会调用默认值。"><span class="nav-number">1.</span> <span class="nav-text">混合宏–多参数(单参数类似，还可以给参数指定默认值，当不传参数的时候会调用默认值。)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sass继承-扩展"><span class="nav-number">2.</span> <span class="nav-text">Sass继承/扩展</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#占位符-placeholder"><span class="nav-number">3.</span> <span class="nav-text">占位符 %placeholder</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#混合宏-VS-继承-VS-占位符"><span class="nav-number">4.</span> <span class="nav-text">混合宏 VS 继承 VS 占位符</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">骑驴看代码</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/three/three.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

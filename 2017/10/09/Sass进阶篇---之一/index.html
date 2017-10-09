@@ -1,0 +1,883 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="CSS," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="薛泽超" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="@if指令@if 是一个SassScript，它可以根据条件来处理样式块，如果为true返回一个样式块，反之false返回另外一个样式块。在 Sass 中除了 @if 之，还可以配合 @else if 和 @else 一起使用。例如：控制一个元素显示或隐藏
+
+Scss
+
+1234567891011121314@mixin blockOrHidden($boolean: true) &amp;#123;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Sass学习1">
+<meta property="og:url" content="http://yoursite.com/2017/10/09/Sass进阶篇---之一/index.html">
+<meta property="og:site_name" content="薛泽超">
+<meta property="og:description" content="@if指令@if 是一个SassScript，它可以根据条件来处理样式块，如果为true返回一个样式块，反之false返回另外一个样式块。在 Sass 中除了 @if 之，还可以配合 @else if 和 @else 一起使用。例如：控制一个元素显示或隐藏
+
+Scss
+
+1234567891011121314@mixin blockOrHidden($boolean: true) &amp;#123;">
+<meta property="og:updated_time" content="2017-10-09T15:12:37.841Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Sass学习1">
+<meta name="twitter:description" content="@if指令@if 是一个SassScript，它可以根据条件来处理样式块，如果为true返回一个样式块，反之false返回另外一个样式块。在 Sass 中除了 @if 之，还可以配合 @else if 和 @else 一起使用。例如：控制一个元素显示或隐藏
+
+Scss
+
+1234567891011121314@mixin blockOrHidden($boolean: true) &amp;#123;">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/10/09/Sass进阶篇---之一/"/>
+
+
+
+
+
+  <title>Sass学习1 | 薛泽超</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?602797b063754130d4f083587fce8838";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">薛泽超</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">认真做事，仔细撸码</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/09/Sass进阶篇---之一/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="骑驴看代码">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="薛泽超">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Sass学习1</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-09T23:13:03+08:00">
+                2017-10-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSS预编译器/" itemprop="url" rel="index">
+                    <span itemprop="name">CSS预编译器</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="if指令"><a href="#if指令" class="headerlink" title="@if指令"></a>@if指令</h3><p>@if 是一个SassScript，它可以根据条件来处理样式块，如果为true返回一个样式块，反之false返回另外一个样式块。在 Sass 中除了 @if 之，还可以配合 @else if 和 @else 一起使用。<br>例如：控制一个元素显示或隐藏</p>
+<ul>
+<li>Scss</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">@mixin blockOrHidden($boolean: true) &#123;</div><div class="line">  @if $boolean &#123;</div><div class="line">    display: block;</div><div class="line">  &#125;</div><div class="line">  @else &#123;</div><div class="line">    display: none;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">.block &#123;</div><div class="line">  @include blockOrHidden;</div><div class="line">&#125; </div><div class="line">.hidden &#123;</div><div class="line">  @include blockOrHidden(false); </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>用Sass定义一个混合宏，并且默认参数为true，在这个宏里面使用 <code>@if</code>、<code>@else</code>来判断传参的值，来分别设置对应的display值。</p>
+<ul>
+<li>编译后的CSS</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">.block &#123;</div><div class="line">  display: block;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.hidden &#123;</div><div class="line">  display: none;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="for循环"><a href="#for循环" class="headerlink" title="@for循环"></a>@for循环</h3><p>在Sass中的 @for 循环有两种方式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">@for $i from &lt;start&gt; through &lt;end&gt;</div><div class="line">@for $i from &lt;start&gt; to &lt;end&gt;</div></pre></td></tr></table></figure></p>
+<ul>
+<li><code>$i</code> 表示变量</li>
+<li><code>start</code> 表示起始站</li>
+<li><code>end</code> 表示结束值</li>
+</ul>
+<p><strong>这两个的区别是关键字<code>through</code> 表示包括 end 这个数，而<code>to</code>则不包括 end 这个数。</strong><br>举个栗子：</p>
+<ul>
+<li>Scss</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">@for $i from 1 through 3 &#123;  // through 可替换为 to</div><div class="line">  .col-#&#123;$i&#125; &#123;</div><div class="line">    width: 2px * $i; </div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>编译后的CSS</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">.col-1 &#123;</div><div class="line">  width: 2px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.col-2 &#123;</div><div class="line">  width: 4px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.col-3 &#123;</div><div class="line">  width: 6px;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>简直分分钟撸出来一个网格系统有木有，比起一行行写苦逼CSS，简直不要太爽。</p>
+<p>再举个栗子：</p>
+<ul>
+<li>Scss (占位符<code>%name</code> + 插值<code>#{}</code> + <code>@extend</code> + <code>@for</code>)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">$grid-prefix: span !default;</div><div class="line">$grid-width: 60px !default;</div><div class="line">$grid-gutter: 20px !default;</div><div class="line">%grid &#123;</div><div class="line">  float: left;</div><div class="line">  margin: &#123;</div><div class="line">    left: $grid-gutter / 2;</div><div class="line">    right: $grid-gutter / 2;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">@for $i from 1 through 3 &#123; </div><div class="line">  .#&#123;$grid-prefix&#125;#&#123;$i&#125; &#123; </div><div class="line">    width: $grid-width * $i + $grid-gutter * ($i - 1);  </div><div class="line">    @extend %grid; </div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>编译后的CSS</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">.span1, .span2, .span3 &#123;</div><div class="line">  float: left;</div><div class="line">  margin-left: 10px;</div><div class="line">  margin-right: 10px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.span1 &#123;</div><div class="line">  width: 60px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.span2 &#123;</div><div class="line">  width: 140px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.span3 &#123;</div><div class="line">  width: 220px;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="while"><a href="#while" class="headerlink" title="@while"></a>@while</h3><p>只要 @while 后面的条件为 true 就会执行</p>
+<p>上栗子：</p>
+<ul>
+<li>Scss</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$types: 4;</div><div class="line">$width: 20px;</div><div class="line">@while $types &gt; 0 &#123;</div><div class="line">  .while-#&#123;$types&#125; &#123;</div><div class="line">    width: $width + $types;</div><div class="line">  &#125;</div><div class="line">  $types: $types - 1; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>编译后的CSS</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">.while-4 &#123;</div><div class="line">  width: 24px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.while-3 &#123;</div><div class="line">  width: 23px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.while-2 &#123;</div><div class="line">  width: 22px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.while-1 &#123;</div><div class="line">  width: 21px;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="each"><a href="#each" class="headerlink" title="@each"></a>@each</h3><p><code>@each</code>循环指令的形式：<code>@each $var in &lt;list&gt;</code><br><code>&lt;list&gt;</code>是一个列表，<code>$var</code> 遍历出里面的值。</p>
+<p>上栗子：</p>
+<ul>
+<li>Scss</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$names: john tom leo dave;</div><div class="line">@mixin user-names &#123;</div><div class="line">  @each $name in $names &#123;</div><div class="line">    .user-#&#123;$name&#125;:after &#123;</div><div class="line">      content: $name;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">@include user-names;</div></pre></td></tr></table></figure>
+<ul>
+<li>编译后CSS</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">.user-john:after &#123;</div><div class="line">  content: john;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.user-tom:after &#123;</div><div class="line">  content: tom;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.user-leo:after &#123;</div><div class="line">  content: leo;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.user-dave:after &#123;</div><div class="line">  content: dave;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Sass函数部分"><a href="#Sass函数部分" class="headerlink" title="Sass函数部分"></a>Sass函数部分</h2><h3 id="1-字符串函数"><a href="#1-字符串函数" class="headerlink" title="1. 字符串函数"></a>1. 字符串函数</h3><ul>
+<li>unquote($string)：删除字符串中的引号；</li>
+<li>quote($string)：给字符串添加引号。<br>上栗子：</li>
+<li>Scss</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">.test1 &#123;</div><div class="line">    content:  unquote(&apos;Hello Sass!&apos;) ;</div><div class="line">&#125;</div><div class="line">.test2 &#123;</div><div class="line">    content: unquote(&quot;&apos;Hello Sass!&quot;);</div><div class="line">&#125;</div><div class="line">.test3 &#123;</div><div class="line">    content: unquote(&quot;I&apos;m Web Designer&quot;);</div><div class="line">&#125;</div><div class="line">.test4 &#123;</div><div class="line">    content: unquote(&quot;&apos;Hello Sass!&apos;&quot;);</div><div class="line">&#125;</div><div class="line">.test5 &#123;</div><div class="line">    content: unquote(&apos;&quot;Hello Sass!&quot;&apos;);</div><div class="line">&#125;</div><div class="line">.test6 &#123;</div><div class="line">    content: unquote(Hello Sass);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>编译后CSS</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">.test1 &#123;</div><div class="line">  content: Hello Sass!; </div><div class="line">&#125;</div><div class="line"></div><div class="line">.test2 &#123;</div><div class="line">  content: &apos;Hello Sass!; </div><div class="line">&#125;</div><div class="line"></div><div class="line">.test3 &#123;</div><div class="line">  content: I&apos;m Web Designer; </div><div class="line">&#125;</div><div class="line"></div><div class="line">.test4 &#123;</div><div class="line">  content: &apos;Hello Sass!&apos;; </div><div class="line">&#125;</div><div class="line"></div><div class="line">.test5 &#123;</div><div class="line">  content: &quot;Hello Sass!&quot;; </div><div class="line">&#125;</div><div class="line"></div><div class="line">.test6 &#123;</div><div class="line">  content: Hello Sass; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>从结果来看：<strong>unquote( ) 函数只能删除字符串最前和最后的引号（双引号或单引号），而无法删除字符串中间的引号。如果字符没有带引号，返回的将是字符串本身。</strong></p>
+<blockquote>
+<p>quote 和它刚好相反，且只能两边增加<em>双引号</em></p>
+</blockquote>
+<h3 id="2-数字函数"><a href="#2-数字函数" class="headerlink" title="2. 数字函数"></a>2. 数字函数</h3><ul>
+<li><code>percentage($value)</code>：将一个不带单位的数转换成百分比值；-</li>
+<li><code>round($value)</code>：将数值四舍五入，转换成一个最接近的整数；</li>
+<li><code>ceil($value)</code>：将大于自己的小数转换成下一位整数；</li>
+<li><code>floor($value)</code>：将一个数去除他的小数部分；</li>
+<li><code>abs($value)</code>：返回一个数的绝对值；</li>
+<li><code>min($numbers…)</code>：找出几个数值之间的最小值；</li>
+<li><code>max($numbers…)</code>：找出几个数值之间的最大值；</li>
+<li><code>random()</code> : 获取随机数<blockquote>
+<p>类似于javascript里面的<strong>Math</strong>对象</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="3-列表函数"><a href="#3-列表函数" class="headerlink" title="3. 列表函数"></a>3. 列表函数</h3><ul>
+<li><code>length($list)</code>：返回一个列表的长度值；</li>
+<li><code>nth($list, $n)</code>：返回一个列表中指定的某个标签值</li>
+<li><code>join($list1, $list2, [$separator])</code>：将两个列给连接在一起，变成一个列表；</li>
+<li><code>append($list1, $val, [$separator])</code>：将某个值放在列表的最后；</li>
+<li><code>zip($lists…)</code>：将几个列表结合成一个多维的列表；</li>
+<li><code>index($list, $value)</code>：返回一个值在列表中的位置值。</li>
+</ul>
+<p>具体如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">// length() 函数中的列表参数之间使用空格隔开，不能使用逗号，否则函数将会出错</div><div class="line">length(5px 88px (border 66px solid) 4em  (border 8em solid))</div><div class="line">// 输出 5</div><div class="line"></div><div class="line">// nth($list,$n) $n必须是大于0的整数</div><div class="line">nth(border-bottom (4px solid blue) black,2)</div><div class="line">// 输出 (4px solid blue)</div><div class="line"></div><div class="line">// 只能讲两个列表合并，超过将报错，第三个参数表示列表的链接方式有“空格”和“逗号”。`comma `和 `space` 两个值，为了统一建议</div><div class="line">join(blue,(red orange),space)</div><div class="line">// blue red orange</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CSS/" rel="tag"># CSS</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/09/原生js获取元素的样式/" rel="next" title="js获取DOM元素样式">
+                <i class="fa fa-chevron-left"></i> js获取DOM元素样式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/09/Sass学习查缺补漏/" rel="prev" title="Sass学习2">
+                Sass学习2 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yODc2NC81MzM1"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="骑驴看代码" />
+          <p class="site-author-name" itemprop="name">骑驴看代码</p>
+           
+              <p class="site-description motion-element" itemprop="description">种一棵树最好的时间是10年前，其次是现在！</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#if指令"><span class="nav-number">1.</span> <span class="nav-text">@if指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#for循环"><span class="nav-number">2.</span> <span class="nav-text">@for循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#while"><span class="nav-number">3.</span> <span class="nav-text">@while</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#each"><span class="nav-number">4.</span> <span class="nav-text">@each</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sass函数部分"><span class="nav-number"></span> <span class="nav-text">Sass函数部分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-字符串函数"><span class="nav-number">1.</span> <span class="nav-text">1. 字符串函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-数字函数"><span class="nav-number">2.</span> <span class="nav-text">2. 数字函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-列表函数"><span class="nav-number">3.</span> <span class="nav-text">3. 列表函数</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">骑驴看代码</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/three/three.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

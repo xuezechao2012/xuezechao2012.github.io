@@ -286,6 +286,1466 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/10/Webpack入门/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="骑驴看代码">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="薛泽超">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/10/Webpack入门/" itemprop="url">webpack入门</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-10T20:41:24+08:00">
+                2017-10-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Webpack/" itemprop="url" rel="index">
+                    <span itemprop="name">Webpack</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="http://www.jianshu.com/p/42e11515c10f" target="_blank" rel="external">入门Webpack，看这篇就够了</a></p>
+<blockquote>
+<p>作者：zhangwang<br>  链接：<a href="http://www.jianshu.com/p/42e11515c10f" target="_blank" rel="external">http://www.jianshu.com/p/42e11515c10f</a><br>  來源：简书<br>  著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+</blockquote>
+<h2 id="安装webpack"><a href="#安装webpack" class="headerlink" title="安装webpack"></a>安装webpack</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">//全局安装</div><div class="line">npm install -g webpack</div><div class="line">//安装到你的项目目录</div><div class="line">cd yourPeoject</div><div class="line">npm install --save-dev webpack</div></pre></td></tr></table></figure>
+<h2 id="初始化webpack项目"><a href="#初始化webpack项目" class="headerlink" title="初始化webpack项目"></a>初始化webpack项目</h2><ul>
+<li><p>在上述练习文件夹中创建一个package.json文件，这是一个标准的npm说明文件，里面蕴含了丰富的信息，包括当前项目的依赖模块，自定义的脚本任务等等。在终端中使用npm init命令可以自动创建这个package.json文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm init</div></pre></td></tr></table></figure>
+</li>
+<li><p>在项目中安装webpack</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// 安装Webpack</div><div class="line">npm install --save-dev webpack</div></pre></td></tr></table></figure>
+<h2 id="打包文件-命令行的方式"><a href="#打包文件-命令行的方式" class="headerlink" title="打包文件 命令行的方式"></a>打包文件 命令行的方式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># &#123;extry file&#125;出填写入口文件的路径，本文中就是上述main.js的路径，</div><div class="line"># &#123;destination for bundled file&#125;处填写打包文件的存放路径</div><div class="line"># 填写路径的时候不用添加&#123;&#125;</div><div class="line">webpack &#123;entry file&#125; &#123;destination for bundled file&#125;</div></pre></td></tr></table></figure>
+<p><strong>例如：</strong> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">webpack app/main.js dist/bundle.js</div></pre></td></tr></table></figure>
+<p>就会在dist中生成一个打包的bundle.js文件，</p>
+<p>注意：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># webpack非全局安装的情况</div><div class="line">node_modules/.bin/webpack app/main.js public/bundle.js</div></pre></td></tr></table></figure>
+<h2 id="通过配置文件来使用webpack"><a href="#通过配置文件来使用webpack" class="headerlink" title="通过配置文件来使用webpack"></a>通过配置文件来使用webpack</h2><blockquote>
+<p>Webpack拥有很多其它的比较高级的功能（比如说本文后面会介绍的loaders和plugins），这些功能其实都可以通过命令行模式实现，但是正如前面提到的，这样不太方便且容易出错的，更好的办法是定义一个配置文件，这个配置文件其实也是一个简单的JavaScript模块，我们可以把所有的与打包相关的信息放在里面。</p>
+<p>继续上面的例子来说明如何写这个配置文件，在当前练习文件夹的根目录下新建一个名为webpack.config.js的文件，我们在其中写入如下所示的简单配置代码，目前的配置主要涉及到的内容是入口文件路径和打包后文件的存放路径。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">module.exports = &#123;</div><div class="line">  entry:  __dirname + &quot;/app/main.js&quot;,//已多次提及的唯一入口文件</div><div class="line">  output: &#123;</div><div class="line">    path: __dirname + &quot;/public&quot;,//打包后的文件存放的地方</div><div class="line">    filename: &quot;bundle.js&quot;//打包后输出文件的文件名</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">注：&quot;__dirname&quot; 是 node.js 中的一个全局变量，它指向当前执行脚本所在的目录。</div></pre></td></tr></table></figure>
+<p>配置完 <code>config</code> 文件直接使用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">webpack 命令</div><div class="line">非全局安装需使用node_modules/.bin/webpack</div></pre></td></tr></table></figure>
+<p>就可以打包成功</p>
+<h2 id="更方便的打包任务"><a href="#更方便的打包任务" class="headerlink" title="更方便的打包任务"></a>更方便的打包任务</h2><blockquote>
+<p><code>npm</code> 可以执行<code>package.json</code>中<code>scripts</code>标签下的代码,对npm进行配置后可以在命令行中使用简单的<code>npm start</code>命令来替代上面略微繁琐的命令</p>
+</blockquote>
+<p>设置方法如下： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;name&quot;: &quot;webpack-sample-project&quot;,</div><div class="line">  &quot;version&quot;: &quot;1.0.0&quot;,</div><div class="line">  &quot;description&quot;: &quot;Sample webpack project&quot;,</div><div class="line">  &quot;scripts&quot;: &#123;</div><div class="line">    &quot;start&quot;: &quot;webpack&quot; // 修改的是这里，JSON文件不支持注释，引用时请清除</div><div class="line">  &#125;,</div><div class="line">  &quot;author&quot;: &quot;zhang&quot;,</div><div class="line">  &quot;license&quot;: &quot;ISC&quot;,</div><div class="line">  &quot;devDependencies&quot;: &#123;</div><div class="line">    &quot;webpack&quot;: &quot;^1.12.9&quot;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>注：<code>package.json</code>中的<code>scripts</code>会安装一定顺序寻找命令对应位置，本地的<code>node_modules/.bin</code>路径就在这个寻找清单中，所以无论是全局还是局部安装的<code>Webpack</code>，你都不需要写前面那指明详细的路径了。</p>
+</blockquote>
+<h2 id="扩展（externals）引入第三方库的方式"><a href="#扩展（externals）引入第三方库的方式" class="headerlink" title="扩展（externals）引入第三方库的方式"></a>扩展（externals）引入第三方库的方式</h2><blockquote>
+<p>webpack 中的 externals 配置提供了「不从 bundle 中引用依赖」的方式。解决的是，所创建的 bundle 依赖于那些存在于用户环境(consumer environment)中的依赖。</p>
+</blockquote>
+<p>例如： 从外部引入<code>jQuery</code>库</p>
+<p><strong>在index.html中</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">&lt;script src=&quot;https://code.jquery.com/jquery-3.1.0.js&quot;</div><div class="line">  integrity=&quot;sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk=&quot;</div><div class="line">  crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;</div><div class="line"> ...</div></pre></td></tr></table></figure>
+<p>在<code>webpack.config.js</code>这样配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">externals: &#123;</div><div class="line">  jquery: &apos;window.jQuery&apos;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>然后正常运行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">import $ from &apos;jquery&apos;; // 支持ES6的情况</div><div class="line">var $ = require(&apos;jquery&apos;); // 同样的效果</div><div class="line"></div><div class="line">$(&apos;.my-element&apos;).animate(...);</div></pre></td></tr></table></figure>
+<h2 id="ExtractTextWebpackPlugin-单独打包css文件"><a href="#ExtractTextWebpackPlugin-单独打包css文件" class="headerlink" title="ExtractTextWebpackPlugin 单独打包css文件"></a>ExtractTextWebpackPlugin 单独打包css文件</h2><blockquote>
+<p>它会将所有的 入口chunk (entry chunks) 中的 require(“style.css”) 移动到分开的 css 文件。因此，你的样式不再内联到 javascript 里面，但会放到一个单独的 css 包文件 (styles.css)当中。 </p>
+</blockquote>
+<p>安装：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install --save-dev extract-text-webpack-plugin</div></pre></td></tr></table></figure>
+<p>使用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">const ExtractTextPlugin = require(&quot;extract-text-webpack-plugin&quot;); // 先定义一个常量</div><div class="line"></div><div class="line">module.exports = &#123;</div><div class="line">    entry: &#123; // 多入口文件是一个对象</div><div class="line">        &apos;common&apos;: [&apos;./src/page/common/index.js&apos;],</div><div class="line">        &apos;index&apos;: [&apos;./src/page/index/index.js&apos;],</div><div class="line">        &apos;login&apos;: [&apos;./src/page/login/index.js&apos;]</div><div class="line">    &#125;,</div><div class="line">    output: &#123; // [name]代表打包的文件以入口文件的“key”值 来命名</div><div class="line">        path: &apos;./dist&apos;,</div><div class="line">        filename: &apos;js/[name].js&apos;</div><div class="line">    &#125;,</div><div class="line">    module: &#123;</div><div class="line">        rules: [</div><div class="line">          &#123;</div><div class="line">            test: /\.css$/,</div><div class="line">            use: ExtractTextPlugin.extract(&#123;</div><div class="line">              fallback: &quot;style-loader&quot;,</div><div class="line">              use: &quot;css-loader&quot;</div><div class="line">            &#125;)</div><div class="line">          &#125;</div><div class="line">        ]</div><div class="line">      &#125;,</div><div class="line">      plugins: [</div><div class="line">        new ExtractTextPlugin(&quot;/css/[name].css&quot;),  // 将入口文件中的引用的css文件单独打包，</div><div class="line">        例如：common入口的文件里面引入了一个a.css，将会在dist目录下生成一个css/common.css</div><div class="line">      ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="HtmlWebpackPlugin-简化html文件的创建"><a href="#HtmlWebpackPlugin-简化html文件的创建" class="headerlink" title="HtmlWebpackPlugin 简化html文件的创建"></a>HtmlWebpackPlugin 简化html文件的创建</h2><blockquote>
+<p>这个插件将为您生成一个HTML5文件，该文件的 body 中使用script 标记引用了所有 webpack 编译出来的js和css文件。只需添加插件到您的webpack配置中</p>
+</blockquote>
+<p><strong>该插件支持<code>ejs</code>模板</strong></p>
+<ul>
+<li>需要添加<code>html-loader</code></li>
+</ul>
+<p>如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">// head页面</div><div class="line">&lt;head&gt;</div><div class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</div><div class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</div><div class="line">    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;</div><div class="line">    &lt;title&gt;Document&lt;/title&gt;</div><div class="line">&lt;/head&gt;</div><div class="line"></div><div class="line">// index页面</div><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html lang=&quot;en&quot;&gt;</div><div class="line">&lt;%= require(&apos;html-loader!./layout/html-head.html&apos;) %&gt;</div><div class="line"></div><div class="line">    &lt;body&gt;</div><div class="line">        &lt;script src=&quot;https://cdn.bootcss.com/jquery/1.11.3/jquery.min.js&quot;&gt;&lt;/script&gt;</div><div class="line"></div><div class="line">    &lt;/body&gt;</div><div class="line"></div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure></p>
+<p>安装：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install html-webpack-plugin --save-dev</div></pre></td></tr></table></figure>
+<p>配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">var webpack = require(&apos;webpack&apos;);</div><div class="line">const ExtractTextPlugin = require(&quot;extract-text-webpack-plugin&quot;); // 独立打包css的插件</div><div class="line">var HtmlWebpackPlugin = require(&apos;html-webpack-plugin&apos;); // 自动生成html模板的插件,同事将output打包出的js文件，全部引用进来</div><div class="line">// 一个HtmlWebpackPlugin的配置文件</div><div class="line">var getHtmlConfig = function(name) &#123;</div><div class="line">    return &#123;</div><div class="line">        template: &apos;./src/view/&apos; + name + &apos;.html&apos;, //要加载的入口文件</div><div class="line">        filename: &apos;view/&apos; + name + &apos;.html&apos;,</div><div class="line">        inject: true,</div><div class="line">        hash: true,</div><div class="line">        chunks: [&apos;common&apos;, name]</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var config = &#123;</div><div class="line">    entry: &#123; // 多入口文件是一个对象</div><div class="line">        &apos;common&apos;: [&apos;./src/page/common/index.js&apos;],</div><div class="line">        &apos;index&apos;: [&apos;./src/page/index/index.js&apos;],</div><div class="line">        &apos;login&apos;: [&apos;./src/page/login/index.js&apos;]</div><div class="line">    &#125;,</div><div class="line">    output: &#123; // [name]代表打包的文件以入口文件的“key”值 来命名</div><div class="line">        path: &apos;./dist&apos;,</div><div class="line">        filename: &apos;js/[name].js&apos;</div><div class="line">    &#125;,</div><div class="line">    externals: &#123; // 将外部第三方库，当做模块引入进来</div><div class="line">        &apos;jquery&apos;: &apos;window.jQuery&apos;</div><div class="line">    &#125;,</div><div class="line">    module: &#123;</div><div class="line">        loaders: [&#123;</div><div class="line">            test: /\.css$/,</div><div class="line">            loader: ExtractTextPlugin.extract(&quot;style-loader&quot;, &quot;css-loader&quot;)</div><div class="line">        &#125;]</div><div class="line">    &#125;,</div><div class="line">    plugins: [</div><div class="line">        // 把独立通用文件加载到 js/base.js</div><div class="line">        new webpack.optimize.CommonsChunkPlugin(&#123;</div><div class="line">            name: &apos;common&apos;,</div><div class="line">            filename: &apos;js/base.js&apos;</div><div class="line">        &#125;),</div><div class="line">        new ExtractTextPlugin(&quot;/css/[name].css&quot;), // 以入口的文件名来打包出对应的css文件</div><div class="line">        // html模板的处理</div><div class="line">        new HtmlWebpackPlugin(getHtmlConfig(&apos;index&apos;)),</div><div class="line">        new HtmlWebpackPlugin(getHtmlConfig(&apos;login&apos;)),</div><div class="line">    ]</div><div class="line">&#125;;</div><div class="line"></div><div class="line">module.exports = config;</div></pre></td></tr></table></figure>
+<h2 id="webpack-dev-server"><a href="#webpack-dev-server" class="headerlink" title="webpack-dev-server"></a>webpack-dev-server</h2><ul>
+<li>前端开发服务器</li>
+<li>可以在文件改变时，自动刷新浏览器</li>
+<li>安装：<code>npm install webpack-dev-server --save-dev</code></li>
+<li>配置： <code>webpack-dev-server/client?http://localhost:8088</code></li>
+<li>使用：<code>webpack-dev-server --port 8080 --inline</code></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/10/MUI整包升级的方法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="骑驴看代码">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="薛泽超">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/10/MUI整包升级的方法/" itemprop="url">MUI整包升级的方法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-10T20:41:24+08:00">
+                2017-10-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MUI/" itemprop="url" rel="index">
+                    <span itemprop="name">MUI</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>方法写在plusReady之后：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line">mui.plusReady(function() &#123;</div><div class="line">				var wgtVer = null;</div><div class="line">				var newVer = &quot;2.0.2&quot;;</div><div class="line">				function plusReady() &#123;</div><div class="line">					// 获取本地应用资源版本号</div><div class="line">					plus.runtime.getProperty(plus.runtime.appid, function(inf) &#123;</div><div class="line">						wgtVer = inf.version;</div><div class="line">						$(&quot;#version&quot;).html(&apos;当前应用版本&apos; + wgtVer);</div><div class="line">						if(wgtVer !== newVer) &#123;</div><div class="line">							console.log(&quot;最新应用版本：&quot; + newVer);</div><div class="line">							createDownload();</div><div class="line">						&#125; else &#123;</div><div class="line">							console.log(&quot;当前应用版本：&quot; + wgtVer);</div><div class="line">						&#125;</div><div class="line">					&#125;);</div><div class="line">				&#125;</div><div class="line">				if(window.plus) &#123;</div><div class="line">					plusReady();</div><div class="line">				&#125; else &#123;</div><div class="line">					document.addEventListener(&apos;plusready&apos;, plusReady, false);</div><div class="line">				&#125;</div><div class="line">				</div><div class="line">				function createDownload() &#123;</div><div class="line">//					http://1wangxiao.com/social/mtk.apk</div><div class="line">					plus.nativeUI.showWaiting(&quot;下载更新包...&quot;);</div><div class="line">					var dtask = plus.downloader.createDownload(&quot;http://1wangxiao.com/social/mtk.apk&quot;, &#123;filename:&quot;_doc/update/&quot;&#125;, function(d, status) &#123;</div><div class="line">						// 下载完成</div><div class="line">						if(status == 200) &#123;</div><div class="line">							var path = d.filename;</div><div class="line">							plus.nativeUI.closeWaiting();</div><div class="line">							installAPK(path);</div><div class="line">							console.log(&quot;Download success: &quot; + d.filename);</div><div class="line">						&#125; else &#123;</div><div class="line">							console.log(&quot;Download failed: &quot; + status);</div><div class="line">						&#125;</div><div class="line">					&#125;);</div><div class="line">					//dtask.addEventListener( &quot;statechanged&quot;, onStateChanged, false );</div><div class="line">					dtask.start();</div><div class="line">					// 下载完成后就安装</div><div class="line">				&#125;</div><div class="line">				// 安装更新包 </div><div class="line">				function installAPK (path) &#123;</div><div class="line">					plus.nativeUI.showWaiting(&apos;正在安装,请稍后...&apos;);</div><div class="line">					plus.runtime.install(path,&#123;&#125;,function() &#123;</div><div class="line">						plus.nativeUI.closeWaiting();</div><div class="line">						plus.nativeUI.alert(&quot;安装成功!&quot;,function() &#123;</div><div class="line">							plus.runtime.restart();</div><div class="line">						&#125;);</div><div class="line">					&#125;,function(e) &#123;</div><div class="line">						plus.nativeUI.closeWaiting();</div><div class="line">						plus.nativeUI.alert(&quot;安装失败[&quot;+e.code+&quot;]：&quot;+e.message);</div><div class="line">					&#125;)</div><div class="line">				&#125;</div><div class="line">			&#125;);</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/10/MUI取消Android手机back按键/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="骑驴看代码">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="薛泽超">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/10/MUI取消Android手机back按键/" itemprop="url">MUI取消Android手机back按键</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-10T20:41:24+08:00">
+                2017-10-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MUI/" itemprop="url" rel="index">
+                    <span itemprop="name">MUI</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">mui.init(&#123;</div><div class="line">	keyEventBind: &#123;</div><div class="line">		backbutton: false  //关闭back按键监听</div><div class="line">	&#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>注意：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">graph SEMI</div><div class="line">A--&gt;B--&gt;C--&gt;D</div></pre></td></tr></table></figure>
+<p>例如：从C或者D页面要直接返回到A页面，<br>当在C页面点击按钮之前，就把B页面给关闭了，然后从写 mui.back()方法。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">var old_back = mui.back;</div><div class="line">mui.back = function()&#123;</div><div class="line">  var btn = [&quot;确定&quot;,&quot;取消&quot;];</div><div class="line">  mui.confirm(&apos;确认关闭当前窗口？&apos;,&apos;Hello MUI&apos;,btn,function(e)&#123;</div><div class="line">    if(e.index==0)&#123;</div><div class="line">    	//执行mui封装好的窗口关闭逻辑；</div><div class="line">    	old_back();</div><div class="line">    &#125;</div><div class="line">  &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>然后在D页面想要返回的时候，就不用从写MUI.back()方法了，直接把返回键禁止掉就好了。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/10/MUI开发中的一些常见问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="骑驴看代码">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="薛泽超">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/10/MUI开发中的一些常见问题/" itemprop="url">MUI开发中的一些常见问题</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-10T20:41:24+08:00">
+                2017-10-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MUI/" itemprop="url" rel="index">
+                    <span itemprop="name">MUI</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li>判断app是在前台还是在后台？ [<a href="http://www.html5plus.org/doc/zh_cn/events.html" target="_blank" rel="external">http://www.html5plus.org/doc/zh_cn/events.html</a>]</li>
+<li>怎么判断前手机网络是2g，3g，4g还是wifi？[<a href="http://www.html5plus.org/doc/zh_cn/device.html#plus.networkinfo.getCurrentType" target="_blank" rel="external">http://www.html5plus.org/doc/zh_cn/device.html#plus.networkinfo.getCurrentType</a>]</li>
+<li>页面传值？[<a href="http://ask.dcloud.net.cn/docs#http://ask.dcloud.net.cn/article/63" target="_blank" rel="external">http://ask.dcloud.net.cn/docs#http://ask.dcloud.net.cn/article/63</a>]</li>
+<li>微信支付问题？[<a href="https://github.com/dcloudio/H5P.Server/tree/master/payment/wxpayv3" target="_blank" rel="external">https://github.com/dcloudio/H5P.Server/tree/master/payment/wxpayv3</a>]</li>
+<li>自定义MUI控件样式？[<a href="http://ask.dcloud.net.cn/docs#http://ask.dcloud.net.cn/article/87" target="_blank" rel="external">http://ask.dcloud.net.cn/docs#http://ask.dcloud.net.cn/article/87</a>]</li>
+<li>沉浸式？ [<a href="http://ask.dcloud.net.cn/article/118" target="_blank" rel="external">http://ask.dcloud.net.cn/article/118</a>]</li>
+<li>DCLOUD 开源DEMO？ <a href="https://github.com/dcloudio/casecode" target="_blank" rel="external">https://github.com/dcloudio/casecode</a><br><a href="https://github.com/dcloudio/HBuilder-opensource" target="_blank" rel="external">https://github.com/dcloudio/HBuilder-opensource</a></li>
+<li>5+实现简单的内置浏览器制作？[<a href="http://ask.dcloud.net.cn/article/776" target="_blank" rel="external">http://ask.dcloud.net.cn/article/776</a>]</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/10/JQuery如何判断标签指定属性是否存在/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="骑驴看代码">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="薛泽超">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/10/JQuery如何判断标签指定属性是否存在/" itemprop="url">JQuery如何判断标签指定属性是否存在</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-10T20:41:24+08:00">
+                2017-10-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/jQuery/" itemprop="url" rel="index">
+                    <span itemprop="name">jQuery</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;demo&quot; myattr=&quot;自定义&quot;&gt;jquery判断标签属性是否存在：&lt;/div&gt;</div><div class="line">&lt;script type=&quot;text/javascript&quot;&gt;</div><div class="line">    $temp=$(&quot;#demo&quot;).attr(&quot;myattra&quot;);</div><div class="line">if(typeof($temp)==&quot;undefined&quot;)&#123;//要加typeof()</div><div class="line">    $(&quot;#demo&quot;).append(&quot;没定义该属性：&quot;+$temp);</div><div class="line">&#125;else&#123;</div><div class="line">    $(&quot;#demo&quot;).append(&quot;定义的属性值为：&quot;+$temp);</div><div class="line"> &#125;</div><div class="line"> </div><div class="line"> </div><div class="line"> </div><div class="line">//另附上原生js检测方法</div><div class="line">var obj = &#123;name:&apos;jack&apos;&#125;;</div><div class="line">//alert(&apos;name&apos; in obj); // --&gt; true</div><div class="line">//alert(&apos;toString&apos; in obj); // --&gt; in能检测到原型链的属性，返回true</div><div class="line">//alert(obj.hasOwnProperty(&apos;name&apos;)); // --&gt; true</div><div class="line">//alert(obj.hasOwnProperty(&apos;toString&apos;)); // --&gt; 原型链上继承过来的属性无法通过hasOwnProperty检测到，返回false</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/10/jQuery常用方法（持续更新）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="骑驴看代码">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="薛泽超">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/10/jQuery常用方法（持续更新）/" itemprop="url">jQuery常用方法（持续更新）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-10T20:41:24+08:00">
+                2017-10-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/jQuery/" itemprop="url" rel="index">
+                    <span itemprop="name">jQuery</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<ol>
+<li><p>ajax请求</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">$(function() &#123;</div><div class="line">	$(&apos;#send&apos;).click(function() &#123;</div><div class="line">		$.ajax(&#123;</div><div class="line">			type: &quot;GET&quot;, //GET或POST,</div><div class="line">			async:true, //默认设置为true，所有请求均为异步请求。</div><div class="line">			url: &quot;http://www.idaima.com/xxxxx.php&quot;,</div><div class="line">			data: &#123;</div><div class="line">				username: $(&quot;#username&quot;).val(),</div><div class="line">				content: $(&quot;#content&quot;).val()</div><div class="line">			&#125;,</div><div class="line">			dataType: &quot;json&quot;, //xml、html、script、jsonp、text</div><div class="line">			beforeSend:function()&#123;&#125;,</div><div class="line">			complete:function()&#123;&#125;,</div><div class="line">			success: function(data) &#123;</div><div class="line">				alert(data)</div><div class="line">			&#125;</div><div class="line">			error:function()&#123;&#125;,</div><div class="line">		&#125;);</div><div class="line">	&#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>如何获取checkbox，并判断是否选中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$(&quot;input[type=&apos;checkbox&apos;]&quot;).is(&apos;:checked&apos;) </div><div class="line">//返回结果：选中=true，未选中=false</div></pre></td></tr></table></figure>
+</li>
+<li><p>获取checkbox选中的值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var chk_value =[]; </div><div class="line">$(&apos;input[name=&quot;test&quot;]:checked&apos;).each(function()&#123; </div><div class="line">	chk_value.push($(this).val()); </div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>checkbox全选、反选、选择奇数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">$(&quot;document&quot;).ready(function() &#123;</div><div class="line">	$(&quot;#btn1&quot;).click(function() &#123;</div><div class="line">		$(&quot;[name=&apos;checkbox&apos;]&quot;).attr(&quot;checked&quot;, &apos;true&apos;); //全选 </div><div class="line">	&#125;) $(&quot;#btn2&quot;).click(function() &#123;</div><div class="line">		$(&quot;[name=&apos;checkbox&apos;]&quot;).removeAttr(&quot;checked&quot;); //取消全选 </div><div class="line">	&#125;) $(&quot;#btn3&quot;).click(function() &#123;</div><div class="line">		$(&quot;[name=&apos;checkbox&apos;]:even&quot;).attr(&quot;checked&quot;, &apos;true&apos;); //选中所有奇数 </div><div class="line">	&#125;) $(&quot;#btn4&quot;).click(function() &#123;</div><div class="line">		$(&quot;[name=&apos;checkbox&apos;]&quot;).each(function() &#123; //反选 </div><div class="line">			if ($(this).attr(&quot;checked&quot;)) &#123;</div><div class="line">				$(this).removeAttr(&quot;checked&quot;);</div><div class="line">			&#125; else &#123;</div><div class="line">				$(this).attr(&quot;checked&quot;, &apos;true&apos;);</div><div class="line">			&#125;</div><div class="line">		&#125;)</div><div class="line">	&#125;)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+</li>
+<li><p>获取select下拉框的值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(&quot;#select&quot;).val()</div></pre></td></tr></table></figure>
+</li>
+<li><p>获取选中值，三种方法都可以：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$(&apos;input:radio:checked&apos;).val()；</div><div class="line">$(&quot;input[type=&apos;radio&apos;]:checked&quot;).val();</div><div class="line">$(&quot;input[name=&apos;rd&apos;]:checked&quot;).val();</div></pre></td></tr></table></figure>
+</li>
+<li><p>设置第一个Radio为选中值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$(&apos;input:radio:first&apos;).attr(&apos;checked&apos;, &apos;checked&apos;);</div><div class="line">$(&apos;input:radio:first&apos;).attr(&apos;checked&apos;, &apos;true&apos;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>设置最后一个Radio为选中值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$(&apos;input:radio:last&apos;).attr(&apos;checked&apos;, &apos;checked&apos;);</div><div class="line">$(&apos;input:radio:last&apos;).attr(&apos;checked&apos;, &apos;true&apos;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>根据索引值设置任意一个radio为选中值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$(&apos;input:radio&apos;).eq(索引值).attr(&apos;checked&apos;, &apos;true&apos;);//索引值=0,1,2....</div><div class="line">$(&apos;input:radio&apos;).slice(1,2).attr(&apos;checked&apos;, &apos;true&apos;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>根据Value值设置Radio为选中值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$(&quot;input:radio[value=&apos;rd2&apos;]&quot;).attr(&apos;checked&apos;,&apos;true&apos;);</div><div class="line">$(&quot;input[value=&apos;rd2&apos;]&quot;).attr(&apos;checked&apos;,&apos;true&apos;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>关于页面元素的引用</p>
+</li>
+</ol>
+</blockquote>
+<p>通过jquery的$()引用元素包括通过id、class、元素名以及元素的层级关系及dom或者xpath条件等方法，且返回的对象为jquery对象（集合对象），不能直接调用dom定义的方法。<a href="http://www.idaima.com/a/1663.html" target="_blank" rel="external">http://www.idaima.com/a/1663.html</a></p>
+<blockquote>
+<ol>
+<li>jQuery对象与dom对象的转换 </li>
+</ol>
+</blockquote>
+<p>只有jquery对象才能使用jquery定义的方法。注意dom对象和jquery对象是有区别的，调用方法时要注意操作的是dom对象还是jquery对象。</p>
+<p><strong>普通的dom对象一般可以通过$()转换成jquery对象。</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(document.getElementById(&quot;msg&quot;))</div></pre></td></tr></table></figure></p>
+<p>由于jquery对象本身是一个集合。所以如果jquery对象要转换为dom对象则必须取出其中的某一项，一般可通过索引取出。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(&quot;#msg&quot;)[0]，$(&quot;div&quot;).eq(1)[0]，$(&quot;div&quot;).get()[1]，$(&quot;td&quot;)[5]</div></pre></td></tr></table></figure></p>
+<p>这些都是dom对象，可以使用dom中的方法，但不能再使用Jquery的方法。</p>
+<p><strong>以下几种写法都是正确的：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$(&quot;#msg&quot;).html();</div><div class="line">$(&quot;#msg&quot;)[0].innerHTML;</div><div class="line">$(&quot;#msg&quot;).eq(0)[0].innerHTML;</div><div class="line">$(&quot;#msg&quot;).get(0).innerHTML;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<ol>
+<li>如何获取jQuery集合的某一项</li>
+</ol>
+</blockquote>
+<p>对于获取的元素集合，获取其中的某一项（通过索引指定）可以使用eq或get(n)方法或者索引号获取，要注意，eq返回的是jquery对象，而get(n)和索引返回的是dom元素对象。对于jquery对象只能使用jquery的方法，而dom对象只能使用dom的方法，如要获取第三个<div>元素的内容。有如下两种方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$(&quot;div&quot;).eq(2).html();  //调用jquery对象的方法</div><div class="line">$(&quot;div&quot;).get(2).innerHTML;  //调用dom的方法属性</div></pre></td></tr></table></figure></div></p>
+<blockquote>
+<ol>
+<li>同一函数实现set和get</li>
+</ol>
+</blockquote>
+<p>Jquery中的很多方法都是如此，主要包括如下几个:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">$(&quot;#msg&quot;).html(); //返回id为msg的元素节点的html内容。</div><div class="line">$(&quot;#msg&quot;).html(&quot;&lt;b&gt;new content&lt;/b&gt;&quot;);</div><div class="line">//将“&lt;b&gt;new content&lt;/b&gt;” 作为html串写入id为msg的元素节点内容中,页面显示粗体的new content</div><div class="line">$(&quot;#msg&quot;).text(); //返回id为msg的元素节点的文本内容。</div><div class="line">$(&quot;#msg&quot;).text(&quot;&lt;b&gt;new content&lt;/b&gt;&quot;);</div><div class="line">//将“&lt;b&gt;new content&lt;/b&gt;” 作为普通文本串写入id为msg的元素节点内容中,页面显示&lt;b&gt;new content&lt;/b&gt;</div><div class="line">$(&quot;#msg&quot;).height(); //返回id为msg的元素的高度</div><div class="line">$(&quot;#msg&quot;).height(&quot;300&quot;); //将id为msg的元素的高度设为300</div><div class="line">$(&quot;#msg&quot;).width(); //返回id为msg的元素的宽度</div><div class="line">$(&quot;#msg&quot;).width(&quot;300&quot;); //将id为msg的元素的宽度设为300</div><div class="line">$(&quot;input&quot;).val(&quot;); //返回表单输入框的value值</div><div class="line">$(&quot;input&quot;).val(&quot;test&quot;); //将表单输入框的value值设为test</div><div class="line">$(&quot;#msg&quot;).click(); //触发id为msg的元素的单击事件 </div><div class="line">$(&quot;#msg&quot;).click(fn); //为id为msg的元素单击事件添加函数</div><div class="line"></div><div class="line">// 同样blur,focus,select,submit事件都可以有着两种调用方法</div></pre></td></tr></table></figure></p>
+<blockquote>
+<ol>
+<li>集合处理功能 </li>
+</ol>
+</blockquote>
+<p>对于jquery返回的集合内容无需我们自己循环遍历并对每个对象分别做处理，jquery已经为我们提供的很方便的方法进行集合的处理。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$(&quot;p&quot;).each(function(i)&#123;this.style.color=[&apos;#f00&apos;,&apos;#0f0&apos;,&apos;#00f&apos;][i]&#125;)</div><div class="line">//为索引分别为0，1，2的p元素分别设定不同的字体颜色。</div><div class="line">$(&quot;tr&quot;).each(function(i)&#123;this.style.backgroundColor=[&apos;#ccc&apos;,&apos;#fff&apos;][i%2]&#125;)</div><div class="line">//实现表格的隔行换色效果</div><div class="line">$(&quot;p&quot;).click(function()&#123;alert($(this).html())&#125;)</div><div class="line">//为每个p元素增加了click事件，单击某个p元素则弹出其内容</div></pre></td></tr></table></figure></p>
+<blockquote>
+<ol>
+<li><p>扩展我们需要的功能</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$.extend(&#123; </div><div class="line">    min: function(a, b)&#123;return a &lt; b?a:b; &#125;,</div><div class="line">    max: function(a, b)&#123;return a &gt; b?a:b; &#125;</div><div class="line">&#125;); //为jquery扩展了min,max两个方法</div></pre></td></tr></table></figure>
+</li>
+<li><p>支持方法的连写 </p>
+</li>
+</ol>
+</blockquote>
+<p>所谓连写，即可以对一个jquery对象连续调用各种不同的方法。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$(&quot;p&quot;).click(function()&#123;alert($(this).html())&#125;)</div><div class="line">.mouseover(function()&#123;alert(&apos;mouse over event&apos;)&#125;)</div><div class="line">.each(function(i)&#123;this.style.color=[&apos;#f00&apos;,&apos;#0f0&apos;,&apos;#00f&apos;][i]&#125;);</div></pre></td></tr></table></figure></p>
+<blockquote>
+<ol>
+<li><p>操作元素的样式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$(&quot;#msg&quot;).css(&quot;background&quot;); //返回元素的背景颜色</div><div class="line">$(&quot;#msg&quot;).css(&quot;background&quot;,&quot;#ccc&quot;) //设定元素背景为灰色</div><div class="line">$(&quot;#msg&quot;).height(300); $(&quot;#msg&quot;).width(&quot;200&quot;); //设定宽高</div><div class="line">$(&quot;#msg&quot;).css(&#123; color: &quot;red&quot;, background: &quot;blue&quot; &#125;);//以名值对的形式设定样式</div><div class="line">$(&quot;#msg&quot;).addClass(&quot;select&quot;); //为元素增加名称为select的class</div><div class="line">$(&quot;#msg&quot;).removeClass(&quot;select&quot;); //删除元素名称为select的class</div><div class="line">$(&quot;#msg&quot;).toggleClass(&quot;select&quot;); //如果存在（不存在）就删除（添加）名称为select的class</div></pre></td></tr></table></figure>
+</li>
+<li><p>完善的事件处理功能 </p>
+</li>
+</ol>
+</blockquote>
+<p>Jquery已经为我们提供了各种事件处理方法，我们无需在html元素上直接写事件，而可以直接为通过jquery获取的对象添加事件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$(&quot;#msg&quot;).click(function()&#123;alert(&quot;good&quot;)&#125;) //为元素添加了单击事件</div><div class="line">$(&quot;p&quot;).click(function(i)&#123;this.style.color=[&apos;#f00&apos;,&apos;#0f0&apos;,&apos;#00f&apos;][i]&#125;)</div><div class="line">//为三个不同的p元素单击事件分别设定不同的处理</div></pre></td></tr></table></figure></p>
+<p><strong>jQuery中几个自定义的事件:</strong></p>
+<p>（1）hover(fn1,fn2)：一个模仿悬停事件（鼠标移动到一个对象上面及移出这个对象）的方法。当鼠标移动到一个匹配的元素上面时，会触发指定的第一个函数。当鼠标移出这个元素时，会触发指定的第二个函数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">//当鼠标放在表格的某行上时将class置为over，离开时置为out。</div><div class="line">$(&quot;tr&quot;).hover(</div><div class="line">function()&#123;</div><div class="line">     $(this).addClass(&quot;over&quot;);</div><div class="line">&#125;, </div><div class="line">function()&#123; </div><div class="line">$(this).addClass(&quot;out&quot;); </div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>（2）ready(fn):当DOM载入就绪可以查询及操纵时绑定一个要执行的函数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(document).ready(function()&#123;alert(&quot;Load Success&quot;)&#125;)</div></pre></td></tr></table></figure></p>
+<p><strong>页面加载完毕提示“Load Success”,不同于onload事件，onload需要页面内容加载完毕（图片等），而ready只要页面html代码下载完毕即触发。与$(fn)等价</strong></p>
+<p>（3）toggle(evenFn,oddFn): 每次点击时切换要调用的函数。如果点击了一个匹配的元素，则触发指定的第一个函数，当再次点击同一元素时，则触发指定的第二个函数。随后的每次点击都重复对这两个函数的轮番调用。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">//每次点击时轮换添加和删除名为selected的class。</div><div class="line">$(&quot;p&quot;).toggle(function()&#123; </div><div class="line">     $(this).addClass(&quot;selected&quot;); </div><div class="line">&#125;,function()&#123; </div><div class="line">     $(this).removeClass(&quot;selected&quot;); </div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>（4）trigger(eventtype): 在每一个匹配的元素上触发某类事件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(&quot;p&quot;).trigger(&quot;click&quot;); //触发所有p元素的click事件</div></pre></td></tr></table></figure></p>
+<p>（5）bind(eventtype,fn)，unbind(eventtype): 事件的绑定与反绑定<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$(&quot;p&quot;).bind(&quot;click&quot;, function()&#123;alert($(this).text());&#125;); //为每个p元素添加单击事件 </div><div class="line"></div><div class="line">$(&quot;p&quot;).unbind(); //删除所有p元素上的所有事件 </div><div class="line"></div><div class="line">$(&quot;p&quot;).unbind(&quot;click&quot;) //删除所有p元素上的单击事件</div></pre></td></tr></table></figure></p>
+<blockquote>
+<ol>
+<li>几个实用特效功能 </li>
+</ol>
+</blockquote>
+<p>其中toggle()和slidetoggle()方法提供了状态切换功能。 </p>
+<p>如toggle()方法包括了hide()和show()方法。 </p>
+<p>slideToggle()方法包括了slideDown()和slideUp方法。</p>
+<blockquote>
+<ol>
+<li>几个有用的jQuery方法 </li>
+</ol>
+</blockquote>
+<ul>
+<li>$.browser.浏览器类型：检测浏览器类型。有效参数：safari, opera, msie,mozilla。如检测是否ie：$.browser.isie，是ie浏览器则返回true。 </li>
+<li>$.each(obj, fn)：通用的迭代函数。可用于近似地迭代对象和数组（代替循环）。 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$.each( [0,1,2], function(i, n)&#123; alert( &quot;Item #&quot; + i + &quot;: &quot; + n ); &#125;);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>等价于：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var tempArr=[0,1,2]; </div><div class="line">for(var i=0;i&lt;tempArr.length;i++)&#123; </div><div class="line">    alert(&quot;Item #&quot;+i+&quot;: &quot;+tempArr[i]); </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>也可以处理json数据，如<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$.each( &#123; name: &quot;John&quot;, lang: &quot;JS&quot; &#125;, function(i, n)&#123; alert( &quot;Name: &quot; + i + &quot;, Value: &quot; + n ); &#125;);</div><div class="line">结果：</div><div class="line">//Name:name, Value:John </div><div class="line">//Name:lang, Value:JS</div></pre></td></tr></table></figure></p>
+<p>$.extend(target,prop1,propN)：用一个或多个其他对象来扩展一个对象，返回这个被扩展的对象。这是jquery实现的继承方式。 </p>
+<p>如： </p>
+<p>$.extend(settings, options);<br>//合并settings和options，并将合并结果返回settings中，相当于options继承setting并将继承结果保存在setting中。 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var settings = $.extend(&#123;&#125;, defaults, options);</div></pre></td></tr></table></figure>
+<p>合并defaults和options，并将合并结果返回到setting中而不覆盖default内容。 </p>
+<p>可以有多个参数（合并多项并返回） </p>
+<p>$.map(array, fn)：数组映射。把一个数组中的项目(处理转换后)保存到到另一个新数组中，并返回生成的新数组。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var tempArr=$.map( [0,1,2], function(i)&#123; return i + 4; &#125;);</div></pre></td></tr></table></figure></p>
+<p>tempArr内容为：[4,5,6] </p>
+<p>var tempArr=$.map( [0,1,2], function(i){ return i &gt; 0 ? i + 1 : null; });<br>tempArr内容为：[2,3] </p>
+<p>$.merge(arr1,arr2):合并两个数组并删除其中重复的项目。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$.merge( [0,1,2], [2,3,4] ) //返回[0,1,2,3,4]</div></pre></td></tr></table></figure></p>
+<p>$.trim(str)：删除字符串两端的空白字符。 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$.trim(&quot; hello, how are you? &quot;); //返回&quot;hello,how are you? &quot;</div></pre></td></tr></table></figure>
+<blockquote>
+<ol>
+<li>解决自定义方法或其他类库与jQuery的冲突 </li>
+</ol>
+</blockquote>
+<p>很多时候我们自己定义了$(id)方法来获取一个元素，或者其他的一些js类库如prototype也都定义了$方法，如果同时把这些内容放在一起就会引起变量方法定义冲突，Jquery对此专门提供了方法用于解决此问题。 </p>
+<p>使用jquery中的jQuery.noConflict();方法即可把变量$的控制权让渡给第一个实现它的那个库或之前自定义的$方法。之后应用Jquery的时候只要将所有的$换成jQuery即可，如原来引用对象方法$(“#msg”)改为jQuery(“#msg”)。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">jQuery.noConflict(); </div><div class="line">// 开始使用jQuery </div><div class="line">jQuery(&quot;div p&quot;).hide(); </div><div class="line">// 使用其他库的 $() </div><div class="line">$(&quot;content&quot;).style.display = &apos;none&apos;;</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/10/JQuery remove()、empty()、detach()、等方法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="骑驴看代码">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="薛泽超">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/10/JQuery remove()、empty()、detach()、等方法/" itemprop="url">JQuery remove()、empty()、detach()、等方法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-10T20:41:24+08:00">
+                2017-10-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/jQuery/" itemprop="url" rel="index">
+                    <span itemprop="name">jQuery</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h6 id="之前一直对这几个方法有点搞不清，所以总结一下，帮助自己记忆，加深一下印象！"><a href="#之前一直对这几个方法有点搞不清，所以总结一下，帮助自己记忆，加深一下印象！" class="headerlink" title="之前一直对这几个方法有点搞不清，所以总结一下，帮助自己记忆，加深一下印象！"></a>之前一直对这几个方法有点搞不清，所以总结一下，帮助自己记忆，加深一下印象！</h6><p>**1. jQuery的 <figure class="highlight plain"><figcaption><span>方法**</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt; ```remove()``` 方法会移除被选元素，包括所有的文本和子节点； 同时**被选元素的数据和事件也会被移除**。</div><div class="line"></div><div class="line">演示：</div></pre></td></tr></table></figure></p>
+<!--导入jQuery-->
+<script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"> 
+
+<p><script><br>$(document).ready(function(){<br>    $(“button”).click(function(){<br>        $(“p”).remove();<br>    });<br>});<br></script><br><p></p>
+<body>
+
+<p></p><p>我是要被移除的p元素！</p><p></p>
+<p></p><h3>我是没有被移除的H3！</h3><p></p>
+<button>移除所有P元素</button>
+
+<p></p></body><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">演示结果：</div><div class="line"></div><div class="line">![image](http://img2.ph.126.net/5OZZpH_J7IjsMregRRaAnw==/6631861613095249223.gif)</div><div class="line"></div><div class="line"></div><div class="line">**2.detach()方法**</div><div class="line"></div><div class="line">&gt; ```detach() ```方法移除被选元素，包括所有的文本和子节点。然后它会保留数据和事件。</div><div class="line">该方法会保留移除元素的副本，允许它们在以后被重新插入。</div><div class="line"></div><div class="line"></div><div class="line">**3.empty()方法**</div><div class="line"></div><div class="line">&gt; empty() 方法从被选元素所有子节点和内容。</div><div class="line">注意：该方法不会移除元素本身，或它的属性。</div><div class="line"></div><div class="line">演示：</div></pre></td></tr></table></figure><p></p>
+<p><script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"><br></script></p>
+<p><script><br>$(document).ready(function(){<br>    $(“button”).click(function(){<br>        $(“div”).empty();<br>    });<br>});<br></script><br></p>
+<body>
+
+<p><div style="height:100px;background-color:yellow"><br>这是一些文本。</div></p>
+<p></p><p>这是div块中的一个段落。</p><br><p></p>
+<p></p><p>这是div块外部的一个段落。</p><p></p>
+<button>移除div块中的内容</button>
+
+<p></p></body><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">演示结果：</div><div class="line"></div><div class="line">![image](http://img1.ph.126.net/ClsJkB_apS6pO7f5Y8Ttkw==/6632047430560343854.gif)</div><div class="line"></div><div class="line"></div><div class="line">**4.remove()和detach()d的区别**</div><div class="line"></div><div class="line">&gt; 相同点：都能保存被删除的元素</div><div class="line">&gt; 不同点：remove()连事件和数据都删除，detach()保留数据和事件，还能恢复；</div><div class="line"></div><div class="line">演示：</div></pre></td></tr></table></figure><p></p>
+<p><script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"><br></script></p>
+<p><script><br>$(document).ready(function(){<br>    $(“#btn1”).click(function(){<br>        $(“body”).append($(“#p1”).detach());<br>    });<br>    $(“#btn2”).click(function(){<br>        $(“body”).append($(“#p2”).remove());<br>    });<br>    $(“p”).click(function(){<br>        $(this).animate({fontSize:”+=1px”})； //每次点击之后让字体大写增加1PX<br>    });<br>});<br></script><br></p>
+<body>
+
+<p></p><p id="p1"> detach()移除后点击这一段——它保留单击事件。</p><p></p>
+<p></p><p id="p2"> remove()移除后点击这一段——它不保留单击事件。</p><p></p>
+<button id="btn1">Detach方法移除并插入P元素</button><br><button id="btn2">Remove方法移除并插入P元素</button>
+
+<p></p></body><br>```<p></p>
+<p>演示结果：</p>
+<p><img src="http://img2.ph.126.net/fCJGccLOEfliP6aSSI-BTQ==/6631881404304551249.gif" alt="image"></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/10/iOS 出现页面不能跳转的问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="骑驴看代码">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="薛泽超">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/10/iOS 出现页面不能跳转的问题/" itemprop="url">iOS 出现页面不能跳转的问题</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-10T20:41:24+08:00">
+                2017-10-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MUI/" itemprop="url" rel="index">
+                    <span itemprop="name">MUI</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近项目要上新版本，各项功能都完善了。高兴的屁颠屁颠的要去上线呢，然后打包，上传，离线资源升级一气呵成。突然销售人员过来报告，iOS 10版本出问题了。这几天被这个bug搞得头大；</p>
+<p>该问题在安卓上不会出现，就在iOS 上不正常；各种测试，各种搜索都无济于事，最后没办法，开大招，我知道是哪个页面的问题，之后就用“注释大法”，一行一行的测试代码，最后发现问题了；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var oldback = mui.back();</div><div class="line">	mui.back = function()&#123;</div><div class="line">		return false;</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+<p>这段代码加到页面中，在iOS 设备上面，就会导致页面<code>mui.openWindow()</code>打开不了新页面； 在此记录一下，被这个坑折腾死了！！！</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/10/evalJS跨webview回传参或执行方法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="骑驴看代码">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="薛泽超">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/10/evalJS跨webview回传参或执行方法/" itemprop="url">evalJS跨webview回传参或执行方法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-10T20:41:24+08:00">
+                2017-10-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MUI/" itemprop="url" rel="index">
+                    <span itemprop="name">MUI</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><img src="http://img.blog.csdn.net/20160226104502919?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="image"></p>
+<p><img src="http://img.blog.csdn.net/20160226104515395?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="image"></p>
+<p><img src="http://img.blog.csdn.net/20160226104538645?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="image"></p>
+<p>A页面写一个接受参数的方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function showAG(ag)&#123;  </div><div class="line">            document.getElementById(&quot;pa&quot;).innerHTML=ag;  </div><div class="line">        &#125;</div></pre></td></tr></table></figure></p>
+<p>B页面中按钮点击事件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">function rtnAg()&#123;  </div><div class="line">            var wvB=plus.webview.currentWebview();          //获取当前窗口的WebviewObject对象，即B  </div><div class="line">            var wvA=wvB.opener();                           //获取当前窗口的创建者，即A  </div><div class="line">            wvA.evalJS(&quot;showAG(&apos;&quot;+document.getElementById(&quot;pb&quot;).innerHTML+&quot;&apos;)&quot;);        //执行父窗口中的方法  A中的showAG方法  </div><div class="line">            wvB.close();                        //关闭B  </div><div class="line">        &#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/10/localStorage存储JSON对象/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -417,1519 +1877,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/10/JavaScript从数组中删除指定值元素的方法/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="骑驴看代码">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="薛泽超">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/10/JavaScript从数组中删除指定值元素的方法/" itemprop="url">JavaScript从数组中删除指定值元素的方法</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-10T00:22:27+08:00">
-                2017-10-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaScript知识/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaScript知识</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="下面的代码使用了两种方式删除数组的元素，第一种定义一个单独的函数，第二种为Array对象定义了一个removeByValue的方法，调用非常简单"><a href="#下面的代码使用了两种方式删除数组的元素，第一种定义一个单独的函数，第二种为Array对象定义了一个removeByValue的方法，调用非常简单" class="headerlink" title="下面的代码使用了两种方式删除数组的元素，第一种定义一个单独的函数，第二种为Array对象定义了一个removeByValue的方法，调用非常简单"></a>下面的代码使用了两种方式删除数组的元素，第一种定义一个单独的函数，第二种为Array对象定义了一个removeByValue的方法，调用非常简单</h4><ul>
-<li><p>定义函数removeByValue进行元素删除</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">function removeByValue(arr, val) &#123;</div><div class="line">  for(var i=0; i&lt;arr.length; i++) &#123;</div><div class="line">    if(arr[i] == val) &#123;</div><div class="line">      arr.splice(i, 1);</div><div class="line">      break;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">var somearray = [&quot;mon&quot;, &quot;tue&quot;, &quot;wed&quot;, &quot;thur&quot;]</div><div class="line">removeByValue(somearray, &quot;tue&quot;);</div><div class="line">// &quot;mon&quot;, &quot;wed&quot;, &quot;thur&quot;</div></pre></td></tr></table></figure>
-</li>
-<li><p>为数组对象增加相应的的方法，调用就变得更加简单了，直接调用数组的removeByValue方法即可删除指定元素</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Array.prototype.removeByValue = function(val) &#123;</div><div class="line">  for(var i=0; i&lt;this.length; i++) &#123;</div><div class="line">    if(this[i] == val) &#123;</div><div class="line">      this.splice(i, 1);</div><div class="line">      break;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">var somearray = [&quot;mon&quot;, &quot;tue&quot;, &quot;wed&quot;, &quot;thur&quot;]</div><div class="line">somearray.removeByValue(&quot;tue&quot;);</div><div class="line">// &quot;mon&quot;, &quot;wed&quot;, &quot;thur&quot;</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/10/CSS易错点/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="骑驴看代码">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="薛泽超">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/10/CSS易错点/" itemprop="url">CSS易错点</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-10T00:22:27+08:00">
-                2017-10-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CSS知识/" itemprop="url" rel="index">
-                    <span itemprop="name">CSS知识</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="文章来源于网络，如侵犯了您的权益，请联系本人。"><a href="#文章来源于网络，如侵犯了您的权益，请联系本人。" class="headerlink" title="文章来源于网络，如侵犯了您的权益，请联系本人。"></a>文章来源于网络，如侵犯了您的权益，请联系本人。</h1><p>一、float需要注意浮动元素的高度不一样的问题<br>浮动虽然看起来很简单，但是稍微不注意就会用错，而且如果不知道原理的话很难找到原因，例如：五个li元素浮动，我们要的效果应该是这样</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/3152923-6e0a8b3ef44a2865?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/3152923-c2889ba223b33613?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>可是现实问题确实这样：紫色的li调到下面去了。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/3152923-ac1b426863a17216?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>也许大部分人就像我一样只记得浮动会让父元素塌陷，无法撑开高度这个特性，可是我们却忘了还有一个重要的特性：</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/3152923-98860d8b06a023a8?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>因此，蓝色的li触碰到了蛋白质那个li，导致它被卡在那里，紫色自然被移到下一行</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/3152923-9cc6af5a4acc596a?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>解决办法，固定高度</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/3152923-6ae5e649a58f1719?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>二、透明度<br>比如一个块级元素你使用了opacity来做透明度的话，它会使子元素跟着也透明，即使子元素设置不透明。同样的，上代码</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/3152923-951cfae82ba0fd05?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/3152923-ea58f3937e976086?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>解决办法是使用rgba来做透明度，它将不会影响其子元素（完美）！</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/3152923-8cf0256f1abea364?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/3152923-828f4653ce2f9235?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>三、动态rem适配移动端<br>我们知道移动端的像素转换非常复杂难算，以前大多数人都会使用媒体查询来适配不同的设备屏幕宽，然后使用em做单位，这样的不足之处是你需要写很多媒体查询，很繁琐，而且em根据的是父元素的font-size。而rem是相对于根元素来配备，能方便很多。PS：忘掉font-size吧，一切以屏幕的宽度为基准，我保证你会非常爽！</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/3152923-ec8b75635b50d248?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>width/10是为了保证10rem占宽满屏，不除的话，1rem就等于屏幕宽度了。然后我们只需要动态加上上面的js代码，就不需要做各种媒体查询就能适配各种设备宽度。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/3152923-5ba1a1a3692b6c9f?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/3152923-a07109727ab5bb27?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>接下来就是通过视觉稿里量到的尺寸来适配rem,比如设计稿的屏幕宽是1000px 元素宽为500px，你只需要10/1000*500就能得到多少rem了，是不是很easy。这里需要说明一下10是10rem，因为这样方便计算。</p>
-<p>动态rem还有一个好处是完美实现1像素边框，我这里就不再描述了，大家可以去谷歌一下四、块级元素垂直居中问题块级元素垂直居然有很多方法，我简单说两个:</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/3152923-af681d6423e47d4e?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>上图代码显示用绝对定位，top,left50%，然后负margin宽高的一半，light-height为元素的高就能实现垂直居中。相信大家都知道，但是有个问题，如果元素的宽高变了，那我们也要手动的去改margin。这里有一个更方便的办法，如果不考虑IE低版本的浏览器的情况下，可以用translate来实现，这样无论元素怎么变，都不会有影响。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/3152923-054d0ce66359d961?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>还有一种方案可选，设置display：table-cell; vertical-align:middle;大家可以去查查这个属性的用法</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/10/CSS3中的动画--transition/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="骑驴看代码">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="薛泽超">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/10/CSS3中的动画--transition/" itemprop="url">CSS3中的动画--transition</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-10T00:22:27+08:00">
-                2017-10-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CSS3/" itemprop="url" rel="index">
-                    <span itemprop="name">CSS3</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><strong>CSS3的过渡transition属性是一个复合属性，主要包括以下几个子属性：</strong></p>
-<ul>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">- ```transition-duration:```指定完成过渡所需的时间</div><div class="line"></div><div class="line">- ```transition-timing-function:```指定过渡函数</div><div class="line"></div><div class="line">- ```transition-delay:```指定开始出现的延迟时间</div><div class="line"></div><div class="line"> </div><div class="line"></div><div class="line">```transition-property``` 属性</div><div class="line"></div><div class="line"></div><div class="line">![image](http://img.mukewang.com/5344eca300010a8005510421.jpg)</div><div class="line"></div><div class="line"></div><div class="line">**transition-timing-function**</div><div class="line"></div><div class="line">![image](http://img.mukewang.com/5344f1320001481905640812.jpg)</div><div class="line"></div><div class="line"></div><div class="line">**CSS3 Keyframes介绍**</div><div class="line"></div><div class="line">```keyframes``` 被称为**关键帧**，主要以“**@keyframes**”开头，后面紧跟着是动画名称加上一对花括号“**&#123;…&#125;**”，</div><div class="line"></div><div class="line">例如：</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>@keyframes changecolor {<br>    0% {<br>        background: red;<br>    }<br>    100% {<br>        background: green;<br>    }<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">**经验与技巧：**在 @keyframes中定义动画名称时，其中0%和100%还可以使用关键词from和to来代表，其中0%对应的是from，100%对应的是to。</div><div class="line"></div><div class="line"></div><div class="line">**animation-name属性**</div><div class="line"></div><div class="line">主要是用来调用 @keyframes 定义好的动画。需要特别注意: animation-name 调用的动画名需要和“@keyframes”定义的动画名称完全一致（区分大小写），如果不一致将不具有任何动画效果。</div><div class="line"></div><div class="line">语法：</div></pre></td></tr></table></figure></p>
-<p>animation-name: none | IDENT[,none|DENT]*;<br>```</p>
-<p>1、IDENT是由 @keyframes 创建的动画名，上面已经讲过了（animation-name 调用的动画名需要和“@keyframes”定义的动画名称完全一致）；</p>
-<p>2、none为默认值，当值为 none 时，将没有任何动画效果,这可以用于覆盖任何动画。</p>
-<p>注意：需要在 Chrome 和 Safari 上面的基础上加上-webkit-前缀，Firefox加上-moz-。</p>
-<p><strong>animation-direction属性主要用来设置动画播放方向</strong></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/10/CSS3中transform在内联元素上引用的问题/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="骑驴看代码">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="薛泽超">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/10/CSS3中transform在内联元素上引用的问题/" itemprop="url">CSS3中transform在内联元素上引用的问题</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-10T00:22:27+08:00">
-                2017-10-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CSS3/" itemprop="url" rel="index">
-                    <span itemprop="name">CSS3</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="transform"><a href="#transform" class="headerlink" title="transform"></a>transform</h3><p>今天碰到一个问题，我想在一个span标签上加一个点击让它旋转180度的效果，刚开始怎么都不好使，就是不动。于是，查之~~~~</p>
-<p>解决办法：</p>
-<blockquote>
-<p>规范里面说transform translate不能应用于inline元素，只能应用于display为inline-block或者block元素，float或者absolute会将非display：none的元素转化为display:inline-block,所以我给上面的span加上position:absolute动画一样生效。感谢你的回答！！</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/10/CSS3选择器/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="骑驴看代码">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="薛泽超">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/10/CSS3选择器/" itemprop="url">CSS3选择器</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-10T00:22:27+08:00">
-                2017-10-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CSS3/" itemprop="url" rel="index">
-                    <span itemprop="name">CSS3</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><strong>1. 属性选择器</strong></p>
-<p> 在CSS2中引入了一些属性选择器，而CSS3在CSS2的基础上对属性选择器进行了扩展，新增了3个属性选择器，使得属性选择器有了通配符的概念，这三个属性选择器与CSS2的属性选择器共同构成了CSS功能强大的属性选择器。</p>
-<p> 下图所示：</p>
-<p> <img src="http://img.mukewang.com/56653eba0001b07004610215.jpg" alt="image"></p>
-<p> 示例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">&lt;style&gt;</div><div class="line">    a[class^=&apos;column&apos;] &#123;</div><div class="line">        background-color: red;</div><div class="line">    &#125;</div><div class="line">    a[href$=&apos;.doc&apos;] &#123;</div><div class="line">        background-color: green;</div><div class="line">    &#125;</div><div class="line">    a[title*=&apos;box&apos;] &#123;</div><div class="line">        background-color: blue;</div><div class="line">    &#125;</div><div class="line">&lt;/style&gt;</div><div class="line">&lt;/head&gt; </div><div class="line">&lt;body&gt;</div><div class="line">&lt;a href=&quot;##&quot; class=&quot;columnNews&quot;&gt;我的背景想变成红色&lt;/a&gt;</div><div class="line">&lt;a href=&quot;##&quot; class=&quot;columnVideo&quot;&gt;我的背景想变成红色&lt;/a&gt;</div><div class="line">&lt;a href=&quot;##&quot; class=&quot;columnAboutUs&quot;&gt;我的背景想变成红色&lt;/a&gt;&lt;br/&gt;</div><div class="line">&lt;a href=&quot;1.doc&quot;&gt;我的背景想变成绿色&lt;/a&gt;</div><div class="line">&lt;a href=&quot;2.doc&quot;&gt;我的背景想变成绿色&lt;/a&gt;&lt;br/&gt;</div><div class="line">&lt;a href=&quot;##&quot; title=&quot;this is a box&quot;&gt;我的背景想变成蓝色&lt;/a&gt;</div><div class="line">&lt;a href=&quot;##&quot; title=&quot;box1&quot;&gt;我的背景想变成蓝色&lt;/a&gt;</div><div class="line">&lt;a href=&quot;##&quot; title=&quot;there is two boxs&quot;&gt;我的背景想变成蓝色&lt;/a&gt;</div><div class="line">&lt;/body&gt;</div></pre></td></tr></table></figure>
-<p>效果：</p>
-<p><img src="http://img.mukewang.com/548116d10001538805330080.jpg" alt="image"></p>
-<p><strong>2.root 选择器</strong></p>
-<figure class="highlight plain"><figcaption><span>```<html>```</html></span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">“:root”选择器等同于&lt;html&gt;元素，简单点说：</div></pre></td></tr></table></figure>
-<p>:root{background:orange}</p>
-<p>html {background:orange;}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">得到的效果等同。**建议使用```:root```方法。**</div><div class="line"></div><div class="line">**3.:not 否定选择器**</div><div class="line"></div><div class="line">例如给表单中**除submit**按钮之外的input添加样式：</div></pre></td></tr></table></figure></p>
-<style>
-    form {
-      width: 200px;
-      margin: 20px auto;
-    }
-    div {
-      margin-bottom: 20px;
-    }
-    input:not([type="submit"]){
-      border:1px solid red;
-    }
-</style>
-
-<p><body><br>    <form action="#"><br>      <div><br>        <label for="name">Text Input:</label><br>        <input type="text" name="name" id="name" placeholder="John Smith"><br>      </div><br>      <div><br>        <label for="name">Password Input:</label><br>        <input type="text" name="name" id="name" placeholder="John Smith"><br>      </div><br>      <div><br>        <input type="submit" value="Submit"><br>      </div><br>    </form><br></body><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">演示结果：</div><div class="line"></div><div class="line">![image](http://img.imooc.com/531eb2ca00014b5002370177.jpg)</div><div class="line"></div><div class="line">**4.empty 选择空的元素**</div><div class="line"></div><div class="line">```:empty``` 选择器表示的就是空。用来选择没有任何内容的元素，这里没有内容指的是一点内容都没有，**哪怕是一个空格**。</div><div class="line"></div><div class="line">示例：</div></pre></td></tr></table></figure></p>
-<p>// css<br>p{<br> background: orange;<br> min-height: 30px;<br>}<br>p:empty {<br>  display: none;<br>}</p>
-<p>// html</p>
-<p></p><p>我是一个段落</p><p></p>
-<p></p><p> </p>  &lt;– 空格也算内容 –&gt;<p></p>
-<p></p><p></p><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">演示效果：</div><div class="line"></div><div class="line">![image](http://img.imooc.com/531eb55b0001d7d401580126.jpg)</div><div class="line"></div><div class="line"></div><div class="line">**5.target  目标选择器**</div><div class="line"></div><div class="line">```:target``` 选择器称为目标选择器，用来匹配文档(页面)的url的某个标志符的目标元素。</div><div class="line"></div><div class="line">示例1：</div></pre></td></tr></table></figure><p></p>
-<p>.menuSection{<br>  display: none;<br>}<br>:target{/<em>这里的:target就是指id=”brand”的div对象</em>/<br>  display:block;<br>}</p>
-<p></p><h2><a href="#brand">Brand</a></h2><p></p>
-<div class="menuSection" id="brand"><br>    content for Brand<br></div>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">演示结果：</div><div class="line"></div><div class="line">![image](http://img.imooc.com/53217ea30001103002230101.jpg)</div><div class="line"></div><div class="line">示例二：</div></pre></td></tr></table></figure>
-<pre><code>// CSS
-#brand1:target p {
-  background: orange;
-  color: #fff; 
-}
-#brand2:target {
-  background: orange;
-  color: #fff;
-}
-#jake:target {
-  background: blue;
-  color: #fff;
-}
-#aron:target {
-  background: red;
-  color: #fff;
-}
-
-// html
-&lt;h2&gt;&lt;a href=&quot;#brand1&quot;&gt;Brand&lt;/a&gt;&lt;/h2&gt;
-&lt;div class=&quot;menuSection&quot; id=&quot;brand1&quot;&gt;
-    &lt;p&gt;content for Brand1&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;h2&gt;&lt;a href=&quot;#brand2&quot;&gt;Brand&lt;/a&gt;&lt;/h2&gt;
-&lt;div class=&quot;menuSection&quot; id=&quot;brand2&quot;&gt;
-  content for Brand2
-&lt;/div&gt;
-
-&lt;h2&gt;&lt;a href=&quot;#jake&quot;&gt;Brand&lt;/a&gt;&lt;/h2&gt;
-&lt;div class=&quot;menuSection&quot; id=&quot;jake&quot;&gt;
- content for jake
-&lt;/div&gt;
-
-&lt;h2&gt;&lt;a href=&quot;#aron&quot;&gt;Brand&lt;/a&gt;&lt;/h2&gt;
-&lt;div class=&quot;menuSection&quot; id=&quot;aron&quot;&gt;
-    content for aron
-&lt;/div&gt;
-</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">演示结果：</div><div class="line"></div><div class="line">![image](http://img1.ph.126.net/b75FeZ8dPeCkMLNBv_SDxQ==/6631807737028077409.png)</div><div class="line"></div><div class="line"></div><div class="line">**6.nth-child(n) 选择器**</div><div class="line"></div><div class="line">“:nth-child(n)”选择器用来定位某个父元素的一个或多个特定的子元素。其中“n”是其参数，而且可以是整数值(1,2,3,4)，也可以是表达式(2n+1、-n+5)和关键词(odd、even)，但参数n的起始值始终是1，而不是0。也就是说，参数n的值为0时，选择器将选择不到任何匹配的元素。</div><div class="line"></div><div class="line">**经验与技巧**:当“:nth-child(n)”选择器中的n为一个表达式时，其中n是从0开始计算，当表达式的值为0或小于0的时候，不选择任何匹配的元素。如下表所示：</div><div class="line"></div><div class="line">![image](http://img.mukewang.com/531eba56000138aa05870197.jpg)</div><div class="line"></div><div class="line">例如：</div></pre></td></tr></table></figure>
-<p>ol &gt; li:nth-child(2n){<br>  background: orange;<br>}</p>
-<p><ol><br>  <li>item1</li><br>  <li>item2</li><br>  <li>item3</li><br>  <li>item4</li><br>  <li>item5</li><br>  <li>item6</li><br>  <li>item7</li><br>  <li>item8</li><br>  <li>item9</li><br>  <li>item10</li><br></ol><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">演示结果：</div><div class="line"></div><div class="line">![image](http://img.mukewang.com/531ebac90001750902580228.jpg)</div><div class="line"></div><div class="line">**7.nth-last-child(n) 从父元素的最后一个开始计算**</div><div class="line"></div><div class="line">“:nth-last-child(n)”选择器和前面的“:nth-child(n)”选择器非常的相似，只是这里多了一个“last”，所起的作用和“:nth-child(n)”选择器有所区别，从某父元素的最后一个子元素开始计算，来选择特定的元素。</div><div class="line"></div><div class="line">例如：选择列表中倒数第五个列表项，将其背景设置成橙色</div></pre></td></tr></table></figure></p>
-<p>ol &gt; li:nth-last-child(5){<br>  background: orange;<br>}</p>
-<p><ol><br>  <li>item1</li><br>  <li>item2</li><br>  <li>item3</li><br>  <li>item4</li><br>  <li>item5</li><br>  <li>item6</li><br>  <li>item7</li><br>  <li>item8</li><br>  <li>item9</li><br>  <li>item10</li><br>  <li>item11</li><br>  <li>item12</li><br>  <li>item13</li><br>  <li>item14</li><br>  <li>item15</li><br></ol><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">演示结果：</div><div class="line"></div><div class="line">![image](http://img.mukewang.com/531ebb7a0001d20b01530286.jpg)</div><div class="line"></div><div class="line"></div><div class="line">**8.:checked 选择器**</div><div class="line"></div><div class="line">在表单元素中，单选按钮和复选按钮都具有选中和未选中状态。（大家都知道，要覆写这两个按钮默认样式比较困难）。在CSS3中，我们可以通过状态选择器“:checked”配合其他标签实现自定义样式。而“:checked”表示的是选中状态。</div><div class="line"></div><div class="line">示例：</div></pre></td></tr></table></figure></p>
-<p>/<em> CSS </em>/<br>form {<br>  border: 1px solid #ccc;<br>  padding: 20px;<br>  width: 300px;<br>  margin: 30px auto;<br>}</p>
-<p>.wrapper {<br>  margin-bottom: 10px;<br>}</p>
-<p>.box {<br>  display: inline-block;<br>  width: 20px;<br>  height: 20px;<br>  margin-right: 10px;<br>  position: relative;<br>  border: 2px solid orange;<br>  vertical-align: middle;<br>}</p>
-<p>.box input {<br>  opacity: 0;<br>  position: absolute;<br>  top:0;<br>  left:0;<br>}</p>
-<p>.box span {<br>  position: absolute;<br>  top: -10px;<br>  right: 3px;<br>  font-size: 30px;<br>  font-weight: bold;<br>  font-family: Arial;<br>  -webkit-transform: rotate(30deg);<br>  transform: rotate(30deg);<br>  color: orange;<br>}</p>
-<p>input[type=”checkbox”] + span {<br>  opacity: 0;<br>}</p>
-<p>input[type=”checkbox”]:checked + span {<br>  opacity: 1;<br>}</p>
-<!-- html -->
-<p><form action="#"><br>  <div class="wrapper"><br>    <div class="box"><br>      <input type="checkbox" checked="checked" id="usename"><span>√</span><br>    </div><br>    <lable for="usename">我是选中状态</lable><br>  </div></form></p>
-<p>  <div class="wrapper"><br>    <div class="box"><br>      <input type="checkbox" id="usepwd"><span>√</span><br>    </div><br>    <label for="usepwd">我是未选中状态</label><br>  </div><br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">结果演示：</div><div class="line"></div><div class="line">![image](http://img.mukewang.com/53326d1f0001b8a703280126.jpg)</div><div class="line"></div><div class="line"></div><div class="line">**9. ::selection 选择器**</div><div class="line"></div><div class="line">“::selection”伪元素是用来匹配突出显示的文本(用鼠标选择文本时的文本)。浏览器默认情况下，用鼠标选择网页文本是以“深蓝的背景，白色的字体”显示的，效果如下图所示：</div><div class="line"></div><div class="line">示例代码：</div></pre></td></tr></table></figure></p>
-<p>```</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/10/CSS3背景-background-size/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="骑驴看代码">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="薛泽超">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/10/CSS3背景-background-size/" itemprop="url">CSS3背景 background-size</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-10T00:22:27+08:00">
-                2017-10-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CSS3/" itemprop="url" rel="index">
-                    <span itemprop="name">CSS3</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>设置背景图片的大小，以长度值或百分比显示，还可以通过cover和contain来对图片进行伸缩。</p>
-<p>语法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">background-size: auto | &lt;长度值&gt; | &lt;百分比&gt; | cover | contain</div></pre></td></tr></table></figure></p>
-<p>取值说明：</p>
-<ol>
-<li><p>auto：默认值，不改变背景图片的原始高度和宽度；</p>
-</li>
-<li><p>&lt;长度值&gt;：成对出现如200px 50px，将背景图片宽高依次设置为前面两个值，当设置一个值时，将其作为图片<strong>宽度值来等比缩放</strong>；</p>
-</li>
-<li><p>&lt;百分比&gt;：0％~100％之间的任何值，<strong>将背景图片宽高依次设置为所在元素宽高乘以前面百分比得出的数值</strong>，当设置一个值时同上；</p>
-</li>
-<li><p>cover：顾名思义为覆盖，即将背景图片等比缩放以<strong>填满整个容器</strong>；</p>
-</li>
-<li><p>contain：容纳，即将背景图片<strong>等比缩放至某一边紧贴容器边缘</strong>为止。</p>
-</li>
-</ol>
-<p>代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html&gt;</div><div class="line">&lt;head&gt; </div><div class="line">&lt;meta charset=&quot;utf-8&quot;&gt;</div><div class="line">&lt;title&gt;背景图片大小&lt;/title&gt;</div><div class="line">&lt;style type=&quot;text/css&quot;&gt;</div><div class="line">.demo &#123;</div><div class="line">    background: url(http://static.mukewang.com/static/img/logo_index.png) no-repeat;</div><div class="line">    width: 300px;</div><div class="line">    height: 140px;</div><div class="line">    border: 1px solid #999;</div><div class="line">    background-size: 300px 140px;</div><div class="line">    background-size: cover;</div><div class="line">    background-size: contain;</div><div class="line">    background-size: 100% 100%;</div><div class="line">&#125; </div><div class="line">&lt;/style&gt;    </div><div class="line">&lt;/head&gt;   </div><div class="line">&lt;body&gt;</div><div class="line">&lt;div class=&quot;demo&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
-<ul>
-<li>auto 默认样式：</li>
-</ul>
-<p><img src="http://img2.ph.126.net/BXyXv1heZyVLMSHfZylPCA==/6631792343865292724.png" alt="image"></p>
-<ul>
-<li>px （300px） 或 百分比 （100%）  只设置一个的情况下：</li>
-</ul>
-<p><img src="http://img1.ph.126.net/NMftgkmMh07-gBcvozmZpw==/6631898996490074668.png" alt="image"></p>
-<ul>
-<li>px 或百分比 全都设置的情况下：</li>
-</ul>
-<p><img src="http://img1.ph.126.net/DupZ1FQJTaT9STA_CRrHpw==/6631918787699379391.png" alt="image"></p>
-<ul>
-<li>cover 情况下：</li>
-</ul>
-<p><img src="http://img2.ph.126.net/snqPL_tEJXAU8j7SilIksQ==/6632181570978413006.png" alt="image"></p>
-<ul>
-<li>contain 情况下：</li>
-</ul>
-<p><img src="http://img0.ph.126.net/nE7pGHG2Ip3Tr-rD6-NRAA==/6631935280373787144.png" alt="image"></p>
-<p><strong>CSS3 多背景写法：</strong></p>
-<p>语法缩写如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">background ： [background-color] | [background-image] | [background-position][/background-size] | [background-repeat] | [background-attachment] | [background-clip] | [background-origin],...</div></pre></td></tr></table></figure>
-<p>代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html&gt;</div><div class="line">&lt;head&gt; </div><div class="line">&lt;meta charset=&quot;utf-8&quot;&gt;</div><div class="line">&lt;title&gt;多重背景&lt;/title&gt;</div><div class="line">&lt;style type=&quot;text/css&quot;&gt;</div><div class="line">.demo&#123;</div><div class="line">    width: 300px; </div><div class="line">    height: 140px;</div><div class="line">    border: 1px solid #999;</div><div class="line">    </div><div class="line">    background-image: url(http://img.mukewang.com/54cf2365000140e600740095.jpg),</div><div class="line">                      url(http://img.mukewang.com/54cf238a0001728d00740095.jpg),</div><div class="line">                      url(http://img.mukewang.com/54cf23b60001fd9700740096.jpg);</div><div class="line">    background-position: left top, 100px 0, 200px 0;</div><div class="line">    background-repeat: no-repeat, no-repeat, no-repeat;</div><div class="line">    </div><div class="line">    margin:0 0 20px 0;</div><div class="line">&#125;</div><div class="line">.task &#123;</div><div class="line">    width: 300px;</div><div class="line">    height: 140px;</div><div class="line">    border: 1px solid #999;</div><div class="line">    </div><div class="line">    background:url(http://static.mukewang.com/static/img/logo_index.png) no-repeat, </div><div class="line">               url(http://static.mukewang.com/static/img/logo_index.png) no-repeat;</div><div class="line">               </div><div class="line">    background-position:left top,50% 70px;</div><div class="line">&#125;</div><div class="line"> </div><div class="line"></div><div class="line">&lt;/style&gt;  </div><div class="line">&lt;/head&gt; </div><div class="line">&lt;body&gt;</div><div class="line">&lt;div class=&quot;demo&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;div class=&quot;task&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure></p>
-<p>输出：</p>
-<p><img src="http://img1.ph.126.net/Urk5bna8SFUKE4WyGdt_yQ==/6631990255955177983.png" alt="image"></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/10/CSS3 渐变颜色/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="骑驴看代码">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="薛泽超">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/10/CSS3 渐变颜色/" itemprop="url">CSS3 渐变颜色</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-10T00:22:27+08:00">
-                2017-10-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CSS3/" itemprop="url" rel="index">
-                    <span itemprop="name">CSS3</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><strong>线性渐变：</strong></p>
-<p><img src="http://img.mukewang.com/54b72b2e0001500103790158.jpg" alt="image"></p>
-<p>第一个参数:指定渐变方向，可以用“角度”的关键词或“英文”来表示：</p>
-<p><img src="http://img.mukewang.com/542a25da00017e9406980223.jpg" alt="image"></p>
-<ul>
-<li><p>第一个参数省略时，默认为“180deg”，等同于“to bottom”。</p>
-</li>
-<li><p>第二个和第三个参数，表示颜色的起始点和结束点，可以有多个颜色值。</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">background-image:linear-gradient(to left, red, orange,yellow,green,blue,indigo,violet);</div></pre></td></tr></table></figure>
-<p>效果图：</p>
-<p><img src="http://img.mukewang.com/54b72c080001611c04230192.jpg" alt="image"></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/10/APICould应用的关键信息/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="骑驴看代码">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="薛泽超">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/10/APICould应用的关键信息/" itemprop="url">APICould应用的关键信息</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-10T00:22:27+08:00">
-                2017-10-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/APICould/" itemprop="url" rel="index">
-                    <span itemprop="name">APICould</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><strong>重要</strong></p>
-<ul>
-<li>应用ID </li>
-<li>应用Key     <em>云操作都需要用到</em></li>
-<li>应用包名</li>
-<li>应用名称    关系到app安装后显示的名称；</li>
-<li>feature文件夹   —-里面存放的是模块相关信息的；</li>
-<li>wgt文件夹，   存放一组独立的应用来使用；</li>
-<li></li>
-</ul>
-<p><strong>$api:</strong></p>
-<p><strong>前端框架中定义的对象，引入api.js就可以使用，无需等待apiready事件；</strong></p>
-<p><strong>api：</strong></p>
-<p><strong>引擎扩展的对象，apiready事件之后使用，封装了平台的最基础的功能；</strong></p>
-<p><strong>界面布局相关API</strong></p>
-<p><strong>9.1 Widget相关API</strong></p>
-<ul>
-<li><p>api.openWidget()</p>
-</li>
-<li><p>api.closeWidget()</p>
-</li>
-</ul>
-<p><strong>9.2 Window相关API</strong></p>
-<ul>
-<li><p>api.openWin</p>
-</li>
-<li><p>api.closeWin</p>
-</li>
-<li><p>api.closeToWin()</p>
-</li>
-<li><p>api.setWinAttr()</p>
-</li>
-<li><p>api.winName</p>
-</li>
-<li><p>api.winWidth</p>
-</li>
-<li><p>api.winHeight</p>
-</li>
-</ul>
-<p><strong>9.3 Layout相关API</strong></p>
-<p><strong>FrameGroup</strong></p>
-<ul>
-<li><p>api.openFrameGroup()</p>
-</li>
-<li><p>api.closeFrameGroup()</p>
-</li>
-<li><p>api.setFrameGroupIndex()</p>
-</li>
-<li><p>api.setFrameGroupAttr()</p>
-</li>
-</ul>
-<p><strong>SlidLayout</strong></p>
-<ul>
-<li><p>api.openSlidLayout()</p>
-</li>
-<li><p>api.openSlidPane()</p>
-</li>
-<li><p>api.closeSlidPane()</p>
-</li>
-</ul>
-<p><strong>DrawerLayout</strong></p>
-<ul>
-<li><p>api.openDrawerLayout()</p>
-</li>
-<li><p>api.openDrawerPane()</p>
-</li>
-<li><p>api.closeDrawerPane()</p>
-</li>
-</ul>
-<p><strong>9.4 Frame相关API</strong></p>
-<ul>
-<li><p>api.openFrame()</p>
-</li>
-<li><p>api.closeFrame()</p>
-</li>
-<li><p>api.setFrameAttr()</p>
-</li>
-<li><p>api.bringFrameToFront()</p>
-</li>
-<li><p>api.sendFrameToBack()</p>
-</li>
-<li><p>api.frameName</p>
-</li>
-<li><p>api.frameWidth</p>
-</li>
-<li><p>api.frameHeight</p>
-</li>
-</ul>
-<p><strong>10.5 优化点击交互响应</strong></p>
-<blockquote>
-<p>消除webkit内核默认的onclick事件的300ms响应延迟</p>
-</blockquote>
-<p>tapmode属性</p>
-<p>api.parseTapmode方法</p>
-<p><strong>10.6 实现界面之间跳转</strong></p>
-<p>按照产品原型实现各UI界面之前的切换</p>
-<p><strong>10.7 实现页面之间的参数传递</strong></p>
-<p>参数pageParam</p>
-<p>api.pageParam</p>
-<p><strong>10.8 监听Android返回键，实现退出APP</strong></p>
-<p>监听keyback事件</p>
-<p><strong>10.9 阻止iOS滑动返回</strong></p>
-<p>设置slidBackEnabled参数</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/10/APICould应用导航栏遮挡问题/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="骑驴看代码">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="薛泽超">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/10/APICould应用导航栏遮挡问题/" itemprop="url">APICould应用导航栏遮挡问题</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-10T00:22:27+08:00">
-                2017-10-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/APICould/" itemprop="url" rel="index">
-                    <span itemprop="name">APICould</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>如题：</p>
-<blockquote>
-<p>在apiCould里面使用第三方的UI框架，碰到导航栏被遮住一部分的问题，</p>
-</blockquote>
-<p>如下图所示：</p>
-<p><img src="http://community.apicloud.com/bbs/data/attachment/forum/201609/03/122836xmkmh8i80f0zdd4i.png" alt="image"></p>
-<p>后来在论坛上搜到类似的问题答案</p>
-<p>解决办法：（关闭系统的“沉浸式效果”）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&lt;preference name=&quot;iOS7StatusBarAppearance&quot; value=&quot;false&quot; /&gt;</div><div class="line"></div><div class="line"></div><div class="line">&lt;preference name=&quot;statusBarAppearance&quot; value=&quot;false&quot; /&gt;</div></pre></td></tr></table></figure>
-<p>问题论坛地址：<a href="http://community.apicloud.com/bbs/forum.php?mod=viewthread&amp;tid=41129" target="_blank" rel="external">http://community.apicloud.com/bbs/forum.php?mod=viewthread&amp;tid=41129</a></p>
-<p>还有另一个相关地址： <a href="http://community.apicloud.com/bbs/forum.php?mod=viewthread&amp;tid=23016" target="_blank" rel="external">http://community.apicloud.com/bbs/forum.php?mod=viewthread&amp;tid=23016</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1974,7 +1926,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-count">36</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1985,7 +1937,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1996,7 +1948,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

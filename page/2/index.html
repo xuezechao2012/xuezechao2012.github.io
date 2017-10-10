@@ -286,6 +286,1514 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/10/JavaScript从数组中删除指定值元素的方法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="骑驴看代码">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="薛泽超">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/10/JavaScript从数组中删除指定值元素的方法/" itemprop="url">JavaScript从数组中删除指定值元素的方法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-10T00:22:27+08:00">
+                2017-10-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript知识/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript知识</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="下面的代码使用了两种方式删除数组的元素，第一种定义一个单独的函数，第二种为Array对象定义了一个removeByValue的方法，调用非常简单"><a href="#下面的代码使用了两种方式删除数组的元素，第一种定义一个单独的函数，第二种为Array对象定义了一个removeByValue的方法，调用非常简单" class="headerlink" title="下面的代码使用了两种方式删除数组的元素，第一种定义一个单独的函数，第二种为Array对象定义了一个removeByValue的方法，调用非常简单"></a>下面的代码使用了两种方式删除数组的元素，第一种定义一个单独的函数，第二种为Array对象定义了一个removeByValue的方法，调用非常简单</h4><ul>
+<li><p>定义函数removeByValue进行元素删除</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">function removeByValue(arr, val) &#123;</div><div class="line">  for(var i=0; i&lt;arr.length; i++) &#123;</div><div class="line">    if(arr[i] == val) &#123;</div><div class="line">      arr.splice(i, 1);</div><div class="line">      break;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">var somearray = [&quot;mon&quot;, &quot;tue&quot;, &quot;wed&quot;, &quot;thur&quot;]</div><div class="line">removeByValue(somearray, &quot;tue&quot;);</div><div class="line">// &quot;mon&quot;, &quot;wed&quot;, &quot;thur&quot;</div></pre></td></tr></table></figure>
+</li>
+<li><p>为数组对象增加相应的的方法，调用就变得更加简单了，直接调用数组的removeByValue方法即可删除指定元素</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Array.prototype.removeByValue = function(val) &#123;</div><div class="line">  for(var i=0; i&lt;this.length; i++) &#123;</div><div class="line">    if(this[i] == val) &#123;</div><div class="line">      this.splice(i, 1);</div><div class="line">      break;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">var somearray = [&quot;mon&quot;, &quot;tue&quot;, &quot;wed&quot;, &quot;thur&quot;]</div><div class="line">somearray.removeByValue(&quot;tue&quot;);</div><div class="line">// &quot;mon&quot;, &quot;wed&quot;, &quot;thur&quot;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/10/CSS易错点/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="骑驴看代码">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="薛泽超">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/10/CSS易错点/" itemprop="url">CSS易错点</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-10T00:22:27+08:00">
+                2017-10-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSS知识/" itemprop="url" rel="index">
+                    <span itemprop="name">CSS知识</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="文章来源于网络，如侵犯了您的权益，请联系本人。"><a href="#文章来源于网络，如侵犯了您的权益，请联系本人。" class="headerlink" title="文章来源于网络，如侵犯了您的权益，请联系本人。"></a>文章来源于网络，如侵犯了您的权益，请联系本人。</h1><p>一、float需要注意浮动元素的高度不一样的问题<br>浮动虽然看起来很简单，但是稍微不注意就会用错，而且如果不知道原理的话很难找到原因，例如：五个li元素浮动，我们要的效果应该是这样</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3152923-6e0a8b3ef44a2865?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3152923-c2889ba223b33613?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>可是现实问题确实这样：紫色的li调到下面去了。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3152923-ac1b426863a17216?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>也许大部分人就像我一样只记得浮动会让父元素塌陷，无法撑开高度这个特性，可是我们却忘了还有一个重要的特性：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3152923-98860d8b06a023a8?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>因此，蓝色的li触碰到了蛋白质那个li，导致它被卡在那里，紫色自然被移到下一行</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3152923-9cc6af5a4acc596a?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>解决办法，固定高度</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3152923-6ae5e649a58f1719?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>二、透明度<br>比如一个块级元素你使用了opacity来做透明度的话，它会使子元素跟着也透明，即使子元素设置不透明。同样的，上代码</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3152923-951cfae82ba0fd05?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3152923-ea58f3937e976086?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>解决办法是使用rgba来做透明度，它将不会影响其子元素（完美）！</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3152923-8cf0256f1abea364?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3152923-828f4653ce2f9235?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>三、动态rem适配移动端<br>我们知道移动端的像素转换非常复杂难算，以前大多数人都会使用媒体查询来适配不同的设备屏幕宽，然后使用em做单位，这样的不足之处是你需要写很多媒体查询，很繁琐，而且em根据的是父元素的font-size。而rem是相对于根元素来配备，能方便很多。PS：忘掉font-size吧，一切以屏幕的宽度为基准，我保证你会非常爽！</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3152923-ec8b75635b50d248?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>width/10是为了保证10rem占宽满屏，不除的话，1rem就等于屏幕宽度了。然后我们只需要动态加上上面的js代码，就不需要做各种媒体查询就能适配各种设备宽度。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3152923-5ba1a1a3692b6c9f?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3152923-a07109727ab5bb27?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>接下来就是通过视觉稿里量到的尺寸来适配rem,比如设计稿的屏幕宽是1000px 元素宽为500px，你只需要10/1000*500就能得到多少rem了，是不是很easy。这里需要说明一下10是10rem，因为这样方便计算。</p>
+<p>动态rem还有一个好处是完美实现1像素边框，我这里就不再描述了，大家可以去谷歌一下四、块级元素垂直居中问题块级元素垂直居然有很多方法，我简单说两个:</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3152923-af681d6423e47d4e?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>上图代码显示用绝对定位，top,left50%，然后负margin宽高的一半，light-height为元素的高就能实现垂直居中。相信大家都知道，但是有个问题，如果元素的宽高变了，那我们也要手动的去改margin。这里有一个更方便的办法，如果不考虑IE低版本的浏览器的情况下，可以用translate来实现，这样无论元素怎么变，都不会有影响。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3152923-054d0ce66359d961?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>还有一种方案可选，设置display：table-cell; vertical-align:middle;大家可以去查查这个属性的用法</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/10/CSS3中的动画--transition/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="骑驴看代码">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="薛泽超">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/10/CSS3中的动画--transition/" itemprop="url">CSS3中的动画--transition</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-10T00:22:27+08:00">
+                2017-10-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSS3/" itemprop="url" rel="index">
+                    <span itemprop="name">CSS3</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>CSS3的过渡transition属性是一个复合属性，主要包括以下几个子属性：</strong></p>
+<ul>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">- ```transition-duration:```指定完成过渡所需的时间</div><div class="line"></div><div class="line">- ```transition-timing-function:```指定过渡函数</div><div class="line"></div><div class="line">- ```transition-delay:```指定开始出现的延迟时间</div><div class="line"></div><div class="line"> </div><div class="line"></div><div class="line">```transition-property``` 属性</div><div class="line"></div><div class="line"></div><div class="line">![image](http://img.mukewang.com/5344eca300010a8005510421.jpg)</div><div class="line"></div><div class="line"></div><div class="line">**transition-timing-function**</div><div class="line"></div><div class="line">![image](http://img.mukewang.com/5344f1320001481905640812.jpg)</div><div class="line"></div><div class="line"></div><div class="line">**CSS3 Keyframes介绍**</div><div class="line"></div><div class="line">```keyframes``` 被称为**关键帧**，主要以“**@keyframes**”开头，后面紧跟着是动画名称加上一对花括号“**&#123;…&#125;**”，</div><div class="line"></div><div class="line">例如：</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>@keyframes changecolor {<br>    0% {<br>        background: red;<br>    }<br>    100% {<br>        background: green;<br>    }<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">**经验与技巧：**在 @keyframes中定义动画名称时，其中0%和100%还可以使用关键词from和to来代表，其中0%对应的是from，100%对应的是to。</div><div class="line"></div><div class="line"></div><div class="line">**animation-name属性**</div><div class="line"></div><div class="line">主要是用来调用 @keyframes 定义好的动画。需要特别注意: animation-name 调用的动画名需要和“@keyframes”定义的动画名称完全一致（区分大小写），如果不一致将不具有任何动画效果。</div><div class="line"></div><div class="line">语法：</div></pre></td></tr></table></figure></p>
+<p>animation-name: none | IDENT[,none|DENT]*;<br>```</p>
+<p>1、IDENT是由 @keyframes 创建的动画名，上面已经讲过了（animation-name 调用的动画名需要和“@keyframes”定义的动画名称完全一致）；</p>
+<p>2、none为默认值，当值为 none 时，将没有任何动画效果,这可以用于覆盖任何动画。</p>
+<p>注意：需要在 Chrome 和 Safari 上面的基础上加上-webkit-前缀，Firefox加上-moz-。</p>
+<p><strong>animation-direction属性主要用来设置动画播放方向</strong></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/10/CSS3中transform在内联元素上引用的问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="骑驴看代码">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="薛泽超">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/10/CSS3中transform在内联元素上引用的问题/" itemprop="url">CSS3中transform在内联元素上引用的问题</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-10T00:22:27+08:00">
+                2017-10-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSS3/" itemprop="url" rel="index">
+                    <span itemprop="name">CSS3</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="transform"><a href="#transform" class="headerlink" title="transform"></a>transform</h3><p>今天碰到一个问题，我想在一个span标签上加一个点击让它旋转180度的效果，刚开始怎么都不好使，就是不动。于是，查之~~~~</p>
+<p>解决办法：</p>
+<blockquote>
+<p>规范里面说transform translate不能应用于inline元素，只能应用于display为inline-block或者block元素，float或者absolute会将非display：none的元素转化为display:inline-block,所以我给上面的span加上position:absolute动画一样生效。感谢你的回答！！</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/10/CSS3选择器/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="骑驴看代码">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="薛泽超">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/10/CSS3选择器/" itemprop="url">CSS3选择器</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-10T00:22:27+08:00">
+                2017-10-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSS3/" itemprop="url" rel="index">
+                    <span itemprop="name">CSS3</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>1. 属性选择器</strong></p>
+<p> 在CSS2中引入了一些属性选择器，而CSS3在CSS2的基础上对属性选择器进行了扩展，新增了3个属性选择器，使得属性选择器有了通配符的概念，这三个属性选择器与CSS2的属性选择器共同构成了CSS功能强大的属性选择器。</p>
+<p> 下图所示：</p>
+<p> <img src="http://img.mukewang.com/56653eba0001b07004610215.jpg" alt="image"></p>
+<p> 示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">&lt;style&gt;</div><div class="line">    a[class^=&apos;column&apos;] &#123;</div><div class="line">        background-color: red;</div><div class="line">    &#125;</div><div class="line">    a[href$=&apos;.doc&apos;] &#123;</div><div class="line">        background-color: green;</div><div class="line">    &#125;</div><div class="line">    a[title*=&apos;box&apos;] &#123;</div><div class="line">        background-color: blue;</div><div class="line">    &#125;</div><div class="line">&lt;/style&gt;</div><div class="line">&lt;/head&gt; </div><div class="line">&lt;body&gt;</div><div class="line">&lt;a href=&quot;##&quot; class=&quot;columnNews&quot;&gt;我的背景想变成红色&lt;/a&gt;</div><div class="line">&lt;a href=&quot;##&quot; class=&quot;columnVideo&quot;&gt;我的背景想变成红色&lt;/a&gt;</div><div class="line">&lt;a href=&quot;##&quot; class=&quot;columnAboutUs&quot;&gt;我的背景想变成红色&lt;/a&gt;&lt;br/&gt;</div><div class="line">&lt;a href=&quot;1.doc&quot;&gt;我的背景想变成绿色&lt;/a&gt;</div><div class="line">&lt;a href=&quot;2.doc&quot;&gt;我的背景想变成绿色&lt;/a&gt;&lt;br/&gt;</div><div class="line">&lt;a href=&quot;##&quot; title=&quot;this is a box&quot;&gt;我的背景想变成蓝色&lt;/a&gt;</div><div class="line">&lt;a href=&quot;##&quot; title=&quot;box1&quot;&gt;我的背景想变成蓝色&lt;/a&gt;</div><div class="line">&lt;a href=&quot;##&quot; title=&quot;there is two boxs&quot;&gt;我的背景想变成蓝色&lt;/a&gt;</div><div class="line">&lt;/body&gt;</div></pre></td></tr></table></figure>
+<p>效果：</p>
+<p><img src="http://img.mukewang.com/548116d10001538805330080.jpg" alt="image"></p>
+<p><strong>2.root 选择器</strong></p>
+<figure class="highlight plain"><figcaption><span>```<html>```</html></span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">“:root”选择器等同于&lt;html&gt;元素，简单点说：</div></pre></td></tr></table></figure>
+<p>:root{background:orange}</p>
+<p>html {background:orange;}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">得到的效果等同。**建议使用```:root```方法。**</div><div class="line"></div><div class="line">**3.:not 否定选择器**</div><div class="line"></div><div class="line">例如给表单中**除submit**按钮之外的input添加样式：</div></pre></td></tr></table></figure></p>
+<style>
+    form {
+      width: 200px;
+      margin: 20px auto;
+    }
+    div {
+      margin-bottom: 20px;
+    }
+    input:not([type="submit"]){
+      border:1px solid red;
+    }
+</style>
+
+<p><body><br>    <form action="#"><br>      <div><br>        <label for="name">Text Input:</label><br>        <input type="text" name="name" id="name" placeholder="John Smith"><br>      </div><br>      <div><br>        <label for="name">Password Input:</label><br>        <input type="text" name="name" id="name" placeholder="John Smith"><br>      </div><br>      <div><br>        <input type="submit" value="Submit"><br>      </div><br>    </form><br></body><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">演示结果：</div><div class="line"></div><div class="line">![image](http://img.imooc.com/531eb2ca00014b5002370177.jpg)</div><div class="line"></div><div class="line">**4.empty 选择空的元素**</div><div class="line"></div><div class="line">```:empty``` 选择器表示的就是空。用来选择没有任何内容的元素，这里没有内容指的是一点内容都没有，**哪怕是一个空格**。</div><div class="line"></div><div class="line">示例：</div></pre></td></tr></table></figure></p>
+<p>// css<br>p{<br> background: orange;<br> min-height: 30px;<br>}<br>p:empty {<br>  display: none;<br>}</p>
+<p>// html</p>
+<p></p><p>我是一个段落</p><p></p>
+<p></p><p> </p>  &lt;– 空格也算内容 –&gt;<p></p>
+<p></p><p></p><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">演示效果：</div><div class="line"></div><div class="line">![image](http://img.imooc.com/531eb55b0001d7d401580126.jpg)</div><div class="line"></div><div class="line"></div><div class="line">**5.target  目标选择器**</div><div class="line"></div><div class="line">```:target``` 选择器称为目标选择器，用来匹配文档(页面)的url的某个标志符的目标元素。</div><div class="line"></div><div class="line">示例1：</div></pre></td></tr></table></figure><p></p>
+<p>.menuSection{<br>  display: none;<br>}<br>:target{/<em>这里的:target就是指id=”brand”的div对象</em>/<br>  display:block;<br>}</p>
+<p></p><h2><a href="#brand">Brand</a></h2><p></p>
+<div class="menuSection" id="brand"><br>    content for Brand<br></div>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">演示结果：</div><div class="line"></div><div class="line">![image](http://img.imooc.com/53217ea30001103002230101.jpg)</div><div class="line"></div><div class="line">示例二：</div></pre></td></tr></table></figure>
+<pre><code>// CSS
+#brand1:target p {
+  background: orange;
+  color: #fff; 
+}
+#brand2:target {
+  background: orange;
+  color: #fff;
+}
+#jake:target {
+  background: blue;
+  color: #fff;
+}
+#aron:target {
+  background: red;
+  color: #fff;
+}
+
+// html
+&lt;h2&gt;&lt;a href=&quot;#brand1&quot;&gt;Brand&lt;/a&gt;&lt;/h2&gt;
+&lt;div class=&quot;menuSection&quot; id=&quot;brand1&quot;&gt;
+    &lt;p&gt;content for Brand1&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;h2&gt;&lt;a href=&quot;#brand2&quot;&gt;Brand&lt;/a&gt;&lt;/h2&gt;
+&lt;div class=&quot;menuSection&quot; id=&quot;brand2&quot;&gt;
+  content for Brand2
+&lt;/div&gt;
+
+&lt;h2&gt;&lt;a href=&quot;#jake&quot;&gt;Brand&lt;/a&gt;&lt;/h2&gt;
+&lt;div class=&quot;menuSection&quot; id=&quot;jake&quot;&gt;
+ content for jake
+&lt;/div&gt;
+
+&lt;h2&gt;&lt;a href=&quot;#aron&quot;&gt;Brand&lt;/a&gt;&lt;/h2&gt;
+&lt;div class=&quot;menuSection&quot; id=&quot;aron&quot;&gt;
+    content for aron
+&lt;/div&gt;
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">演示结果：</div><div class="line"></div><div class="line">![image](http://img1.ph.126.net/b75FeZ8dPeCkMLNBv_SDxQ==/6631807737028077409.png)</div><div class="line"></div><div class="line"></div><div class="line">**6.nth-child(n) 选择器**</div><div class="line"></div><div class="line">“:nth-child(n)”选择器用来定位某个父元素的一个或多个特定的子元素。其中“n”是其参数，而且可以是整数值(1,2,3,4)，也可以是表达式(2n+1、-n+5)和关键词(odd、even)，但参数n的起始值始终是1，而不是0。也就是说，参数n的值为0时，选择器将选择不到任何匹配的元素。</div><div class="line"></div><div class="line">**经验与技巧**:当“:nth-child(n)”选择器中的n为一个表达式时，其中n是从0开始计算，当表达式的值为0或小于0的时候，不选择任何匹配的元素。如下表所示：</div><div class="line"></div><div class="line">![image](http://img.mukewang.com/531eba56000138aa05870197.jpg)</div><div class="line"></div><div class="line">例如：</div></pre></td></tr></table></figure>
+<p>ol &gt; li:nth-child(2n){<br>  background: orange;<br>}</p>
+<p><ol><br>  <li>item1</li><br>  <li>item2</li><br>  <li>item3</li><br>  <li>item4</li><br>  <li>item5</li><br>  <li>item6</li><br>  <li>item7</li><br>  <li>item8</li><br>  <li>item9</li><br>  <li>item10</li><br></ol><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">演示结果：</div><div class="line"></div><div class="line">![image](http://img.mukewang.com/531ebac90001750902580228.jpg)</div><div class="line"></div><div class="line">**7.nth-last-child(n) 从父元素的最后一个开始计算**</div><div class="line"></div><div class="line">“:nth-last-child(n)”选择器和前面的“:nth-child(n)”选择器非常的相似，只是这里多了一个“last”，所起的作用和“:nth-child(n)”选择器有所区别，从某父元素的最后一个子元素开始计算，来选择特定的元素。</div><div class="line"></div><div class="line">例如：选择列表中倒数第五个列表项，将其背景设置成橙色</div></pre></td></tr></table></figure></p>
+<p>ol &gt; li:nth-last-child(5){<br>  background: orange;<br>}</p>
+<p><ol><br>  <li>item1</li><br>  <li>item2</li><br>  <li>item3</li><br>  <li>item4</li><br>  <li>item5</li><br>  <li>item6</li><br>  <li>item7</li><br>  <li>item8</li><br>  <li>item9</li><br>  <li>item10</li><br>  <li>item11</li><br>  <li>item12</li><br>  <li>item13</li><br>  <li>item14</li><br>  <li>item15</li><br></ol><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">演示结果：</div><div class="line"></div><div class="line">![image](http://img.mukewang.com/531ebb7a0001d20b01530286.jpg)</div><div class="line"></div><div class="line"></div><div class="line">**8.:checked 选择器**</div><div class="line"></div><div class="line">在表单元素中，单选按钮和复选按钮都具有选中和未选中状态。（大家都知道，要覆写这两个按钮默认样式比较困难）。在CSS3中，我们可以通过状态选择器“:checked”配合其他标签实现自定义样式。而“:checked”表示的是选中状态。</div><div class="line"></div><div class="line">示例：</div></pre></td></tr></table></figure></p>
+<p>/<em> CSS </em>/<br>form {<br>  border: 1px solid #ccc;<br>  padding: 20px;<br>  width: 300px;<br>  margin: 30px auto;<br>}</p>
+<p>.wrapper {<br>  margin-bottom: 10px;<br>}</p>
+<p>.box {<br>  display: inline-block;<br>  width: 20px;<br>  height: 20px;<br>  margin-right: 10px;<br>  position: relative;<br>  border: 2px solid orange;<br>  vertical-align: middle;<br>}</p>
+<p>.box input {<br>  opacity: 0;<br>  position: absolute;<br>  top:0;<br>  left:0;<br>}</p>
+<p>.box span {<br>  position: absolute;<br>  top: -10px;<br>  right: 3px;<br>  font-size: 30px;<br>  font-weight: bold;<br>  font-family: Arial;<br>  -webkit-transform: rotate(30deg);<br>  transform: rotate(30deg);<br>  color: orange;<br>}</p>
+<p>input[type=”checkbox”] + span {<br>  opacity: 0;<br>}</p>
+<p>input[type=”checkbox”]:checked + span {<br>  opacity: 1;<br>}</p>
+<!-- html -->
+<p><form action="#"><br>  <div class="wrapper"><br>    <div class="box"><br>      <input type="checkbox" checked="checked" id="usename"><span>√</span><br>    </div><br>    <lable for="usename">我是选中状态</lable><br>  </div></form></p>
+<p>  <div class="wrapper"><br>    <div class="box"><br>      <input type="checkbox" id="usepwd"><span>√</span><br>    </div><br>    <label for="usepwd">我是未选中状态</label><br>  </div><br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">结果演示：</div><div class="line"></div><div class="line">![image](http://img.mukewang.com/53326d1f0001b8a703280126.jpg)</div><div class="line"></div><div class="line"></div><div class="line">**9. ::selection 选择器**</div><div class="line"></div><div class="line">“::selection”伪元素是用来匹配突出显示的文本(用鼠标选择文本时的文本)。浏览器默认情况下，用鼠标选择网页文本是以“深蓝的背景，白色的字体”显示的，效果如下图所示：</div><div class="line"></div><div class="line">示例代码：</div></pre></td></tr></table></figure></p>
+<p>```</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/10/CSS3背景-background-size/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="骑驴看代码">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="薛泽超">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/10/CSS3背景-background-size/" itemprop="url">CSS3背景 background-size</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-10T00:22:27+08:00">
+                2017-10-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSS3/" itemprop="url" rel="index">
+                    <span itemprop="name">CSS3</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>设置背景图片的大小，以长度值或百分比显示，还可以通过cover和contain来对图片进行伸缩。</p>
+<p>语法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">background-size: auto | &lt;长度值&gt; | &lt;百分比&gt; | cover | contain</div></pre></td></tr></table></figure></p>
+<p>取值说明：</p>
+<ol>
+<li><p>auto：默认值，不改变背景图片的原始高度和宽度；</p>
+</li>
+<li><p>&lt;长度值&gt;：成对出现如200px 50px，将背景图片宽高依次设置为前面两个值，当设置一个值时，将其作为图片<strong>宽度值来等比缩放</strong>；</p>
+</li>
+<li><p>&lt;百分比&gt;：0％~100％之间的任何值，<strong>将背景图片宽高依次设置为所在元素宽高乘以前面百分比得出的数值</strong>，当设置一个值时同上；</p>
+</li>
+<li><p>cover：顾名思义为覆盖，即将背景图片等比缩放以<strong>填满整个容器</strong>；</p>
+</li>
+<li><p>contain：容纳，即将背景图片<strong>等比缩放至某一边紧贴容器边缘</strong>为止。</p>
+</li>
+</ol>
+<p>代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html&gt;</div><div class="line">&lt;head&gt; </div><div class="line">&lt;meta charset=&quot;utf-8&quot;&gt;</div><div class="line">&lt;title&gt;背景图片大小&lt;/title&gt;</div><div class="line">&lt;style type=&quot;text/css&quot;&gt;</div><div class="line">.demo &#123;</div><div class="line">    background: url(http://static.mukewang.com/static/img/logo_index.png) no-repeat;</div><div class="line">    width: 300px;</div><div class="line">    height: 140px;</div><div class="line">    border: 1px solid #999;</div><div class="line">    background-size: 300px 140px;</div><div class="line">    background-size: cover;</div><div class="line">    background-size: contain;</div><div class="line">    background-size: 100% 100%;</div><div class="line">&#125; </div><div class="line">&lt;/style&gt;    </div><div class="line">&lt;/head&gt;   </div><div class="line">&lt;body&gt;</div><div class="line">&lt;div class=&quot;demo&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<ul>
+<li>auto 默认样式：</li>
+</ul>
+<p><img src="http://img2.ph.126.net/BXyXv1heZyVLMSHfZylPCA==/6631792343865292724.png" alt="image"></p>
+<ul>
+<li>px （300px） 或 百分比 （100%）  只设置一个的情况下：</li>
+</ul>
+<p><img src="http://img1.ph.126.net/NMftgkmMh07-gBcvozmZpw==/6631898996490074668.png" alt="image"></p>
+<ul>
+<li>px 或百分比 全都设置的情况下：</li>
+</ul>
+<p><img src="http://img1.ph.126.net/DupZ1FQJTaT9STA_CRrHpw==/6631918787699379391.png" alt="image"></p>
+<ul>
+<li>cover 情况下：</li>
+</ul>
+<p><img src="http://img2.ph.126.net/snqPL_tEJXAU8j7SilIksQ==/6632181570978413006.png" alt="image"></p>
+<ul>
+<li>contain 情况下：</li>
+</ul>
+<p><img src="http://img0.ph.126.net/nE7pGHG2Ip3Tr-rD6-NRAA==/6631935280373787144.png" alt="image"></p>
+<p><strong>CSS3 多背景写法：</strong></p>
+<p>语法缩写如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">background ： [background-color] | [background-image] | [background-position][/background-size] | [background-repeat] | [background-attachment] | [background-clip] | [background-origin],...</div></pre></td></tr></table></figure>
+<p>代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html&gt;</div><div class="line">&lt;head&gt; </div><div class="line">&lt;meta charset=&quot;utf-8&quot;&gt;</div><div class="line">&lt;title&gt;多重背景&lt;/title&gt;</div><div class="line">&lt;style type=&quot;text/css&quot;&gt;</div><div class="line">.demo&#123;</div><div class="line">    width: 300px; </div><div class="line">    height: 140px;</div><div class="line">    border: 1px solid #999;</div><div class="line">    </div><div class="line">    background-image: url(http://img.mukewang.com/54cf2365000140e600740095.jpg),</div><div class="line">                      url(http://img.mukewang.com/54cf238a0001728d00740095.jpg),</div><div class="line">                      url(http://img.mukewang.com/54cf23b60001fd9700740096.jpg);</div><div class="line">    background-position: left top, 100px 0, 200px 0;</div><div class="line">    background-repeat: no-repeat, no-repeat, no-repeat;</div><div class="line">    </div><div class="line">    margin:0 0 20px 0;</div><div class="line">&#125;</div><div class="line">.task &#123;</div><div class="line">    width: 300px;</div><div class="line">    height: 140px;</div><div class="line">    border: 1px solid #999;</div><div class="line">    </div><div class="line">    background:url(http://static.mukewang.com/static/img/logo_index.png) no-repeat, </div><div class="line">               url(http://static.mukewang.com/static/img/logo_index.png) no-repeat;</div><div class="line">               </div><div class="line">    background-position:left top,50% 70px;</div><div class="line">&#125;</div><div class="line"> </div><div class="line"></div><div class="line">&lt;/style&gt;  </div><div class="line">&lt;/head&gt; </div><div class="line">&lt;body&gt;</div><div class="line">&lt;div class=&quot;demo&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;div class=&quot;task&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure></p>
+<p>输出：</p>
+<p><img src="http://img1.ph.126.net/Urk5bna8SFUKE4WyGdt_yQ==/6631990255955177983.png" alt="image"></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/10/CSS3 渐变颜色/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="骑驴看代码">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="薛泽超">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/10/CSS3 渐变颜色/" itemprop="url">CSS3 渐变颜色</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-10T00:22:27+08:00">
+                2017-10-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSS3/" itemprop="url" rel="index">
+                    <span itemprop="name">CSS3</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>线性渐变：</strong></p>
+<p><img src="http://img.mukewang.com/54b72b2e0001500103790158.jpg" alt="image"></p>
+<p>第一个参数:指定渐变方向，可以用“角度”的关键词或“英文”来表示：</p>
+<p><img src="http://img.mukewang.com/542a25da00017e9406980223.jpg" alt="image"></p>
+<ul>
+<li><p>第一个参数省略时，默认为“180deg”，等同于“to bottom”。</p>
+</li>
+<li><p>第二个和第三个参数，表示颜色的起始点和结束点，可以有多个颜色值。</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">background-image:linear-gradient(to left, red, orange,yellow,green,blue,indigo,violet);</div></pre></td></tr></table></figure>
+<p>效果图：</p>
+<p><img src="http://img.mukewang.com/54b72c080001611c04230192.jpg" alt="image"></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/10/APICould应用的关键信息/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="骑驴看代码">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="薛泽超">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/10/APICould应用的关键信息/" itemprop="url">APICould应用的关键信息</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-10T00:22:27+08:00">
+                2017-10-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/APICould/" itemprop="url" rel="index">
+                    <span itemprop="name">APICould</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>重要</strong></p>
+<ul>
+<li>应用ID </li>
+<li>应用Key     <em>云操作都需要用到</em></li>
+<li>应用包名</li>
+<li>应用名称    关系到app安装后显示的名称；</li>
+<li>feature文件夹   —-里面存放的是模块相关信息的；</li>
+<li>wgt文件夹，   存放一组独立的应用来使用；</li>
+<li></li>
+</ul>
+<p><strong>$api:</strong></p>
+<p><strong>前端框架中定义的对象，引入api.js就可以使用，无需等待apiready事件；</strong></p>
+<p><strong>api：</strong></p>
+<p><strong>引擎扩展的对象，apiready事件之后使用，封装了平台的最基础的功能；</strong></p>
+<p><strong>界面布局相关API</strong></p>
+<p><strong>9.1 Widget相关API</strong></p>
+<ul>
+<li><p>api.openWidget()</p>
+</li>
+<li><p>api.closeWidget()</p>
+</li>
+</ul>
+<p><strong>9.2 Window相关API</strong></p>
+<ul>
+<li><p>api.openWin</p>
+</li>
+<li><p>api.closeWin</p>
+</li>
+<li><p>api.closeToWin()</p>
+</li>
+<li><p>api.setWinAttr()</p>
+</li>
+<li><p>api.winName</p>
+</li>
+<li><p>api.winWidth</p>
+</li>
+<li><p>api.winHeight</p>
+</li>
+</ul>
+<p><strong>9.3 Layout相关API</strong></p>
+<p><strong>FrameGroup</strong></p>
+<ul>
+<li><p>api.openFrameGroup()</p>
+</li>
+<li><p>api.closeFrameGroup()</p>
+</li>
+<li><p>api.setFrameGroupIndex()</p>
+</li>
+<li><p>api.setFrameGroupAttr()</p>
+</li>
+</ul>
+<p><strong>SlidLayout</strong></p>
+<ul>
+<li><p>api.openSlidLayout()</p>
+</li>
+<li><p>api.openSlidPane()</p>
+</li>
+<li><p>api.closeSlidPane()</p>
+</li>
+</ul>
+<p><strong>DrawerLayout</strong></p>
+<ul>
+<li><p>api.openDrawerLayout()</p>
+</li>
+<li><p>api.openDrawerPane()</p>
+</li>
+<li><p>api.closeDrawerPane()</p>
+</li>
+</ul>
+<p><strong>9.4 Frame相关API</strong></p>
+<ul>
+<li><p>api.openFrame()</p>
+</li>
+<li><p>api.closeFrame()</p>
+</li>
+<li><p>api.setFrameAttr()</p>
+</li>
+<li><p>api.bringFrameToFront()</p>
+</li>
+<li><p>api.sendFrameToBack()</p>
+</li>
+<li><p>api.frameName</p>
+</li>
+<li><p>api.frameWidth</p>
+</li>
+<li><p>api.frameHeight</p>
+</li>
+</ul>
+<p><strong>10.5 优化点击交互响应</strong></p>
+<blockquote>
+<p>消除webkit内核默认的onclick事件的300ms响应延迟</p>
+</blockquote>
+<p>tapmode属性</p>
+<p>api.parseTapmode方法</p>
+<p><strong>10.6 实现界面之间跳转</strong></p>
+<p>按照产品原型实现各UI界面之前的切换</p>
+<p><strong>10.7 实现页面之间的参数传递</strong></p>
+<p>参数pageParam</p>
+<p>api.pageParam</p>
+<p><strong>10.8 监听Android返回键，实现退出APP</strong></p>
+<p>监听keyback事件</p>
+<p><strong>10.9 阻止iOS滑动返回</strong></p>
+<p>设置slidBackEnabled参数</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/10/APICould应用导航栏遮挡问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="骑驴看代码">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="薛泽超">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/10/APICould应用导航栏遮挡问题/" itemprop="url">APICould应用导航栏遮挡问题</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-10T00:22:27+08:00">
+                2017-10-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/APICould/" itemprop="url" rel="index">
+                    <span itemprop="name">APICould</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>如题：</p>
+<blockquote>
+<p>在apiCould里面使用第三方的UI框架，碰到导航栏被遮住一部分的问题，</p>
+</blockquote>
+<p>如下图所示：</p>
+<p><img src="http://community.apicloud.com/bbs/data/attachment/forum/201609/03/122836xmkmh8i80f0zdd4i.png" alt="image"></p>
+<p>后来在论坛上搜到类似的问题答案</p>
+<p>解决办法：（关闭系统的“沉浸式效果”）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&lt;preference name=&quot;iOS7StatusBarAppearance&quot; value=&quot;false&quot; /&gt;</div><div class="line"></div><div class="line"></div><div class="line">&lt;preference name=&quot;statusBarAppearance&quot; value=&quot;false&quot; /&gt;</div></pre></td></tr></table></figure>
+<p>问题论坛地址：<a href="http://community.apicloud.com/bbs/forum.php?mod=viewthread&amp;tid=41129" target="_blank" rel="external">http://community.apicloud.com/bbs/forum.php?mod=viewthread&amp;tid=41129</a></p>
+<p>还有另一个相关地址： <a href="http://community.apicloud.com/bbs/forum.php?mod=viewthread&amp;tid=23016" target="_blank" rel="external">http://community.apicloud.com/bbs/forum.php?mod=viewthread&amp;tid=23016</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/10/APICould填坑合集/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -426,1391 +1934,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/10/移动端下隐藏系统键盘的方法/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="骑驴看代码">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="薛泽超">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/10/移动端下隐藏系统键盘的方法/" itemprop="url">移动端下，隐藏系统键盘的方法</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-10T00:22:27+08:00">
-                2017-10-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/APICould/" itemprop="url" rel="index">
-                    <span itemprop="name">APICould</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var hideKeyboard = function() &#123;</div><div class="line">    document.activeElement.blur();</div><div class="line">    $(&quot;input&quot;).blur();</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">document.addEventListener(&apos;touchend&apos;, function()&#123;</div><div class="line">	$(&apos;textarea&apos;).blur();</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<p>在<code>document</code>上监听触摸事件，然后让<code>textarea</code>失去焦点即可！</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/10/移动端1PX边框解决方案/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="骑驴看代码">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="薛泽超">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/10/移动端1PX边框解决方案/" itemprop="url">移动端一像素边框解决办法之一</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-10T00:22:27+08:00">
-                2017-10-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/APICould/" itemprop="url" rel="index">
-                    <span itemprop="name">APICould</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">#item1mobile .mui-input-group:after &#123;</div><div class="line">	content: &quot; &quot;;</div><div class="line">  display: block;</div><div class="line">  width: 100%;</div><div class="line">  height: 100%;</div><div class="line">  position: absolute;</div><div class="line">  left: 0;</div><div class="line">  top: 0;</div><div class="line">  border: 1px solid #c8c7cc;</div><div class="line">	border-bottom: none;</div><div class="line">	border-radius: 4px;</div><div class="line">	background-color: transparent;</div><div class="line">&#125;</div><div class="line">@media screen and (-webkit-min-device-pixel-ratio : 2) &#123;</div><div class="line">	#item1mobile .mui-input-group:after &#123;</div><div class="line">		width: 200%;</div><div class="line">    height: 200%;</div><div class="line">    -webkit-transform-origin: 0 0;</div><div class="line">    transform-origin: 0 0;</div><div class="line">    -webkit-transform: scale(0.5);</div><div class="line">    transform: scale(0.5);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">@media screen and (-webkit-min-device-pixel-ratio : 3) &#123;</div><div class="line">	#item1mobile .mui-input-group:after &#123;</div><div class="line">		width: 200%;</div><div class="line">    height: 200%;</div><div class="line">    -webkit-transform-origin: 0 0;</div><div class="line">    transform-origin: 0 0;</div><div class="line">    -webkit-transform: scale(0.5);</div><div class="line">    transform: scale(0.5);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/10/让浮动元素的父元素拥有高度/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="骑驴看代码">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="薛泽超">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/10/让浮动元素的父元素拥有高度/" itemprop="url">让浮动元素的父元素拥有高度</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-10T00:22:27+08:00">
-                2017-10-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CSS知识/" itemprop="url" rel="index">
-                    <span itemprop="name">CSS知识</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>在浮动元素后加个div设置：clear：both;height:0; overflow:hidden;</li>
-<li><p>使用clearfix;</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">.clearfix::after &#123;</div><div class="line">    content:&quot;&quot;;</div><div class="line">    display:block;</div><div class="line">    height:0;</div><div class="line">    clear:both;</div><div class="line">&#125;</div><div class="line">.clearfix &#123;</div><div class="line">    zoom:1;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>设置父元素浮动；</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/10/清除inline-block元素间距的方法/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="骑驴看代码">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="薛泽超">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/10/清除inline-block元素间距的方法/" itemprop="url">清除inline-block元素间距的方法</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-10T00:22:27+08:00">
-                2017-10-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CSS知识/" itemprop="url" rel="index">
-                    <span itemprop="name">CSS知识</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>移除空格</li>
-<li>使用margin负值</li>
-<li>让闭合标签吃胶囊</li>
-<li>父元素使用font-size:0</li>
-<li>使用letter-spacing</li>
-<li>使用word-spacing</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/10/关于定时器的this指向问题/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="骑驴看代码">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="薛泽超">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/10/关于定时器的this指向问题/" itemprop="url">关于定时器的this指向问题</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-10T00:22:27+08:00">
-                2017-10-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaScript知识/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaScript知识</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>使用js中的定时器（setInterval，setTimeout），很容易会遇到this指向的问题。</p>
-<p>直接上例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"> 1 var name = &apos;my name is window&apos;;</div><div class="line"> 2 var obj = &#123;</div><div class="line"> 3     name: &apos;my name is obj&apos;,</div><div class="line"> 4     fn: function () &#123;</div><div class="line"> 5         var timer = null;</div><div class="line"> 6         clearInterval(timer);</div><div class="line"> 7         timer = setInterval(function () &#123;</div><div class="line"> 8             console.log(this.name);  //my name is window</div><div class="line"> 9         &#125;, 1000)</div><div class="line">10     &#125;</div><div class="line">11 &#125;</div></pre></td></tr></table></figure>
-<p>在这里，从this.name可以看出this的指向是window。</p>
-<p>如果没有特殊指向，setInterval和setTimeout的回调函数中this的指向都是window。这是因为JS的定时器方法是定义在window下的。但是平时很多场景下，都需要修改this的指向。这里总结了几种：</p>
-<p>1、最常用的方法：在外部函数中将this存为一个变量，回调函数中使用该变量，而不是直接使用this。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"> 1 var name = &apos;my name is window&apos;;</div><div class="line"> 2 var obj = &#123;</div><div class="line"> 3     name: &apos;my name is obj&apos;,</div><div class="line"> 4     fn: function () &#123;</div><div class="line"> 5         var that = this;</div><div class="line"> 6         var timer = null;</div><div class="line"> 7         clearInterval(timer);</div><div class="line"> 8         timer = setInterval(function () &#123;</div><div class="line"> 9             console.log(that.name);   //my name is obj</div><div class="line">10         &#125;, 1000)</div><div class="line">11     &#125;</div><div class="line">12 &#125;</div></pre></td></tr></table></figure>
-<p>在fn中加了var that = this; 回调函数中使用that代替this即可。这种方法最常见，使用也最广泛。</p>
-<p>2、使用bind()方法（bind()为ES5的标准，低版本IE下有兼容问题，可以引入es5-shim.js解决）</p>
-<p>bind()的作用类似call和apply，都是修改this指向。但是call和apply是修改this指向后函数会立即执行，而bind则是返回一个新的函数，它会创建一个与原来函数主体相同的新函数，新函数中的this指向传入的对象。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"> 1 var name = &apos;my name is window&apos;;</div><div class="line"> 2 var obj = &#123;</div><div class="line"> 3     name: &apos;my name is obj&apos;,</div><div class="line"> 4     fn: function () &#123;</div><div class="line"> 5         var timer = null;</div><div class="line"> 6         clearInterval(timer);</div><div class="line"> 7         timer = setInterval(function () &#123;</div><div class="line"> 8             console.log(this.name);   //my name is obj</div><div class="line"> 9         &#125;.bind(this), 1000)</div><div class="line">10     &#125;</div><div class="line">11 &#125;</div></pre></td></tr></table></figure>
-<p>在这里为什么不能用call和apply，是因为call和apply不是返回函数，而是立即执行函数，那么，就失去了定时器的作用。</p>
-<p>3、使用es6的箭头函数：箭头函数的最大作用就是this指向。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"> 1 var name = &apos;my name is window&apos;;</div><div class="line"> 2 var obj = &#123;</div><div class="line"> 3     name: &apos;my name is obj&apos;,</div><div class="line"> 4     fn: function () &#123;</div><div class="line"> 5         var timer = null;</div><div class="line"> 6         clearInterval(timer);</div><div class="line"> 7         timer = setInterval(() =&gt; &#123;</div><div class="line"> 8             console.log(this.name);  //my name is obj</div><div class="line"> 9         &#125;, 1000)</div><div class="line">10     &#125;</div><div class="line">11 &#125;</div></pre></td></tr></table></figure>
-<p>箭头函数没有自己的this，它的this继承自外部函数的作用域。所以，在该例中，定时器回调函数中的this，是继承了fn的this。当然箭头函数也有兼容问题，要是兼容低版本ie，需要使用babel编译，并且引入es5-shim.js才可以。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/10/绑定事件的问题/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="骑驴看代码">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="薛泽超">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/10/绑定事件的问题/" itemprop="url">绑定事件的问题</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-10T00:22:27+08:00">
-                2017-10-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaScript知识/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaScript知识</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>今天项目中遇到动态生成元素，并且给元素添加点击事件的情况；</p>
-<p>我想都没想就直接在动态生成的标签上直接加 onclick 属性，没想到点击确没有用；</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html lang=&quot;en&quot;&gt;</div><div class="line">&lt;head&gt;</div><div class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</div><div class="line">    &lt;title&gt;demo&lt;/title&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">&lt;div id=&quot;demo&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;script&gt;</div><div class="line">    window.onload = function () &#123;</div><div class="line">        var html = &apos;&lt;button onclick=&quot;click();&quot;&gt;点击&lt;/button&gt;&apos;;</div><div class="line">        document.getElementById(&quot;demo&quot;).innerHTML = html;</div><div class="line">        document.getElementsByTagName(&apos;button&apos;)[0].onclick = function () &#123;</div><div class="line">            alert(&quot;我是后绑定的。&quot;);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    function click() &#123;</div><div class="line">        alert(&apos;点击&apos;);</div><div class="line">    &#125;</div><div class="line">&lt;/script&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
-<p>后来查证，需要添加之后再获取元素然后给他添加事件才能生效；</p>
-<p>这个使用jQuery的 on 绑定事件也能解决，动态添加的标签元素会自动绑定事件。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/09/Vue中key使用的一个小场景/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="骑驴看代码">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="薛泽超">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/09/Vue中key使用的一个小场景/" itemprop="url">Vue中key使用场景</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-09T23:14:23+08:00">
-                2017-10-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Vue-js/" itemprop="url" rel="index">
-                    <span itemprop="name">Vue.js</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="今天写项目的时候发现的一个问题，在写路由的时候用v-for来渲染。"><a href="#今天写项目的时候发现的一个问题，在写路由的时候用v-for来渲染。" class="headerlink" title="今天写项目的时候发现的一个问题，在写路由的时候用v-for来渲染。"></a>今天写项目的时候发现的一个问题，在写路由的时候用<code>v-for</code>来渲染。</h4><p><img src="http://upload-images.jianshu.io/upload_images/3152923-7a65f3d9dd273fd9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="代码片段"></p>
-<p>突然出现红色的波浪线，然后我忽视它，直接<code>npm run dev</code> ，一顿操作之后，终端爆出一个警告：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">(Emitted value instead of an instance of Error) &lt;router-link v-for=&quot;item in products&quot;&gt;: component lists rendered with v-for should have explicit keys. See https://vuejs.org/guide/l</div><div class="line">ist.html#key for more info.</div></pre></td></tr></table></figure>
-<p>网上各种搜索之后，发现问题的原因：</p>
-<blockquote>
-<p>为了给 Vue 一个提示，以便它能跟踪每个节点的身份，从而重用和重新排序现有元素，你需要为每项提供一个唯一 key 属性。理想的 key 值是每项都有唯一 id。这个特殊的属性相当于 Vue 1.x 的 track-by ，但它的工作方式类似于一个属性，所以你需要用 v-bind 来绑定动态值.建议尽可能使用 v-for 来提供 key ，除非迭代 DOM 内容足够简单，或者你是故意要依赖于默认行为来获得性能提升。因为它是 Vue 识别节点的一个通用机制， key 并不特别与 v-for 关联，key 还具有其他用途，我们将在后面的指南中看到其他用途。</p>
-</blockquote>
-<p><strong>这是因为我们用v-for的时候   在vue组件上面使用的   这个时候  我们需要给它加上 :key=“xxx” </strong></p>
-<p>一个独一无二的表示来表示它的唯一性</p>
-<p><code>&lt;router-link v-for=&quot;n in 100&quot; :key=&quot;n&quot;&gt;&lt;/router-link&gt;</code></p>
-<p>这样子就不会报警告了。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/09/Sass学习查缺补漏/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="骑驴看代码">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="薛泽超">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/09/Sass学习查缺补漏/" itemprop="url">Sass学习2</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-09T23:13:03+08:00">
-                2017-10-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CSS预编译器/" itemprop="url" rel="index">
-                    <span itemprop="name">CSS预编译器</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="混合宏–多参数-单参数类似，还可以给参数指定默认值，当不传参数的时候会调用默认值。"><a href="#混合宏–多参数-单参数类似，还可以给参数指定默认值，当不传参数的时候会调用默认值。" class="headerlink" title="混合宏–多参数(单参数类似，还可以给参数指定默认值，当不传参数的时候会调用默认值。)"></a>混合宏–多参数(单参数类似，还可以给参数指定默认值，当不传参数的时候会调用默认值。)</h2><p>Sass混合宏传多个参数的使用方法，例如：一个垂直居中的例子</p>
-<ul>
-<li>HTML 代码</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div class=&quot;box&quot;&gt;</div><div class="line">	&lt;div class=&quot;center&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
-<ul>
-<li>Scss 代码</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">@mixin box-wrapper($width,$height) &#123;</div><div class="line">	width: $width;</div><div class="line">	height: $height;</div><div class="line">	background: gray;</div><div class="line">	margin: 50px auto;</div><div class="line">	position: relative;</div><div class="line">&#125;</div><div class="line">.box &#123;</div><div class="line">	@include box-wrapper(500px,500px);</div><div class="line">&#125;</div><div class="line">@mixin center($width,$height) &#123;</div><div class="line">	width: $width;</div><div class="line">	height: $height;</div><div class="line">	position: absolute;</div><div class="line">	top: 50%;</div><div class="line">	left: 50%;</div><div class="line">	background: red;</div><div class="line">	margin: &#123;</div><div class="line">		top: -($height) / 2;</div><div class="line">		left: -($width) / 2;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">.center &#123;</div><div class="line">	@include center(200px,200px);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>上面的Scss代码中，我创建了一个<code>box-wrapper</code> ，还有一个<code>center</code>的混合宏，并传递了宽高两个参数。</p>
-<ul>
-<li>编译后的CSS</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">.box &#123;</div><div class="line">  width: 500px;</div><div class="line">  height: 500px;</div><div class="line">  background: gray;</div><div class="line">  margin: 50px auto;</div><div class="line">  position: relative; &#125;</div><div class="line"></div><div class="line">.center &#123;</div><div class="line">  width: 200px;</div><div class="line">  height: 200px;</div><div class="line">  position: absolute;</div><div class="line">  top: 50%;</div><div class="line">  left: 50%;</div><div class="line">  background: red;</div><div class="line">  margin-top: -100px;</div><div class="line">  margin-left: -100px; &#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>浏览器运行结果</li>
-</ul>
-<p><img src="http://upload-images.jianshu.io/upload_images/3152923-69f845b550393181.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="垂直居中"></p>
-<p>从这个例子可以看出Sass代码的优势，当后面的页面中还需要垂直居中的样式，就可以直接给<strong>父元素盒子</strong>添加<code>@include box-wrapper(width,height);</code>,要<strong>垂直居中的盒子</strong>添加<code>@include center(width,height);</code>。这就好比写一个模板，等到需要使用的时候把模板套上去就好了，效率很高。</p>
-<h2 id="Sass继承-扩展"><a href="#Sass继承-扩展" class="headerlink" title="Sass继承/扩展"></a>Sass继承/扩展</h2><p>在Sass中的继承是通过<code>@extend</code>关键字来做到的；<br>例如： </p>
-<ul>
-<li>Scss</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">.btn &#123;</div><div class="line">	border: 1px solid #ccc;</div><div class="line">	padding: 6px 10px;</div><div class="line">	font-size: 14px;</div><div class="line">&#125;</div><div class="line">button &#123;</div><div class="line">	width: 500px;</div><div class="line">&#125;</div><div class="line">.btn-primary &#123;</div><div class="line">	background-color: #f36;</div><div class="line">	color: #fff;</div><div class="line">	@extend .btn;</div><div class="line">	@extend button;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>编译后的CSS</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">/*在 Sass 中的继承，可以继承类样式块中所有样式代码，</div><div class="line">而且编译出来的 CSS 会将选择器合并在一起，形成组合选择器*/</div><div class="line">.btn, .btn-primary &#123;</div><div class="line">  border: 1px solid #ccc;</div><div class="line">  padding: 6px 10px;</div><div class="line">  font-size: 14px; &#125;</div><div class="line"></div><div class="line">button, .btn-primary &#123;</div><div class="line">  width: 500px; &#125;</div><div class="line"></div><div class="line">.btn-primary &#123;</div><div class="line">  background-color: #f36;</div><div class="line">  color: #fff; &#125;</div></pre></td></tr></table></figure>
-<h2 id="占位符-placeholder"><a href="#占位符-placeholder" class="headerlink" title="占位符 %placeholder"></a>占位符 %placeholder</h2><p><code>%placeholder</code>声明的代码，如果不被 <code>@extend</code> 调用的话，不会产生任何代码，<strong>编译出来的代码会将相同的代码合并在一起。</strong>有效的解决代码冗余的问题。</p>
-<p>例如：</p>
-<ul>
-<li>Scss </li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">%mt5 &#123;</div><div class="line">  margin-top: 5px;</div><div class="line">&#125;</div><div class="line">%pt5&#123;</div><div class="line">  padding-top: 5px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.btn &#123;</div><div class="line">  @extend %mt5;</div><div class="line">  @extend %pt5;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.block &#123;</div><div class="line">  @extend %mt5;</div><div class="line"></div><div class="line">  span &#123;</div><div class="line">    @extend %pt5;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>编译后的CSS</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">.btn, .block &#123;</div><div class="line">  margin-top: 5px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.btn, .block span &#123;</div><div class="line">  padding-top: 5px;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="混合宏-VS-继承-VS-占位符"><a href="#混合宏-VS-继承-VS-占位符" class="headerlink" title="混合宏 VS 继承 VS 占位符"></a>混合宏 VS 继承 VS 占位符</h2><p>具体参考<a href="http://www.imooc.com/code/7041" target="_blank" rel="external">慕课网</a></p>
-<p> <img src="http://img.mukewang.com/55263aa30001913307940364.jpg" alt="三种方式选择的对比"></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/09/Sass进阶篇---之一/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="骑驴看代码">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="薛泽超">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/09/Sass进阶篇---之一/" itemprop="url">Sass学习1</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-09T23:13:03+08:00">
-                2017-10-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CSS预编译器/" itemprop="url" rel="index">
-                    <span itemprop="name">CSS预编译器</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="if指令"><a href="#if指令" class="headerlink" title="@if指令"></a>@if指令</h3><p>@if 是一个SassScript，它可以根据条件来处理样式块，如果为true返回一个样式块，反之false返回另外一个样式块。在 Sass 中除了 @if 之，还可以配合 @else if 和 @else 一起使用。<br>例如：控制一个元素显示或隐藏</p>
-<ul>
-<li>Scss</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">@mixin blockOrHidden($boolean: true) &#123;</div><div class="line">  @if $boolean &#123;</div><div class="line">    display: block;</div><div class="line">  &#125;</div><div class="line">  @else &#123;</div><div class="line">    display: none;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">.block &#123;</div><div class="line">  @include blockOrHidden;</div><div class="line">&#125; </div><div class="line">.hidden &#123;</div><div class="line">  @include blockOrHidden(false); </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>用Sass定义一个混合宏，并且默认参数为true，在这个宏里面使用 <code>@if</code>、<code>@else</code>来判断传参的值，来分别设置对应的display值。</p>
-<ul>
-<li>编译后的CSS</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">.block &#123;</div><div class="line">  display: block;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.hidden &#123;</div><div class="line">  display: none;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="for循环"><a href="#for循环" class="headerlink" title="@for循环"></a>@for循环</h3><p>在Sass中的 @for 循环有两种方式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">@for $i from &lt;start&gt; through &lt;end&gt;</div><div class="line">@for $i from &lt;start&gt; to &lt;end&gt;</div></pre></td></tr></table></figure></p>
-<ul>
-<li><code>$i</code> 表示变量</li>
-<li><code>start</code> 表示起始站</li>
-<li><code>end</code> 表示结束值</li>
-</ul>
-<p><strong>这两个的区别是关键字<code>through</code> 表示包括 end 这个数，而<code>to</code>则不包括 end 这个数。</strong><br>举个栗子：</p>
-<ul>
-<li>Scss</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">@for $i from 1 through 3 &#123;  // through 可替换为 to</div><div class="line">  .col-#&#123;$i&#125; &#123;</div><div class="line">    width: 2px * $i; </div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>编译后的CSS</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">.col-1 &#123;</div><div class="line">  width: 2px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.col-2 &#123;</div><div class="line">  width: 4px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.col-3 &#123;</div><div class="line">  width: 6px;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>简直分分钟撸出来一个网格系统有木有，比起一行行写苦逼CSS，简直不要太爽。</p>
-<p>再举个栗子：</p>
-<ul>
-<li>Scss (占位符<code>%name</code> + 插值<code>#{}</code> + <code>@extend</code> + <code>@for</code>)</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">$grid-prefix: span !default;</div><div class="line">$grid-width: 60px !default;</div><div class="line">$grid-gutter: 20px !default;</div><div class="line">%grid &#123;</div><div class="line">  float: left;</div><div class="line">  margin: &#123;</div><div class="line">    left: $grid-gutter / 2;</div><div class="line">    right: $grid-gutter / 2;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">@for $i from 1 through 3 &#123; </div><div class="line">  .#&#123;$grid-prefix&#125;#&#123;$i&#125; &#123; </div><div class="line">    width: $grid-width * $i + $grid-gutter * ($i - 1);  </div><div class="line">    @extend %grid; </div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>编译后的CSS</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">.span1, .span2, .span3 &#123;</div><div class="line">  float: left;</div><div class="line">  margin-left: 10px;</div><div class="line">  margin-right: 10px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.span1 &#123;</div><div class="line">  width: 60px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.span2 &#123;</div><div class="line">  width: 140px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.span3 &#123;</div><div class="line">  width: 220px;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="while"><a href="#while" class="headerlink" title="@while"></a>@while</h3><p>只要 @while 后面的条件为 true 就会执行</p>
-<p>上栗子：</p>
-<ul>
-<li>Scss</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$types: 4;</div><div class="line">$width: 20px;</div><div class="line">@while $types &gt; 0 &#123;</div><div class="line">  .while-#&#123;$types&#125; &#123;</div><div class="line">    width: $width + $types;</div><div class="line">  &#125;</div><div class="line">  $types: $types - 1; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>编译后的CSS</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">.while-4 &#123;</div><div class="line">  width: 24px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.while-3 &#123;</div><div class="line">  width: 23px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.while-2 &#123;</div><div class="line">  width: 22px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.while-1 &#123;</div><div class="line">  width: 21px;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="each"><a href="#each" class="headerlink" title="@each"></a>@each</h3><p><code>@each</code>循环指令的形式：<code>@each $var in &lt;list&gt;</code><br><code>&lt;list&gt;</code>是一个列表，<code>$var</code> 遍历出里面的值。</p>
-<p>上栗子：</p>
-<ul>
-<li>Scss</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$names: john tom leo dave;</div><div class="line">@mixin user-names &#123;</div><div class="line">  @each $name in $names &#123;</div><div class="line">    .user-#&#123;$name&#125;:after &#123;</div><div class="line">      content: $name;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">@include user-names;</div></pre></td></tr></table></figure>
-<ul>
-<li>编译后CSS</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">.user-john:after &#123;</div><div class="line">  content: john;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.user-tom:after &#123;</div><div class="line">  content: tom;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.user-leo:after &#123;</div><div class="line">  content: leo;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.user-dave:after &#123;</div><div class="line">  content: dave;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="Sass函数部分"><a href="#Sass函数部分" class="headerlink" title="Sass函数部分"></a>Sass函数部分</h2><h3 id="1-字符串函数"><a href="#1-字符串函数" class="headerlink" title="1. 字符串函数"></a>1. 字符串函数</h3><ul>
-<li>unquote($string)：删除字符串中的引号；</li>
-<li>quote($string)：给字符串添加引号。<br>上栗子：</li>
-<li>Scss</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">.test1 &#123;</div><div class="line">    content:  unquote(&apos;Hello Sass!&apos;) ;</div><div class="line">&#125;</div><div class="line">.test2 &#123;</div><div class="line">    content: unquote(&quot;&apos;Hello Sass!&quot;);</div><div class="line">&#125;</div><div class="line">.test3 &#123;</div><div class="line">    content: unquote(&quot;I&apos;m Web Designer&quot;);</div><div class="line">&#125;</div><div class="line">.test4 &#123;</div><div class="line">    content: unquote(&quot;&apos;Hello Sass!&apos;&quot;);</div><div class="line">&#125;</div><div class="line">.test5 &#123;</div><div class="line">    content: unquote(&apos;&quot;Hello Sass!&quot;&apos;);</div><div class="line">&#125;</div><div class="line">.test6 &#123;</div><div class="line">    content: unquote(Hello Sass);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>编译后CSS</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">.test1 &#123;</div><div class="line">  content: Hello Sass!; </div><div class="line">&#125;</div><div class="line"></div><div class="line">.test2 &#123;</div><div class="line">  content: &apos;Hello Sass!; </div><div class="line">&#125;</div><div class="line"></div><div class="line">.test3 &#123;</div><div class="line">  content: I&apos;m Web Designer; </div><div class="line">&#125;</div><div class="line"></div><div class="line">.test4 &#123;</div><div class="line">  content: &apos;Hello Sass!&apos;; </div><div class="line">&#125;</div><div class="line"></div><div class="line">.test5 &#123;</div><div class="line">  content: &quot;Hello Sass!&quot;; </div><div class="line">&#125;</div><div class="line"></div><div class="line">.test6 &#123;</div><div class="line">  content: Hello Sass; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>从结果来看：<strong>unquote( ) 函数只能删除字符串最前和最后的引号（双引号或单引号），而无法删除字符串中间的引号。如果字符没有带引号，返回的将是字符串本身。</strong></p>
-<blockquote>
-<p>quote 和它刚好相反，且只能两边增加<em>双引号</em></p>
-</blockquote>
-<h3 id="2-数字函数"><a href="#2-数字函数" class="headerlink" title="2. 数字函数"></a>2. 数字函数</h3><ul>
-<li><code>percentage($value)</code>：将一个不带单位的数转换成百分比值；-</li>
-<li><code>round($value)</code>：将数值四舍五入，转换成一个最接近的整数；</li>
-<li><code>ceil($value)</code>：将大于自己的小数转换成下一位整数；</li>
-<li><code>floor($value)</code>：将一个数去除他的小数部分；</li>
-<li><code>abs($value)</code>：返回一个数的绝对值；</li>
-<li><code>min($numbers…)</code>：找出几个数值之间的最小值；</li>
-<li><code>max($numbers…)</code>：找出几个数值之间的最大值；</li>
-<li><code>random()</code> : 获取随机数<blockquote>
-<p>类似于javascript里面的<strong>Math</strong>对象</p>
-</blockquote>
-</li>
-</ul>
-<h3 id="3-列表函数"><a href="#3-列表函数" class="headerlink" title="3. 列表函数"></a>3. 列表函数</h3><ul>
-<li><code>length($list)</code>：返回一个列表的长度值；</li>
-<li><code>nth($list, $n)</code>：返回一个列表中指定的某个标签值</li>
-<li><code>join($list1, $list2, [$separator])</code>：将两个列给连接在一起，变成一个列表；</li>
-<li><code>append($list1, $val, [$separator])</code>：将某个值放在列表的最后；</li>
-<li><code>zip($lists…)</code>：将几个列表结合成一个多维的列表；</li>
-<li><code>index($list, $value)</code>：返回一个值在列表中的位置值。</li>
-</ul>
-<p>具体如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">// length() 函数中的列表参数之间使用空格隔开，不能使用逗号，否则函数将会出错</div><div class="line">length(5px 88px (border 66px solid) 4em  (border 8em solid))</div><div class="line">// 输出 5</div><div class="line"></div><div class="line">// nth($list,$n) $n必须是大于0的整数</div><div class="line">nth(border-bottom (4px solid blue) black,2)</div><div class="line">// 输出 (4px solid blue)</div><div class="line"></div><div class="line">// 只能讲两个列表合并，超过将报错，第三个参数表示列表的链接方式有“空格”和“逗号”。`comma `和 `space` 两个值，为了统一建议</div><div class="line">join(blue,(red orange),space)</div><div class="line">// blue red orange</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1855,7 +1983,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-count">36</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1866,7 +1994,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1877,7 +2005,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

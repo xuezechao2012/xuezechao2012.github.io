@@ -1,0 +1,888 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="jQuery," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="薛泽超" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="ajax请求
+1234567891011121314151617181920$(function() &amp;#123;	$(&amp;apos;#send&amp;apos;).click(function() &amp;#123;		$.ajax(&amp;#123;			type: &amp;quot;GET&amp;quot;, //GET或POST,			async:true, //默认设置为true，所有请求均为异步请求。			url">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jQuery常用方法（持续更新）">
+<meta property="og:url" content="http://yoursite.com/2017/10/10/jQuery常用方法（持续更新）/index.html">
+<meta property="og:site_name" content="薛泽超">
+<meta property="og:description" content="ajax请求
+1234567891011121314151617181920$(function() &amp;#123;	$(&amp;apos;#send&amp;apos;).click(function() &amp;#123;		$.ajax(&amp;#123;			type: &amp;quot;GET&amp;quot;, //GET或POST,			async:true, //默认设置为true，所有请求均为异步请求。			url">
+<meta property="og:updated_time" content="2017-10-10T09:20:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="jQuery常用方法（持续更新）">
+<meta name="twitter:description" content="ajax请求
+1234567891011121314151617181920$(function() &amp;#123;	$(&amp;apos;#send&amp;apos;).click(function() &amp;#123;		$.ajax(&amp;#123;			type: &amp;quot;GET&amp;quot;, //GET或POST,			async:true, //默认设置为true，所有请求均为异步请求。			url">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/10/10/jQuery常用方法（持续更新）/"/>
+
+
+
+
+
+  <title>jQuery常用方法（持续更新） | 薛泽超</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?602797b063754130d4f083587fce8838";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">薛泽超</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">认真做事，仔细撸码</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/10/jQuery常用方法（持续更新）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="骑驴看代码">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="薛泽超">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">jQuery常用方法（持续更新）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-10T20:41:24+08:00">
+                2017-10-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/jQuery/" itemprop="url" rel="index">
+                    <span itemprop="name">jQuery</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<ol>
+<li><p>ajax请求</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">$(function() &#123;</div><div class="line">	$(&apos;#send&apos;).click(function() &#123;</div><div class="line">		$.ajax(&#123;</div><div class="line">			type: &quot;GET&quot;, //GET或POST,</div><div class="line">			async:true, //默认设置为true，所有请求均为异步请求。</div><div class="line">			url: &quot;http://www.idaima.com/xxxxx.php&quot;,</div><div class="line">			data: &#123;</div><div class="line">				username: $(&quot;#username&quot;).val(),</div><div class="line">				content: $(&quot;#content&quot;).val()</div><div class="line">			&#125;,</div><div class="line">			dataType: &quot;json&quot;, //xml、html、script、jsonp、text</div><div class="line">			beforeSend:function()&#123;&#125;,</div><div class="line">			complete:function()&#123;&#125;,</div><div class="line">			success: function(data) &#123;</div><div class="line">				alert(data)</div><div class="line">			&#125;</div><div class="line">			error:function()&#123;&#125;,</div><div class="line">		&#125;);</div><div class="line">	&#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>如何获取checkbox，并判断是否选中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$(&quot;input[type=&apos;checkbox&apos;]&quot;).is(&apos;:checked&apos;) </div><div class="line">//返回结果：选中=true，未选中=false</div></pre></td></tr></table></figure>
+</li>
+<li><p>获取checkbox选中的值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var chk_value =[]; </div><div class="line">$(&apos;input[name=&quot;test&quot;]:checked&apos;).each(function()&#123; </div><div class="line">	chk_value.push($(this).val()); </div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>checkbox全选、反选、选择奇数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">$(&quot;document&quot;).ready(function() &#123;</div><div class="line">	$(&quot;#btn1&quot;).click(function() &#123;</div><div class="line">		$(&quot;[name=&apos;checkbox&apos;]&quot;).attr(&quot;checked&quot;, &apos;true&apos;); //全选 </div><div class="line">	&#125;) $(&quot;#btn2&quot;).click(function() &#123;</div><div class="line">		$(&quot;[name=&apos;checkbox&apos;]&quot;).removeAttr(&quot;checked&quot;); //取消全选 </div><div class="line">	&#125;) $(&quot;#btn3&quot;).click(function() &#123;</div><div class="line">		$(&quot;[name=&apos;checkbox&apos;]:even&quot;).attr(&quot;checked&quot;, &apos;true&apos;); //选中所有奇数 </div><div class="line">	&#125;) $(&quot;#btn4&quot;).click(function() &#123;</div><div class="line">		$(&quot;[name=&apos;checkbox&apos;]&quot;).each(function() &#123; //反选 </div><div class="line">			if ($(this).attr(&quot;checked&quot;)) &#123;</div><div class="line">				$(this).removeAttr(&quot;checked&quot;);</div><div class="line">			&#125; else &#123;</div><div class="line">				$(this).attr(&quot;checked&quot;, &apos;true&apos;);</div><div class="line">			&#125;</div><div class="line">		&#125;)</div><div class="line">	&#125;)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+</li>
+<li><p>获取select下拉框的值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(&quot;#select&quot;).val()</div></pre></td></tr></table></figure>
+</li>
+<li><p>获取选中值，三种方法都可以：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$(&apos;input:radio:checked&apos;).val()；</div><div class="line">$(&quot;input[type=&apos;radio&apos;]:checked&quot;).val();</div><div class="line">$(&quot;input[name=&apos;rd&apos;]:checked&quot;).val();</div></pre></td></tr></table></figure>
+</li>
+<li><p>设置第一个Radio为选中值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$(&apos;input:radio:first&apos;).attr(&apos;checked&apos;, &apos;checked&apos;);</div><div class="line">$(&apos;input:radio:first&apos;).attr(&apos;checked&apos;, &apos;true&apos;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>设置最后一个Radio为选中值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$(&apos;input:radio:last&apos;).attr(&apos;checked&apos;, &apos;checked&apos;);</div><div class="line">$(&apos;input:radio:last&apos;).attr(&apos;checked&apos;, &apos;true&apos;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>根据索引值设置任意一个radio为选中值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$(&apos;input:radio&apos;).eq(索引值).attr(&apos;checked&apos;, &apos;true&apos;);//索引值=0,1,2....</div><div class="line">$(&apos;input:radio&apos;).slice(1,2).attr(&apos;checked&apos;, &apos;true&apos;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>根据Value值设置Radio为选中值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$(&quot;input:radio[value=&apos;rd2&apos;]&quot;).attr(&apos;checked&apos;,&apos;true&apos;);</div><div class="line">$(&quot;input[value=&apos;rd2&apos;]&quot;).attr(&apos;checked&apos;,&apos;true&apos;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>关于页面元素的引用</p>
+</li>
+</ol>
+</blockquote>
+<p>通过jquery的$()引用元素包括通过id、class、元素名以及元素的层级关系及dom或者xpath条件等方法，且返回的对象为jquery对象（集合对象），不能直接调用dom定义的方法。<a href="http://www.idaima.com/a/1663.html" target="_blank" rel="external">http://www.idaima.com/a/1663.html</a></p>
+<blockquote>
+<ol>
+<li>jQuery对象与dom对象的转换 </li>
+</ol>
+</blockquote>
+<p>只有jquery对象才能使用jquery定义的方法。注意dom对象和jquery对象是有区别的，调用方法时要注意操作的是dom对象还是jquery对象。</p>
+<p><strong>普通的dom对象一般可以通过$()转换成jquery对象。</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(document.getElementById(&quot;msg&quot;))</div></pre></td></tr></table></figure></p>
+<p>由于jquery对象本身是一个集合。所以如果jquery对象要转换为dom对象则必须取出其中的某一项，一般可通过索引取出。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(&quot;#msg&quot;)[0]，$(&quot;div&quot;).eq(1)[0]，$(&quot;div&quot;).get()[1]，$(&quot;td&quot;)[5]</div></pre></td></tr></table></figure></p>
+<p>这些都是dom对象，可以使用dom中的方法，但不能再使用Jquery的方法。</p>
+<p><strong>以下几种写法都是正确的：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$(&quot;#msg&quot;).html();</div><div class="line">$(&quot;#msg&quot;)[0].innerHTML;</div><div class="line">$(&quot;#msg&quot;).eq(0)[0].innerHTML;</div><div class="line">$(&quot;#msg&quot;).get(0).innerHTML;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<ol>
+<li>如何获取jQuery集合的某一项</li>
+</ol>
+</blockquote>
+<p>对于获取的元素集合，获取其中的某一项（通过索引指定）可以使用eq或get(n)方法或者索引号获取，要注意，eq返回的是jquery对象，而get(n)和索引返回的是dom元素对象。对于jquery对象只能使用jquery的方法，而dom对象只能使用dom的方法，如要获取第三个<div>元素的内容。有如下两种方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$(&quot;div&quot;).eq(2).html();  //调用jquery对象的方法</div><div class="line">$(&quot;div&quot;).get(2).innerHTML;  //调用dom的方法属性</div></pre></td></tr></table></figure></div></p>
+<blockquote>
+<ol>
+<li>同一函数实现set和get</li>
+</ol>
+</blockquote>
+<p>Jquery中的很多方法都是如此，主要包括如下几个:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">$(&quot;#msg&quot;).html(); //返回id为msg的元素节点的html内容。</div><div class="line">$(&quot;#msg&quot;).html(&quot;&lt;b&gt;new content&lt;/b&gt;&quot;);</div><div class="line">//将“&lt;b&gt;new content&lt;/b&gt;” 作为html串写入id为msg的元素节点内容中,页面显示粗体的new content</div><div class="line">$(&quot;#msg&quot;).text(); //返回id为msg的元素节点的文本内容。</div><div class="line">$(&quot;#msg&quot;).text(&quot;&lt;b&gt;new content&lt;/b&gt;&quot;);</div><div class="line">//将“&lt;b&gt;new content&lt;/b&gt;” 作为普通文本串写入id为msg的元素节点内容中,页面显示&lt;b&gt;new content&lt;/b&gt;</div><div class="line">$(&quot;#msg&quot;).height(); //返回id为msg的元素的高度</div><div class="line">$(&quot;#msg&quot;).height(&quot;300&quot;); //将id为msg的元素的高度设为300</div><div class="line">$(&quot;#msg&quot;).width(); //返回id为msg的元素的宽度</div><div class="line">$(&quot;#msg&quot;).width(&quot;300&quot;); //将id为msg的元素的宽度设为300</div><div class="line">$(&quot;input&quot;).val(&quot;); //返回表单输入框的value值</div><div class="line">$(&quot;input&quot;).val(&quot;test&quot;); //将表单输入框的value值设为test</div><div class="line">$(&quot;#msg&quot;).click(); //触发id为msg的元素的单击事件 </div><div class="line">$(&quot;#msg&quot;).click(fn); //为id为msg的元素单击事件添加函数</div><div class="line"></div><div class="line">// 同样blur,focus,select,submit事件都可以有着两种调用方法</div></pre></td></tr></table></figure></p>
+<blockquote>
+<ol>
+<li>集合处理功能 </li>
+</ol>
+</blockquote>
+<p>对于jquery返回的集合内容无需我们自己循环遍历并对每个对象分别做处理，jquery已经为我们提供的很方便的方法进行集合的处理。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$(&quot;p&quot;).each(function(i)&#123;this.style.color=[&apos;#f00&apos;,&apos;#0f0&apos;,&apos;#00f&apos;][i]&#125;)</div><div class="line">//为索引分别为0，1，2的p元素分别设定不同的字体颜色。</div><div class="line">$(&quot;tr&quot;).each(function(i)&#123;this.style.backgroundColor=[&apos;#ccc&apos;,&apos;#fff&apos;][i%2]&#125;)</div><div class="line">//实现表格的隔行换色效果</div><div class="line">$(&quot;p&quot;).click(function()&#123;alert($(this).html())&#125;)</div><div class="line">//为每个p元素增加了click事件，单击某个p元素则弹出其内容</div></pre></td></tr></table></figure></p>
+<blockquote>
+<ol>
+<li><p>扩展我们需要的功能</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$.extend(&#123; </div><div class="line">    min: function(a, b)&#123;return a &lt; b?a:b; &#125;,</div><div class="line">    max: function(a, b)&#123;return a &gt; b?a:b; &#125;</div><div class="line">&#125;); //为jquery扩展了min,max两个方法</div></pre></td></tr></table></figure>
+</li>
+<li><p>支持方法的连写 </p>
+</li>
+</ol>
+</blockquote>
+<p>所谓连写，即可以对一个jquery对象连续调用各种不同的方法。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$(&quot;p&quot;).click(function()&#123;alert($(this).html())&#125;)</div><div class="line">.mouseover(function()&#123;alert(&apos;mouse over event&apos;)&#125;)</div><div class="line">.each(function(i)&#123;this.style.color=[&apos;#f00&apos;,&apos;#0f0&apos;,&apos;#00f&apos;][i]&#125;);</div></pre></td></tr></table></figure></p>
+<blockquote>
+<ol>
+<li><p>操作元素的样式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$(&quot;#msg&quot;).css(&quot;background&quot;); //返回元素的背景颜色</div><div class="line">$(&quot;#msg&quot;).css(&quot;background&quot;,&quot;#ccc&quot;) //设定元素背景为灰色</div><div class="line">$(&quot;#msg&quot;).height(300); $(&quot;#msg&quot;).width(&quot;200&quot;); //设定宽高</div><div class="line">$(&quot;#msg&quot;).css(&#123; color: &quot;red&quot;, background: &quot;blue&quot; &#125;);//以名值对的形式设定样式</div><div class="line">$(&quot;#msg&quot;).addClass(&quot;select&quot;); //为元素增加名称为select的class</div><div class="line">$(&quot;#msg&quot;).removeClass(&quot;select&quot;); //删除元素名称为select的class</div><div class="line">$(&quot;#msg&quot;).toggleClass(&quot;select&quot;); //如果存在（不存在）就删除（添加）名称为select的class</div></pre></td></tr></table></figure>
+</li>
+<li><p>完善的事件处理功能 </p>
+</li>
+</ol>
+</blockquote>
+<p>Jquery已经为我们提供了各种事件处理方法，我们无需在html元素上直接写事件，而可以直接为通过jquery获取的对象添加事件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$(&quot;#msg&quot;).click(function()&#123;alert(&quot;good&quot;)&#125;) //为元素添加了单击事件</div><div class="line">$(&quot;p&quot;).click(function(i)&#123;this.style.color=[&apos;#f00&apos;,&apos;#0f0&apos;,&apos;#00f&apos;][i]&#125;)</div><div class="line">//为三个不同的p元素单击事件分别设定不同的处理</div></pre></td></tr></table></figure></p>
+<p><strong>jQuery中几个自定义的事件:</strong></p>
+<p>（1）hover(fn1,fn2)：一个模仿悬停事件（鼠标移动到一个对象上面及移出这个对象）的方法。当鼠标移动到一个匹配的元素上面时，会触发指定的第一个函数。当鼠标移出这个元素时，会触发指定的第二个函数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">//当鼠标放在表格的某行上时将class置为over，离开时置为out。</div><div class="line">$(&quot;tr&quot;).hover(</div><div class="line">function()&#123;</div><div class="line">     $(this).addClass(&quot;over&quot;);</div><div class="line">&#125;, </div><div class="line">function()&#123; </div><div class="line">$(this).addClass(&quot;out&quot;); </div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>（2）ready(fn):当DOM载入就绪可以查询及操纵时绑定一个要执行的函数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(document).ready(function()&#123;alert(&quot;Load Success&quot;)&#125;)</div></pre></td></tr></table></figure></p>
+<p><strong>页面加载完毕提示“Load Success”,不同于onload事件，onload需要页面内容加载完毕（图片等），而ready只要页面html代码下载完毕即触发。与$(fn)等价</strong></p>
+<p>（3）toggle(evenFn,oddFn): 每次点击时切换要调用的函数。如果点击了一个匹配的元素，则触发指定的第一个函数，当再次点击同一元素时，则触发指定的第二个函数。随后的每次点击都重复对这两个函数的轮番调用。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">//每次点击时轮换添加和删除名为selected的class。</div><div class="line">$(&quot;p&quot;).toggle(function()&#123; </div><div class="line">     $(this).addClass(&quot;selected&quot;); </div><div class="line">&#125;,function()&#123; </div><div class="line">     $(this).removeClass(&quot;selected&quot;); </div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>（4）trigger(eventtype): 在每一个匹配的元素上触发某类事件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(&quot;p&quot;).trigger(&quot;click&quot;); //触发所有p元素的click事件</div></pre></td></tr></table></figure></p>
+<p>（5）bind(eventtype,fn)，unbind(eventtype): 事件的绑定与反绑定<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$(&quot;p&quot;).bind(&quot;click&quot;, function()&#123;alert($(this).text());&#125;); //为每个p元素添加单击事件 </div><div class="line"></div><div class="line">$(&quot;p&quot;).unbind(); //删除所有p元素上的所有事件 </div><div class="line"></div><div class="line">$(&quot;p&quot;).unbind(&quot;click&quot;) //删除所有p元素上的单击事件</div></pre></td></tr></table></figure></p>
+<blockquote>
+<ol>
+<li>几个实用特效功能 </li>
+</ol>
+</blockquote>
+<p>其中toggle()和slidetoggle()方法提供了状态切换功能。 </p>
+<p>如toggle()方法包括了hide()和show()方法。 </p>
+<p>slideToggle()方法包括了slideDown()和slideUp方法。</p>
+<blockquote>
+<ol>
+<li>几个有用的jQuery方法 </li>
+</ol>
+</blockquote>
+<ul>
+<li>$.browser.浏览器类型：检测浏览器类型。有效参数：safari, opera, msie,mozilla。如检测是否ie：$.browser.isie，是ie浏览器则返回true。 </li>
+<li>$.each(obj, fn)：通用的迭代函数。可用于近似地迭代对象和数组（代替循环）。 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$.each( [0,1,2], function(i, n)&#123; alert( &quot;Item #&quot; + i + &quot;: &quot; + n ); &#125;);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>等价于：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var tempArr=[0,1,2]; </div><div class="line">for(var i=0;i&lt;tempArr.length;i++)&#123; </div><div class="line">    alert(&quot;Item #&quot;+i+&quot;: &quot;+tempArr[i]); </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>也可以处理json数据，如<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$.each( &#123; name: &quot;John&quot;, lang: &quot;JS&quot; &#125;, function(i, n)&#123; alert( &quot;Name: &quot; + i + &quot;, Value: &quot; + n ); &#125;);</div><div class="line">结果：</div><div class="line">//Name:name, Value:John </div><div class="line">//Name:lang, Value:JS</div></pre></td></tr></table></figure></p>
+<p>$.extend(target,prop1,propN)：用一个或多个其他对象来扩展一个对象，返回这个被扩展的对象。这是jquery实现的继承方式。 </p>
+<p>如： </p>
+<p>$.extend(settings, options);<br>//合并settings和options，并将合并结果返回settings中，相当于options继承setting并将继承结果保存在setting中。 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var settings = $.extend(&#123;&#125;, defaults, options);</div></pre></td></tr></table></figure>
+<p>合并defaults和options，并将合并结果返回到setting中而不覆盖default内容。 </p>
+<p>可以有多个参数（合并多项并返回） </p>
+<p>$.map(array, fn)：数组映射。把一个数组中的项目(处理转换后)保存到到另一个新数组中，并返回生成的新数组。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var tempArr=$.map( [0,1,2], function(i)&#123; return i + 4; &#125;);</div></pre></td></tr></table></figure></p>
+<p>tempArr内容为：[4,5,6] </p>
+<p>var tempArr=$.map( [0,1,2], function(i){ return i &gt; 0 ? i + 1 : null; });<br>tempArr内容为：[2,3] </p>
+<p>$.merge(arr1,arr2):合并两个数组并删除其中重复的项目。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$.merge( [0,1,2], [2,3,4] ) //返回[0,1,2,3,4]</div></pre></td></tr></table></figure></p>
+<p>$.trim(str)：删除字符串两端的空白字符。 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$.trim(&quot; hello, how are you? &quot;); //返回&quot;hello,how are you? &quot;</div></pre></td></tr></table></figure>
+<blockquote>
+<ol>
+<li>解决自定义方法或其他类库与jQuery的冲突 </li>
+</ol>
+</blockquote>
+<p>很多时候我们自己定义了$(id)方法来获取一个元素，或者其他的一些js类库如prototype也都定义了$方法，如果同时把这些内容放在一起就会引起变量方法定义冲突，Jquery对此专门提供了方法用于解决此问题。 </p>
+<p>使用jquery中的jQuery.noConflict();方法即可把变量$的控制权让渡给第一个实现它的那个库或之前自定义的$方法。之后应用Jquery的时候只要将所有的$换成jQuery即可，如原来引用对象方法$(“#msg”)改为jQuery(“#msg”)。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">jQuery.noConflict(); </div><div class="line">// 开始使用jQuery </div><div class="line">jQuery(&quot;div p&quot;).hide(); </div><div class="line">// 使用其他库的 $() </div><div class="line">$(&quot;content&quot;).style.display = &apos;none&apos;;</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/jQuery/" rel="tag"># jQuery</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/10/JQuery remove()、empty()、detach()、等方法/" rel="next" title="JQuery remove()、empty()、detach()、等方法">
+                <i class="fa fa-chevron-left"></i> JQuery remove()、empty()、detach()、等方法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/10/JQuery如何判断标签指定属性是否存在/" rel="prev" title="JQuery如何判断标签指定属性是否存在">
+                JQuery如何判断标签指定属性是否存在 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yODc2NC81MzM1"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="骑驴看代码" />
+          <p class="site-author-name" itemprop="name">骑驴看代码</p>
+           
+              <p class="site-description motion-element" itemprop="description">种一棵树最好的时间是10年前，其次是现在！</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">骑驴看代码</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/three/three.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-10-09T16:04:59.565Z</updated>
+  <updated>2017-10-10T09:14:34.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,472 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>webpack入门</title>
+    <link href="http://yoursite.com/2017/10/10/Webpack%E5%85%A5%E9%97%A8/"/>
+    <id>http://yoursite.com/2017/10/10/Webpack入门/</id>
+    <published>2017-10-10T12:41:24.897Z</published>
+    <updated>2017-10-10T09:14:34.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="http://www.jianshu.com/p/42e11515c10f" target="_blank" rel="external">入门Webpack，看这篇就够了</a></p>
+<blockquote>
+<p>作者：zhangwang<br>  链接：<a href="http://www.jianshu.com/p/42e11515c10f" target="_blank" rel="external">http://www.jianshu.com/p/42e11515c10f</a><br>  來源：简书<br>  著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+</blockquote>
+<h2 id="安装webpack"><a href="#安装webpack" class="headerlink" title="安装webpack"></a>安装webpack</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">//全局安装</div><div class="line">npm install -g webpack</div><div class="line">//安装到你的项目目录</div><div class="line">cd yourPeoject</div><div class="line">npm install --save-dev webpack</div></pre></td></tr></table></figure>
+<h2 id="初始化webpack项目"><a href="#初始化webpack项目" class="headerlink" title="初始化webpack项目"></a>初始化webpack项目</h2><ul>
+<li><p>在上述练习文件夹中创建一个package.json文件，这是一个标准的npm说明文件，里面蕴含了丰富的信息，包括当前项目的依赖模块，自定义的脚本任务等等。在终端中使用npm init命令可以自动创建这个package.json文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm init</div></pre></td></tr></table></figure>
+</li>
+<li><p>在项目中安装webpack</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// 安装Webpack</div><div class="line">npm install --save-dev webpack</div></pre></td></tr></table></figure>
+<h2 id="打包文件-命令行的方式"><a href="#打包文件-命令行的方式" class="headerlink" title="打包文件 命令行的方式"></a>打包文件 命令行的方式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># &#123;extry file&#125;出填写入口文件的路径，本文中就是上述main.js的路径，</div><div class="line"># &#123;destination for bundled file&#125;处填写打包文件的存放路径</div><div class="line"># 填写路径的时候不用添加&#123;&#125;</div><div class="line">webpack &#123;entry file&#125; &#123;destination for bundled file&#125;</div></pre></td></tr></table></figure>
+<p><strong>例如：</strong> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">webpack app/main.js dist/bundle.js</div></pre></td></tr></table></figure>
+<p>就会在dist中生成一个打包的bundle.js文件，</p>
+<p>注意：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># webpack非全局安装的情况</div><div class="line">node_modules/.bin/webpack app/main.js public/bundle.js</div></pre></td></tr></table></figure>
+<h2 id="通过配置文件来使用webpack"><a href="#通过配置文件来使用webpack" class="headerlink" title="通过配置文件来使用webpack"></a>通过配置文件来使用webpack</h2><blockquote>
+<p>Webpack拥有很多其它的比较高级的功能（比如说本文后面会介绍的loaders和plugins），这些功能其实都可以通过命令行模式实现，但是正如前面提到的，这样不太方便且容易出错的，更好的办法是定义一个配置文件，这个配置文件其实也是一个简单的JavaScript模块，我们可以把所有的与打包相关的信息放在里面。</p>
+<p>继续上面的例子来说明如何写这个配置文件，在当前练习文件夹的根目录下新建一个名为webpack.config.js的文件，我们在其中写入如下所示的简单配置代码，目前的配置主要涉及到的内容是入口文件路径和打包后文件的存放路径。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">module.exports = &#123;</div><div class="line">  entry:  __dirname + &quot;/app/main.js&quot;,//已多次提及的唯一入口文件</div><div class="line">  output: &#123;</div><div class="line">    path: __dirname + &quot;/public&quot;,//打包后的文件存放的地方</div><div class="line">    filename: &quot;bundle.js&quot;//打包后输出文件的文件名</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">注：&quot;__dirname&quot; 是 node.js 中的一个全局变量，它指向当前执行脚本所在的目录。</div></pre></td></tr></table></figure>
+<p>配置完 <code>config</code> 文件直接使用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">webpack 命令</div><div class="line">非全局安装需使用node_modules/.bin/webpack</div></pre></td></tr></table></figure>
+<p>就可以打包成功</p>
+<h2 id="更方便的打包任务"><a href="#更方便的打包任务" class="headerlink" title="更方便的打包任务"></a>更方便的打包任务</h2><blockquote>
+<p><code>npm</code> 可以执行<code>package.json</code>中<code>scripts</code>标签下的代码,对npm进行配置后可以在命令行中使用简单的<code>npm start</code>命令来替代上面略微繁琐的命令</p>
+</blockquote>
+<p>设置方法如下： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;name&quot;: &quot;webpack-sample-project&quot;,</div><div class="line">  &quot;version&quot;: &quot;1.0.0&quot;,</div><div class="line">  &quot;description&quot;: &quot;Sample webpack project&quot;,</div><div class="line">  &quot;scripts&quot;: &#123;</div><div class="line">    &quot;start&quot;: &quot;webpack&quot; // 修改的是这里，JSON文件不支持注释，引用时请清除</div><div class="line">  &#125;,</div><div class="line">  &quot;author&quot;: &quot;zhang&quot;,</div><div class="line">  &quot;license&quot;: &quot;ISC&quot;,</div><div class="line">  &quot;devDependencies&quot;: &#123;</div><div class="line">    &quot;webpack&quot;: &quot;^1.12.9&quot;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>注：<code>package.json</code>中的<code>scripts</code>会安装一定顺序寻找命令对应位置，本地的<code>node_modules/.bin</code>路径就在这个寻找清单中，所以无论是全局还是局部安装的<code>Webpack</code>，你都不需要写前面那指明详细的路径了。</p>
+</blockquote>
+<h2 id="扩展（externals）引入第三方库的方式"><a href="#扩展（externals）引入第三方库的方式" class="headerlink" title="扩展（externals）引入第三方库的方式"></a>扩展（externals）引入第三方库的方式</h2><blockquote>
+<p>webpack 中的 externals 配置提供了「不从 bundle 中引用依赖」的方式。解决的是，所创建的 bundle 依赖于那些存在于用户环境(consumer environment)中的依赖。</p>
+</blockquote>
+<p>例如： 从外部引入<code>jQuery</code>库</p>
+<p><strong>在index.html中</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">&lt;script src=&quot;https://code.jquery.com/jquery-3.1.0.js&quot;</div><div class="line">  integrity=&quot;sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk=&quot;</div><div class="line">  crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;</div><div class="line"> ...</div></pre></td></tr></table></figure>
+<p>在<code>webpack.config.js</code>这样配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">externals: &#123;</div><div class="line">  jquery: &apos;window.jQuery&apos;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>然后正常运行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">import $ from &apos;jquery&apos;; // 支持ES6的情况</div><div class="line">var $ = require(&apos;jquery&apos;); // 同样的效果</div><div class="line"></div><div class="line">$(&apos;.my-element&apos;).animate(...);</div></pre></td></tr></table></figure>
+<h2 id="ExtractTextWebpackPlugin-单独打包css文件"><a href="#ExtractTextWebpackPlugin-单独打包css文件" class="headerlink" title="ExtractTextWebpackPlugin 单独打包css文件"></a>ExtractTextWebpackPlugin 单独打包css文件</h2><blockquote>
+<p>它会将所有的 入口chunk (entry chunks) 中的 require(“style.css”) 移动到分开的 css 文件。因此，你的样式不再内联到 javascript 里面，但会放到一个单独的 css 包文件 (styles.css)当中。 </p>
+</blockquote>
+<p>安装：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install --save-dev extract-text-webpack-plugin</div></pre></td></tr></table></figure>
+<p>使用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">const ExtractTextPlugin = require(&quot;extract-text-webpack-plugin&quot;); // 先定义一个常量</div><div class="line"></div><div class="line">module.exports = &#123;</div><div class="line">    entry: &#123; // 多入口文件是一个对象</div><div class="line">        &apos;common&apos;: [&apos;./src/page/common/index.js&apos;],</div><div class="line">        &apos;index&apos;: [&apos;./src/page/index/index.js&apos;],</div><div class="line">        &apos;login&apos;: [&apos;./src/page/login/index.js&apos;]</div><div class="line">    &#125;,</div><div class="line">    output: &#123; // [name]代表打包的文件以入口文件的“key”值 来命名</div><div class="line">        path: &apos;./dist&apos;,</div><div class="line">        filename: &apos;js/[name].js&apos;</div><div class="line">    &#125;,</div><div class="line">    module: &#123;</div><div class="line">        rules: [</div><div class="line">          &#123;</div><div class="line">            test: /\.css$/,</div><div class="line">            use: ExtractTextPlugin.extract(&#123;</div><div class="line">              fallback: &quot;style-loader&quot;,</div><div class="line">              use: &quot;css-loader&quot;</div><div class="line">            &#125;)</div><div class="line">          &#125;</div><div class="line">        ]</div><div class="line">      &#125;,</div><div class="line">      plugins: [</div><div class="line">        new ExtractTextPlugin(&quot;/css/[name].css&quot;),  // 将入口文件中的引用的css文件单独打包，</div><div class="line">        例如：common入口的文件里面引入了一个a.css，将会在dist目录下生成一个css/common.css</div><div class="line">      ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="HtmlWebpackPlugin-简化html文件的创建"><a href="#HtmlWebpackPlugin-简化html文件的创建" class="headerlink" title="HtmlWebpackPlugin 简化html文件的创建"></a>HtmlWebpackPlugin 简化html文件的创建</h2><blockquote>
+<p>这个插件将为您生成一个HTML5文件，该文件的 body 中使用script 标记引用了所有 webpack 编译出来的js和css文件。只需添加插件到您的webpack配置中</p>
+</blockquote>
+<p><strong>该插件支持<code>ejs</code>模板</strong></p>
+<ul>
+<li>需要添加<code>html-loader</code></li>
+</ul>
+<p>如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">// head页面</div><div class="line">&lt;head&gt;</div><div class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</div><div class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</div><div class="line">    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;</div><div class="line">    &lt;title&gt;Document&lt;/title&gt;</div><div class="line">&lt;/head&gt;</div><div class="line"></div><div class="line">// index页面</div><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html lang=&quot;en&quot;&gt;</div><div class="line">&lt;%= require(&apos;html-loader!./layout/html-head.html&apos;) %&gt;</div><div class="line"></div><div class="line">    &lt;body&gt;</div><div class="line">        &lt;script src=&quot;https://cdn.bootcss.com/jquery/1.11.3/jquery.min.js&quot;&gt;&lt;/script&gt;</div><div class="line"></div><div class="line">    &lt;/body&gt;</div><div class="line"></div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure></p>
+<p>安装：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install html-webpack-plugin --save-dev</div></pre></td></tr></table></figure>
+<p>配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">var webpack = require(&apos;webpack&apos;);</div><div class="line">const ExtractTextPlugin = require(&quot;extract-text-webpack-plugin&quot;); // 独立打包css的插件</div><div class="line">var HtmlWebpackPlugin = require(&apos;html-webpack-plugin&apos;); // 自动生成html模板的插件,同事将output打包出的js文件，全部引用进来</div><div class="line">// 一个HtmlWebpackPlugin的配置文件</div><div class="line">var getHtmlConfig = function(name) &#123;</div><div class="line">    return &#123;</div><div class="line">        template: &apos;./src/view/&apos; + name + &apos;.html&apos;, //要加载的入口文件</div><div class="line">        filename: &apos;view/&apos; + name + &apos;.html&apos;,</div><div class="line">        inject: true,</div><div class="line">        hash: true,</div><div class="line">        chunks: [&apos;common&apos;, name]</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var config = &#123;</div><div class="line">    entry: &#123; // 多入口文件是一个对象</div><div class="line">        &apos;common&apos;: [&apos;./src/page/common/index.js&apos;],</div><div class="line">        &apos;index&apos;: [&apos;./src/page/index/index.js&apos;],</div><div class="line">        &apos;login&apos;: [&apos;./src/page/login/index.js&apos;]</div><div class="line">    &#125;,</div><div class="line">    output: &#123; // [name]代表打包的文件以入口文件的“key”值 来命名</div><div class="line">        path: &apos;./dist&apos;,</div><div class="line">        filename: &apos;js/[name].js&apos;</div><div class="line">    &#125;,</div><div class="line">    externals: &#123; // 将外部第三方库，当做模块引入进来</div><div class="line">        &apos;jquery&apos;: &apos;window.jQuery&apos;</div><div class="line">    &#125;,</div><div class="line">    module: &#123;</div><div class="line">        loaders: [&#123;</div><div class="line">            test: /\.css$/,</div><div class="line">            loader: ExtractTextPlugin.extract(&quot;style-loader&quot;, &quot;css-loader&quot;)</div><div class="line">        &#125;]</div><div class="line">    &#125;,</div><div class="line">    plugins: [</div><div class="line">        // 把独立通用文件加载到 js/base.js</div><div class="line">        new webpack.optimize.CommonsChunkPlugin(&#123;</div><div class="line">            name: &apos;common&apos;,</div><div class="line">            filename: &apos;js/base.js&apos;</div><div class="line">        &#125;),</div><div class="line">        new ExtractTextPlugin(&quot;/css/[name].css&quot;), // 以入口的文件名来打包出对应的css文件</div><div class="line">        // html模板的处理</div><div class="line">        new HtmlWebpackPlugin(getHtmlConfig(&apos;index&apos;)),</div><div class="line">        new HtmlWebpackPlugin(getHtmlConfig(&apos;login&apos;)),</div><div class="line">    ]</div><div class="line">&#125;;</div><div class="line"></div><div class="line">module.exports = config;</div></pre></td></tr></table></figure>
+<h2 id="webpack-dev-server"><a href="#webpack-dev-server" class="headerlink" title="webpack-dev-server"></a>webpack-dev-server</h2><ul>
+<li>前端开发服务器</li>
+<li>可以在文件改变时，自动刷新浏览器</li>
+<li>安装：<code>npm install webpack-dev-server --save-dev</code></li>
+<li>配置： <code>webpack-dev-server/client?http://localhost:8088</code></li>
+<li>使用：<code>webpack-dev-server --port 8080 --inline</code></li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;参考&quot;&gt;&lt;a href=&quot;#参考&quot; class=&quot;headerlink&quot; title=&quot;参考&quot;&gt;&lt;/a&gt;参考&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;http://www.jianshu.com/p/42e11515c10f&quot; target=&quot;_blank&quot; rel=&quot;e
+    
+    </summary>
+    
+      <category term="Webpack" scheme="http://yoursite.com/categories/Webpack/"/>
+    
+    
+      <category term="Webpack" scheme="http://yoursite.com/tags/Webpack/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MUI整包升级的方法</title>
+    <link href="http://yoursite.com/2017/10/10/MUI%E6%95%B4%E5%8C%85%E5%8D%87%E7%BA%A7%E7%9A%84%E6%96%B9%E6%B3%95/"/>
+    <id>http://yoursite.com/2017/10/10/MUI整包升级的方法/</id>
+    <published>2017-10-10T12:41:24.894Z</published>
+    <updated>2017-10-10T09:00:50.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>方法写在plusReady之后：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line">mui.plusReady(function() &#123;</div><div class="line">				var wgtVer = null;</div><div class="line">				var newVer = &quot;2.0.2&quot;;</div><div class="line">				function plusReady() &#123;</div><div class="line">					// 获取本地应用资源版本号</div><div class="line">					plus.runtime.getProperty(plus.runtime.appid, function(inf) &#123;</div><div class="line">						wgtVer = inf.version;</div><div class="line">						$(&quot;#version&quot;).html(&apos;当前应用版本&apos; + wgtVer);</div><div class="line">						if(wgtVer !== newVer) &#123;</div><div class="line">							console.log(&quot;最新应用版本：&quot; + newVer);</div><div class="line">							createDownload();</div><div class="line">						&#125; else &#123;</div><div class="line">							console.log(&quot;当前应用版本：&quot; + wgtVer);</div><div class="line">						&#125;</div><div class="line">					&#125;);</div><div class="line">				&#125;</div><div class="line">				if(window.plus) &#123;</div><div class="line">					plusReady();</div><div class="line">				&#125; else &#123;</div><div class="line">					document.addEventListener(&apos;plusready&apos;, plusReady, false);</div><div class="line">				&#125;</div><div class="line">				</div><div class="line">				function createDownload() &#123;</div><div class="line">//					http://1wangxiao.com/social/mtk.apk</div><div class="line">					plus.nativeUI.showWaiting(&quot;下载更新包...&quot;);</div><div class="line">					var dtask = plus.downloader.createDownload(&quot;http://1wangxiao.com/social/mtk.apk&quot;, &#123;filename:&quot;_doc/update/&quot;&#125;, function(d, status) &#123;</div><div class="line">						// 下载完成</div><div class="line">						if(status == 200) &#123;</div><div class="line">							var path = d.filename;</div><div class="line">							plus.nativeUI.closeWaiting();</div><div class="line">							installAPK(path);</div><div class="line">							console.log(&quot;Download success: &quot; + d.filename);</div><div class="line">						&#125; else &#123;</div><div class="line">							console.log(&quot;Download failed: &quot; + status);</div><div class="line">						&#125;</div><div class="line">					&#125;);</div><div class="line">					//dtask.addEventListener( &quot;statechanged&quot;, onStateChanged, false );</div><div class="line">					dtask.start();</div><div class="line">					// 下载完成后就安装</div><div class="line">				&#125;</div><div class="line">				// 安装更新包 </div><div class="line">				function installAPK (path) &#123;</div><div class="line">					plus.nativeUI.showWaiting(&apos;正在安装,请稍后...&apos;);</div><div class="line">					plus.runtime.install(path,&#123;&#125;,function() &#123;</div><div class="line">						plus.nativeUI.closeWaiting();</div><div class="line">						plus.nativeUI.alert(&quot;安装成功!&quot;,function() &#123;</div><div class="line">							plus.runtime.restart();</div><div class="line">						&#125;);</div><div class="line">					&#125;,function(e) &#123;</div><div class="line">						plus.nativeUI.closeWaiting();</div><div class="line">						plus.nativeUI.alert(&quot;安装失败[&quot;+e.code+&quot;]：&quot;+e.message);</div><div class="line">					&#125;)</div><div class="line">				&#125;</div><div class="line">			&#125;);</div></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;方法写在plusReady之后：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;
+    
+    </summary>
+    
+      <category term="MUI" scheme="http://yoursite.com/categories/MUI/"/>
+    
+    
+      <category term="MUI" scheme="http://yoursite.com/tags/MUI/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MUI取消Android手机back按键</title>
+    <link href="http://yoursite.com/2017/10/10/MUI%E5%8F%96%E6%B6%88Android%E6%89%8B%E6%9C%BAback%E6%8C%89%E9%94%AE/"/>
+    <id>http://yoursite.com/2017/10/10/MUI取消Android手机back按键/</id>
+    <published>2017-10-10T12:41:24.889Z</published>
+    <updated>2017-10-10T08:59:40.000Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">mui.init(&#123;</div><div class="line">	keyEventBind: &#123;</div><div class="line">		backbutton: false  //关闭back按键监听</div><div class="line">	&#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>注意：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">graph SEMI</div><div class="line">A--&gt;B--&gt;C--&gt;D</div></pre></td></tr></table></figure>
+<p>例如：从C或者D页面要直接返回到A页面，<br>当在C页面点击按钮之前，就把B页面给关闭了，然后从写 mui.back()方法。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">var old_back = mui.back;</div><div class="line">mui.back = function()&#123;</div><div class="line">  var btn = [&quot;确定&quot;,&quot;取消&quot;];</div><div class="line">  mui.confirm(&apos;确认关闭当前窗口？&apos;,&apos;Hello MUI&apos;,btn,function(e)&#123;</div><div class="line">    if(e.index==0)&#123;</div><div class="line">    	//执行mui封装好的窗口关闭逻辑；</div><div class="line">    	old_back();</div><div class="line">    &#125;</div><div class="line">  &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>然后在D页面想要返回的时候，就不用从写MUI.back()方法了，直接把返回键禁止掉就好了。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/di
+    
+    </summary>
+    
+      <category term="MUI" scheme="http://yoursite.com/categories/MUI/"/>
+    
+    
+      <category term="MUI" scheme="http://yoursite.com/tags/MUI/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MUI开发中的一些常见问题</title>
+    <link href="http://yoursite.com/2017/10/10/MUI%E5%BC%80%E5%8F%91%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/"/>
+    <id>http://yoursite.com/2017/10/10/MUI开发中的一些常见问题/</id>
+    <published>2017-10-10T12:41:24.873Z</published>
+    <updated>2017-10-10T09:02:58.000Z</updated>
+    
+    <content type="html"><![CDATA[<ol>
+<li>判断app是在前台还是在后台？ [<a href="http://www.html5plus.org/doc/zh_cn/events.html" target="_blank" rel="external">http://www.html5plus.org/doc/zh_cn/events.html</a>]</li>
+<li>怎么判断前手机网络是2g，3g，4g还是wifi？[<a href="http://www.html5plus.org/doc/zh_cn/device.html#plus.networkinfo.getCurrentType" target="_blank" rel="external">http://www.html5plus.org/doc/zh_cn/device.html#plus.networkinfo.getCurrentType</a>]</li>
+<li>页面传值？[<a href="http://ask.dcloud.net.cn/docs#http://ask.dcloud.net.cn/article/63" target="_blank" rel="external">http://ask.dcloud.net.cn/docs#http://ask.dcloud.net.cn/article/63</a>]</li>
+<li>微信支付问题？[<a href="https://github.com/dcloudio/H5P.Server/tree/master/payment/wxpayv3" target="_blank" rel="external">https://github.com/dcloudio/H5P.Server/tree/master/payment/wxpayv3</a>]</li>
+<li>自定义MUI控件样式？[<a href="http://ask.dcloud.net.cn/docs#http://ask.dcloud.net.cn/article/87" target="_blank" rel="external">http://ask.dcloud.net.cn/docs#http://ask.dcloud.net.cn/article/87</a>]</li>
+<li>沉浸式？ [<a href="http://ask.dcloud.net.cn/article/118" target="_blank" rel="external">http://ask.dcloud.net.cn/article/118</a>]</li>
+<li>DCLOUD 开源DEMO？ <a href="https://github.com/dcloudio/casecode" target="_blank" rel="external">https://github.com/dcloudio/casecode</a><br><a href="https://github.com/dcloudio/HBuilder-opensource" target="_blank" rel="external">https://github.com/dcloudio/HBuilder-opensource</a></li>
+<li>5+实现简单的内置浏览器制作？[<a href="http://ask.dcloud.net.cn/article/776" target="_blank" rel="external">http://ask.dcloud.net.cn/article/776</a>]</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;ol&gt;
+&lt;li&gt;判断app是在前台还是在后台？ [&lt;a href=&quot;http://www.html5plus.org/doc/zh_cn/events.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.html5plus.org/d
+    
+    </summary>
+    
+      <category term="MUI" scheme="http://yoursite.com/categories/MUI/"/>
+    
+    
+      <category term="MUI" scheme="http://yoursite.com/tags/MUI/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JQuery如何判断标签指定属性是否存在</title>
+    <link href="http://yoursite.com/2017/10/10/JQuery%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E6%A0%87%E7%AD%BE%E6%8C%87%E5%AE%9A%E5%B1%9E%E6%80%A7%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8/"/>
+    <id>http://yoursite.com/2017/10/10/JQuery如何判断标签指定属性是否存在/</id>
+    <published>2017-10-10T12:41:24.855Z</published>
+    <updated>2017-10-10T09:18:24.000Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;demo&quot; myattr=&quot;自定义&quot;&gt;jquery判断标签属性是否存在：&lt;/div&gt;</div><div class="line">&lt;script type=&quot;text/javascript&quot;&gt;</div><div class="line">    $temp=$(&quot;#demo&quot;).attr(&quot;myattra&quot;);</div><div class="line">if(typeof($temp)==&quot;undefined&quot;)&#123;//要加typeof()</div><div class="line">    $(&quot;#demo&quot;).append(&quot;没定义该属性：&quot;+$temp);</div><div class="line">&#125;else&#123;</div><div class="line">    $(&quot;#demo&quot;).append(&quot;定义的属性值为：&quot;+$temp);</div><div class="line"> &#125;</div><div class="line"> </div><div class="line"> </div><div class="line"> </div><div class="line">//另附上原生js检测方法</div><div class="line">var obj = &#123;name:&apos;jack&apos;&#125;;</div><div class="line">//alert(&apos;name&apos; in obj); // --&gt; true</div><div class="line">//alert(&apos;toString&apos; in obj); // --&gt; in能检测到原型链的属性，返回true</div><div class="line">//alert(obj.hasOwnProperty(&apos;name&apos;)); // --&gt; true</div><div class="line">//alert(obj.hasOwnProperty(&apos;toString&apos;)); // --&gt; 原型链上继承过来的属性无法通过hasOwnProperty检测到，返回false</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/di
+    
+    </summary>
+    
+      <category term="jQuery" scheme="http://yoursite.com/categories/jQuery/"/>
+    
+    
+      <category term="jQuery" scheme="http://yoursite.com/tags/jQuery/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>jQuery常用方法（持续更新）</title>
+    <link href="http://yoursite.com/2017/10/10/jQuery%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/"/>
+    <id>http://yoursite.com/2017/10/10/jQuery常用方法（持续更新）/</id>
+    <published>2017-10-10T12:41:24.838Z</published>
+    <updated>2017-10-10T09:20:02.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<ol>
+<li><p>ajax请求</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">$(function() &#123;</div><div class="line">	$(&apos;#send&apos;).click(function() &#123;</div><div class="line">		$.ajax(&#123;</div><div class="line">			type: &quot;GET&quot;, //GET或POST,</div><div class="line">			async:true, //默认设置为true，所有请求均为异步请求。</div><div class="line">			url: &quot;http://www.idaima.com/xxxxx.php&quot;,</div><div class="line">			data: &#123;</div><div class="line">				username: $(&quot;#username&quot;).val(),</div><div class="line">				content: $(&quot;#content&quot;).val()</div><div class="line">			&#125;,</div><div class="line">			dataType: &quot;json&quot;, //xml、html、script、jsonp、text</div><div class="line">			beforeSend:function()&#123;&#125;,</div><div class="line">			complete:function()&#123;&#125;,</div><div class="line">			success: function(data) &#123;</div><div class="line">				alert(data)</div><div class="line">			&#125;</div><div class="line">			error:function()&#123;&#125;,</div><div class="line">		&#125;);</div><div class="line">	&#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>如何获取checkbox，并判断是否选中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$(&quot;input[type=&apos;checkbox&apos;]&quot;).is(&apos;:checked&apos;) </div><div class="line">//返回结果：选中=true，未选中=false</div></pre></td></tr></table></figure>
+</li>
+<li><p>获取checkbox选中的值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var chk_value =[]; </div><div class="line">$(&apos;input[name=&quot;test&quot;]:checked&apos;).each(function()&#123; </div><div class="line">	chk_value.push($(this).val()); </div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>checkbox全选、反选、选择奇数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">$(&quot;document&quot;).ready(function() &#123;</div><div class="line">	$(&quot;#btn1&quot;).click(function() &#123;</div><div class="line">		$(&quot;[name=&apos;checkbox&apos;]&quot;).attr(&quot;checked&quot;, &apos;true&apos;); //全选 </div><div class="line">	&#125;) $(&quot;#btn2&quot;).click(function() &#123;</div><div class="line">		$(&quot;[name=&apos;checkbox&apos;]&quot;).removeAttr(&quot;checked&quot;); //取消全选 </div><div class="line">	&#125;) $(&quot;#btn3&quot;).click(function() &#123;</div><div class="line">		$(&quot;[name=&apos;checkbox&apos;]:even&quot;).attr(&quot;checked&quot;, &apos;true&apos;); //选中所有奇数 </div><div class="line">	&#125;) $(&quot;#btn4&quot;).click(function() &#123;</div><div class="line">		$(&quot;[name=&apos;checkbox&apos;]&quot;).each(function() &#123; //反选 </div><div class="line">			if ($(this).attr(&quot;checked&quot;)) &#123;</div><div class="line">				$(this).removeAttr(&quot;checked&quot;);</div><div class="line">			&#125; else &#123;</div><div class="line">				$(this).attr(&quot;checked&quot;, &apos;true&apos;);</div><div class="line">			&#125;</div><div class="line">		&#125;)</div><div class="line">	&#125;)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+</li>
+<li><p>获取select下拉框的值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(&quot;#select&quot;).val()</div></pre></td></tr></table></figure>
+</li>
+<li><p>获取选中值，三种方法都可以：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$(&apos;input:radio:checked&apos;).val()；</div><div class="line">$(&quot;input[type=&apos;radio&apos;]:checked&quot;).val();</div><div class="line">$(&quot;input[name=&apos;rd&apos;]:checked&quot;).val();</div></pre></td></tr></table></figure>
+</li>
+<li><p>设置第一个Radio为选中值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$(&apos;input:radio:first&apos;).attr(&apos;checked&apos;, &apos;checked&apos;);</div><div class="line">$(&apos;input:radio:first&apos;).attr(&apos;checked&apos;, &apos;true&apos;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>设置最后一个Radio为选中值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$(&apos;input:radio:last&apos;).attr(&apos;checked&apos;, &apos;checked&apos;);</div><div class="line">$(&apos;input:radio:last&apos;).attr(&apos;checked&apos;, &apos;true&apos;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>根据索引值设置任意一个radio为选中值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$(&apos;input:radio&apos;).eq(索引值).attr(&apos;checked&apos;, &apos;true&apos;);//索引值=0,1,2....</div><div class="line">$(&apos;input:radio&apos;).slice(1,2).attr(&apos;checked&apos;, &apos;true&apos;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>根据Value值设置Radio为选中值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$(&quot;input:radio[value=&apos;rd2&apos;]&quot;).attr(&apos;checked&apos;,&apos;true&apos;);</div><div class="line">$(&quot;input[value=&apos;rd2&apos;]&quot;).attr(&apos;checked&apos;,&apos;true&apos;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>关于页面元素的引用</p>
+</li>
+</ol>
+</blockquote>
+<p>通过jquery的$()引用元素包括通过id、class、元素名以及元素的层级关系及dom或者xpath条件等方法，且返回的对象为jquery对象（集合对象），不能直接调用dom定义的方法。<a href="http://www.idaima.com/a/1663.html" target="_blank" rel="external">http://www.idaima.com/a/1663.html</a></p>
+<blockquote>
+<ol>
+<li>jQuery对象与dom对象的转换 </li>
+</ol>
+</blockquote>
+<p>只有jquery对象才能使用jquery定义的方法。注意dom对象和jquery对象是有区别的，调用方法时要注意操作的是dom对象还是jquery对象。</p>
+<p><strong>普通的dom对象一般可以通过$()转换成jquery对象。</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(document.getElementById(&quot;msg&quot;))</div></pre></td></tr></table></figure></p>
+<p>由于jquery对象本身是一个集合。所以如果jquery对象要转换为dom对象则必须取出其中的某一项，一般可通过索引取出。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(&quot;#msg&quot;)[0]，$(&quot;div&quot;).eq(1)[0]，$(&quot;div&quot;).get()[1]，$(&quot;td&quot;)[5]</div></pre></td></tr></table></figure></p>
+<p>这些都是dom对象，可以使用dom中的方法，但不能再使用Jquery的方法。</p>
+<p><strong>以下几种写法都是正确的：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$(&quot;#msg&quot;).html();</div><div class="line">$(&quot;#msg&quot;)[0].innerHTML;</div><div class="line">$(&quot;#msg&quot;).eq(0)[0].innerHTML;</div><div class="line">$(&quot;#msg&quot;).get(0).innerHTML;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<ol>
+<li>如何获取jQuery集合的某一项</li>
+</ol>
+</blockquote>
+<p>对于获取的元素集合，获取其中的某一项（通过索引指定）可以使用eq或get(n)方法或者索引号获取，要注意，eq返回的是jquery对象，而get(n)和索引返回的是dom元素对象。对于jquery对象只能使用jquery的方法，而dom对象只能使用dom的方法，如要获取第三个<div>元素的内容。有如下两种方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$(&quot;div&quot;).eq(2).html();  //调用jquery对象的方法</div><div class="line">$(&quot;div&quot;).get(2).innerHTML;  //调用dom的方法属性</div></pre></td></tr></table></figure></div></p>
+<blockquote>
+<ol>
+<li>同一函数实现set和get</li>
+</ol>
+</blockquote>
+<p>Jquery中的很多方法都是如此，主要包括如下几个:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">$(&quot;#msg&quot;).html(); //返回id为msg的元素节点的html内容。</div><div class="line">$(&quot;#msg&quot;).html(&quot;&lt;b&gt;new content&lt;/b&gt;&quot;);</div><div class="line">//将“&lt;b&gt;new content&lt;/b&gt;” 作为html串写入id为msg的元素节点内容中,页面显示粗体的new content</div><div class="line">$(&quot;#msg&quot;).text(); //返回id为msg的元素节点的文本内容。</div><div class="line">$(&quot;#msg&quot;).text(&quot;&lt;b&gt;new content&lt;/b&gt;&quot;);</div><div class="line">//将“&lt;b&gt;new content&lt;/b&gt;” 作为普通文本串写入id为msg的元素节点内容中,页面显示&lt;b&gt;new content&lt;/b&gt;</div><div class="line">$(&quot;#msg&quot;).height(); //返回id为msg的元素的高度</div><div class="line">$(&quot;#msg&quot;).height(&quot;300&quot;); //将id为msg的元素的高度设为300</div><div class="line">$(&quot;#msg&quot;).width(); //返回id为msg的元素的宽度</div><div class="line">$(&quot;#msg&quot;).width(&quot;300&quot;); //将id为msg的元素的宽度设为300</div><div class="line">$(&quot;input&quot;).val(&quot;); //返回表单输入框的value值</div><div class="line">$(&quot;input&quot;).val(&quot;test&quot;); //将表单输入框的value值设为test</div><div class="line">$(&quot;#msg&quot;).click(); //触发id为msg的元素的单击事件 </div><div class="line">$(&quot;#msg&quot;).click(fn); //为id为msg的元素单击事件添加函数</div><div class="line"></div><div class="line">// 同样blur,focus,select,submit事件都可以有着两种调用方法</div></pre></td></tr></table></figure></p>
+<blockquote>
+<ol>
+<li>集合处理功能 </li>
+</ol>
+</blockquote>
+<p>对于jquery返回的集合内容无需我们自己循环遍历并对每个对象分别做处理，jquery已经为我们提供的很方便的方法进行集合的处理。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$(&quot;p&quot;).each(function(i)&#123;this.style.color=[&apos;#f00&apos;,&apos;#0f0&apos;,&apos;#00f&apos;][i]&#125;)</div><div class="line">//为索引分别为0，1，2的p元素分别设定不同的字体颜色。</div><div class="line">$(&quot;tr&quot;).each(function(i)&#123;this.style.backgroundColor=[&apos;#ccc&apos;,&apos;#fff&apos;][i%2]&#125;)</div><div class="line">//实现表格的隔行换色效果</div><div class="line">$(&quot;p&quot;).click(function()&#123;alert($(this).html())&#125;)</div><div class="line">//为每个p元素增加了click事件，单击某个p元素则弹出其内容</div></pre></td></tr></table></figure></p>
+<blockquote>
+<ol>
+<li><p>扩展我们需要的功能</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$.extend(&#123; </div><div class="line">    min: function(a, b)&#123;return a &lt; b?a:b; &#125;,</div><div class="line">    max: function(a, b)&#123;return a &gt; b?a:b; &#125;</div><div class="line">&#125;); //为jquery扩展了min,max两个方法</div></pre></td></tr></table></figure>
+</li>
+<li><p>支持方法的连写 </p>
+</li>
+</ol>
+</blockquote>
+<p>所谓连写，即可以对一个jquery对象连续调用各种不同的方法。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$(&quot;p&quot;).click(function()&#123;alert($(this).html())&#125;)</div><div class="line">.mouseover(function()&#123;alert(&apos;mouse over event&apos;)&#125;)</div><div class="line">.each(function(i)&#123;this.style.color=[&apos;#f00&apos;,&apos;#0f0&apos;,&apos;#00f&apos;][i]&#125;);</div></pre></td></tr></table></figure></p>
+<blockquote>
+<ol>
+<li><p>操作元素的样式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$(&quot;#msg&quot;).css(&quot;background&quot;); //返回元素的背景颜色</div><div class="line">$(&quot;#msg&quot;).css(&quot;background&quot;,&quot;#ccc&quot;) //设定元素背景为灰色</div><div class="line">$(&quot;#msg&quot;).height(300); $(&quot;#msg&quot;).width(&quot;200&quot;); //设定宽高</div><div class="line">$(&quot;#msg&quot;).css(&#123; color: &quot;red&quot;, background: &quot;blue&quot; &#125;);//以名值对的形式设定样式</div><div class="line">$(&quot;#msg&quot;).addClass(&quot;select&quot;); //为元素增加名称为select的class</div><div class="line">$(&quot;#msg&quot;).removeClass(&quot;select&quot;); //删除元素名称为select的class</div><div class="line">$(&quot;#msg&quot;).toggleClass(&quot;select&quot;); //如果存在（不存在）就删除（添加）名称为select的class</div></pre></td></tr></table></figure>
+</li>
+<li><p>完善的事件处理功能 </p>
+</li>
+</ol>
+</blockquote>
+<p>Jquery已经为我们提供了各种事件处理方法，我们无需在html元素上直接写事件，而可以直接为通过jquery获取的对象添加事件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$(&quot;#msg&quot;).click(function()&#123;alert(&quot;good&quot;)&#125;) //为元素添加了单击事件</div><div class="line">$(&quot;p&quot;).click(function(i)&#123;this.style.color=[&apos;#f00&apos;,&apos;#0f0&apos;,&apos;#00f&apos;][i]&#125;)</div><div class="line">//为三个不同的p元素单击事件分别设定不同的处理</div></pre></td></tr></table></figure></p>
+<p><strong>jQuery中几个自定义的事件:</strong></p>
+<p>（1）hover(fn1,fn2)：一个模仿悬停事件（鼠标移动到一个对象上面及移出这个对象）的方法。当鼠标移动到一个匹配的元素上面时，会触发指定的第一个函数。当鼠标移出这个元素时，会触发指定的第二个函数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">//当鼠标放在表格的某行上时将class置为over，离开时置为out。</div><div class="line">$(&quot;tr&quot;).hover(</div><div class="line">function()&#123;</div><div class="line">     $(this).addClass(&quot;over&quot;);</div><div class="line">&#125;, </div><div class="line">function()&#123; </div><div class="line">$(this).addClass(&quot;out&quot;); </div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>（2）ready(fn):当DOM载入就绪可以查询及操纵时绑定一个要执行的函数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(document).ready(function()&#123;alert(&quot;Load Success&quot;)&#125;)</div></pre></td></tr></table></figure></p>
+<p><strong>页面加载完毕提示“Load Success”,不同于onload事件，onload需要页面内容加载完毕（图片等），而ready只要页面html代码下载完毕即触发。与$(fn)等价</strong></p>
+<p>（3）toggle(evenFn,oddFn): 每次点击时切换要调用的函数。如果点击了一个匹配的元素，则触发指定的第一个函数，当再次点击同一元素时，则触发指定的第二个函数。随后的每次点击都重复对这两个函数的轮番调用。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">//每次点击时轮换添加和删除名为selected的class。</div><div class="line">$(&quot;p&quot;).toggle(function()&#123; </div><div class="line">     $(this).addClass(&quot;selected&quot;); </div><div class="line">&#125;,function()&#123; </div><div class="line">     $(this).removeClass(&quot;selected&quot;); </div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>（4）trigger(eventtype): 在每一个匹配的元素上触发某类事件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(&quot;p&quot;).trigger(&quot;click&quot;); //触发所有p元素的click事件</div></pre></td></tr></table></figure></p>
+<p>（5）bind(eventtype,fn)，unbind(eventtype): 事件的绑定与反绑定<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$(&quot;p&quot;).bind(&quot;click&quot;, function()&#123;alert($(this).text());&#125;); //为每个p元素添加单击事件 </div><div class="line"></div><div class="line">$(&quot;p&quot;).unbind(); //删除所有p元素上的所有事件 </div><div class="line"></div><div class="line">$(&quot;p&quot;).unbind(&quot;click&quot;) //删除所有p元素上的单击事件</div></pre></td></tr></table></figure></p>
+<blockquote>
+<ol>
+<li>几个实用特效功能 </li>
+</ol>
+</blockquote>
+<p>其中toggle()和slidetoggle()方法提供了状态切换功能。 </p>
+<p>如toggle()方法包括了hide()和show()方法。 </p>
+<p>slideToggle()方法包括了slideDown()和slideUp方法。</p>
+<blockquote>
+<ol>
+<li>几个有用的jQuery方法 </li>
+</ol>
+</blockquote>
+<ul>
+<li>$.browser.浏览器类型：检测浏览器类型。有效参数：safari, opera, msie,mozilla。如检测是否ie：$.browser.isie，是ie浏览器则返回true。 </li>
+<li>$.each(obj, fn)：通用的迭代函数。可用于近似地迭代对象和数组（代替循环）。 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$.each( [0,1,2], function(i, n)&#123; alert( &quot;Item #&quot; + i + &quot;: &quot; + n ); &#125;);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>等价于：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var tempArr=[0,1,2]; </div><div class="line">for(var i=0;i&lt;tempArr.length;i++)&#123; </div><div class="line">    alert(&quot;Item #&quot;+i+&quot;: &quot;+tempArr[i]); </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>也可以处理json数据，如<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$.each( &#123; name: &quot;John&quot;, lang: &quot;JS&quot; &#125;, function(i, n)&#123; alert( &quot;Name: &quot; + i + &quot;, Value: &quot; + n ); &#125;);</div><div class="line">结果：</div><div class="line">//Name:name, Value:John </div><div class="line">//Name:lang, Value:JS</div></pre></td></tr></table></figure></p>
+<p>$.extend(target,prop1,propN)：用一个或多个其他对象来扩展一个对象，返回这个被扩展的对象。这是jquery实现的继承方式。 </p>
+<p>如： </p>
+<p>$.extend(settings, options);<br>//合并settings和options，并将合并结果返回settings中，相当于options继承setting并将继承结果保存在setting中。 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var settings = $.extend(&#123;&#125;, defaults, options);</div></pre></td></tr></table></figure>
+<p>合并defaults和options，并将合并结果返回到setting中而不覆盖default内容。 </p>
+<p>可以有多个参数（合并多项并返回） </p>
+<p>$.map(array, fn)：数组映射。把一个数组中的项目(处理转换后)保存到到另一个新数组中，并返回生成的新数组。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var tempArr=$.map( [0,1,2], function(i)&#123; return i + 4; &#125;);</div></pre></td></tr></table></figure></p>
+<p>tempArr内容为：[4,5,6] </p>
+<p>var tempArr=$.map( [0,1,2], function(i){ return i &gt; 0 ? i + 1 : null; });<br>tempArr内容为：[2,3] </p>
+<p>$.merge(arr1,arr2):合并两个数组并删除其中重复的项目。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$.merge( [0,1,2], [2,3,4] ) //返回[0,1,2,3,4]</div></pre></td></tr></table></figure></p>
+<p>$.trim(str)：删除字符串两端的空白字符。 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$.trim(&quot; hello, how are you? &quot;); //返回&quot;hello,how are you? &quot;</div></pre></td></tr></table></figure>
+<blockquote>
+<ol>
+<li>解决自定义方法或其他类库与jQuery的冲突 </li>
+</ol>
+</blockquote>
+<p>很多时候我们自己定义了$(id)方法来获取一个元素，或者其他的一些js类库如prototype也都定义了$方法，如果同时把这些内容放在一起就会引起变量方法定义冲突，Jquery对此专门提供了方法用于解决此问题。 </p>
+<p>使用jquery中的jQuery.noConflict();方法即可把变量$的控制权让渡给第一个实现它的那个库或之前自定义的$方法。之后应用Jquery的时候只要将所有的$换成jQuery即可，如原来引用对象方法$(“#msg”)改为jQuery(“#msg”)。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">jQuery.noConflict(); </div><div class="line">// 开始使用jQuery </div><div class="line">jQuery(&quot;div p&quot;).hide(); </div><div class="line">// 使用其他库的 $() </div><div class="line">$(&quot;content&quot;).style.display = &apos;none&apos;;</div></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;ajax请求&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;
+    
+    </summary>
+    
+      <category term="jQuery" scheme="http://yoursite.com/categories/jQuery/"/>
+    
+    
+      <category term="jQuery" scheme="http://yoursite.com/tags/jQuery/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JQuery remove()、empty()、detach()、等方法</title>
+    <link href="http://yoursite.com/2017/10/10/JQuery%20remove()%E3%80%81empty()%E3%80%81detach()%E3%80%81%E7%AD%89%E6%96%B9%E6%B3%95/"/>
+    <id>http://yoursite.com/2017/10/10/JQuery remove()、empty()、detach()、等方法/</id>
+    <published>2017-10-10T12:41:24.815Z</published>
+    <updated>2017-10-10T09:16:10.000Z</updated>
+    
+    <content type="html"><![CDATA[<h6 id="之前一直对这几个方法有点搞不清，所以总结一下，帮助自己记忆，加深一下印象！"><a href="#之前一直对这几个方法有点搞不清，所以总结一下，帮助自己记忆，加深一下印象！" class="headerlink" title="之前一直对这几个方法有点搞不清，所以总结一下，帮助自己记忆，加深一下印象！"></a>之前一直对这几个方法有点搞不清，所以总结一下，帮助自己记忆，加深一下印象！</h6><p>**1. jQuery的 <figure class="highlight plain"><figcaption><span>方法**</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt; ```remove()``` 方法会移除被选元素，包括所有的文本和子节点； 同时**被选元素的数据和事件也会被移除**。</div><div class="line"></div><div class="line">演示：</div></pre></td></tr></table></figure></p>
+<!--导入jQuery-->
+<script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"> 
+
+<p><script><br>$(document).ready(function(){<br>    $(“button”).click(function(){<br>        $(“p”).remove();<br>    });<br>});<br></script><br><p></p>
+<body>
+
+<p></p><p>我是要被移除的p元素！</p><p></p>
+<p></p><h3>我是没有被移除的H3！</h3><p></p>
+<button>移除所有P元素</button>
+
+<p></p></body><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">演示结果：</div><div class="line"></div><div class="line">![image](http://img2.ph.126.net/5OZZpH_J7IjsMregRRaAnw==/6631861613095249223.gif)</div><div class="line"></div><div class="line"></div><div class="line">**2.detach()方法**</div><div class="line"></div><div class="line">&gt; ```detach() ```方法移除被选元素，包括所有的文本和子节点。然后它会保留数据和事件。</div><div class="line">该方法会保留移除元素的副本，允许它们在以后被重新插入。</div><div class="line"></div><div class="line"></div><div class="line">**3.empty()方法**</div><div class="line"></div><div class="line">&gt; empty() 方法从被选元素所有子节点和内容。</div><div class="line">注意：该方法不会移除元素本身，或它的属性。</div><div class="line"></div><div class="line">演示：</div></pre></td></tr></table></figure><p></p>
+<p><script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"><br></script></p>
+<p><script><br>$(document).ready(function(){<br>    $(“button”).click(function(){<br>        $(“div”).empty();<br>    });<br>});<br></script><br></p>
+<body>
+
+<p><div style="height:100px;background-color:yellow"><br>这是一些文本。</div></p>
+<p></p><p>这是div块中的一个段落。</p><br><p></p>
+<p></p><p>这是div块外部的一个段落。</p><p></p>
+<button>移除div块中的内容</button>
+
+<p></p></body><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">演示结果：</div><div class="line"></div><div class="line">![image](http://img1.ph.126.net/ClsJkB_apS6pO7f5Y8Ttkw==/6632047430560343854.gif)</div><div class="line"></div><div class="line"></div><div class="line">**4.remove()和detach()d的区别**</div><div class="line"></div><div class="line">&gt; 相同点：都能保存被删除的元素</div><div class="line">&gt; 不同点：remove()连事件和数据都删除，detach()保留数据和事件，还能恢复；</div><div class="line"></div><div class="line">演示：</div></pre></td></tr></table></figure><p></p>
+<p><script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"><br></script></p>
+<p><script><br>$(document).ready(function(){<br>    $(“#btn1”).click(function(){<br>        $(“body”).append($(“#p1”).detach());<br>    });<br>    $(“#btn2”).click(function(){<br>        $(“body”).append($(“#p2”).remove());<br>    });<br>    $(“p”).click(function(){<br>        $(this).animate({fontSize:”+=1px”})； //每次点击之后让字体大写增加1PX<br>    });<br>});<br></script><br></p>
+<body>
+
+<p></p><p id="p1"> detach()移除后点击这一段——它保留单击事件。</p><p></p>
+<p></p><p id="p2"> remove()移除后点击这一段——它不保留单击事件。</p><p></p>
+<button id="btn1">Detach方法移除并插入P元素</button><br><button id="btn2">Remove方法移除并插入P元素</button>
+
+<p></p></body><br>```<p></p>
+<p>演示结果：</p>
+<p><img src="http://img2.ph.126.net/fCJGccLOEfliP6aSSI-BTQ==/6631881404304551249.gif" alt="image"></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h6 id=&quot;之前一直对这几个方法有点搞不清，所以总结一下，帮助自己记忆，加深一下印象！&quot;&gt;&lt;a href=&quot;#之前一直对这几个方法有点搞不清，所以总结一下，帮助自己记忆，加深一下印象！&quot; class=&quot;headerlink&quot; title=&quot;之前一直对这几个方法有点搞不清，所以
+    
+    </summary>
+    
+      <category term="jQuery" scheme="http://yoursite.com/categories/jQuery/"/>
+    
+    
+      <category term="jQuery" scheme="http://yoursite.com/tags/jQuery/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>iOS 出现页面不能跳转的问题</title>
+    <link href="http://yoursite.com/2017/10/10/iOS%20%E5%87%BA%E7%8E%B0%E9%A1%B5%E9%9D%A2%E4%B8%8D%E8%83%BD%E8%B7%B3%E8%BD%AC%E7%9A%84%E9%97%AE%E9%A2%98/"/>
+    <id>http://yoursite.com/2017/10/10/iOS 出现页面不能跳转的问题/</id>
+    <published>2017-10-10T12:41:24.789Z</published>
+    <updated>2017-10-10T09:03:56.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近项目要上新版本，各项功能都完善了。高兴的屁颠屁颠的要去上线呢，然后打包，上传，离线资源升级一气呵成。突然销售人员过来报告，iOS 10版本出问题了。这几天被这个bug搞得头大；</p>
+<p>该问题在安卓上不会出现，就在iOS 上不正常；各种测试，各种搜索都无济于事，最后没办法，开大招，我知道是哪个页面的问题，之后就用“注释大法”，一行一行的测试代码，最后发现问题了；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var oldback = mui.back();</div><div class="line">	mui.back = function()&#123;</div><div class="line">		return false;</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+<p>这段代码加到页面中，在iOS 设备上面，就会导致页面<code>mui.openWindow()</code>打开不了新页面； 在此记录一下，被这个坑折腾死了！！！</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近项目要上新版本，各项功能都完善了。高兴的屁颠屁颠的要去上线呢，然后打包，上传，离线资源升级一气呵成。突然销售人员过来报告，iOS 10版本出问题了。这几天被这个bug搞得头大；&lt;/p&gt;
+&lt;p&gt;该问题在安卓上不会出现，就在iOS 上不正常；各种测试，各种搜索都无济于事，最
+    
+    </summary>
+    
+      <category term="MUI" scheme="http://yoursite.com/categories/MUI/"/>
+    
+    
+      <category term="MUI" scheme="http://yoursite.com/tags/MUI/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>evalJS跨webview回传参或执行方法</title>
+    <link href="http://yoursite.com/2017/10/10/evalJS%E8%B7%A8webview%E5%9B%9E%E4%BC%A0%E5%8F%82%E6%88%96%E6%89%A7%E8%A1%8C%E6%96%B9%E6%B3%95/"/>
+    <id>http://yoursite.com/2017/10/10/evalJS跨webview回传参或执行方法/</id>
+    <published>2017-10-10T12:41:24.780Z</published>
+    <updated>2017-10-10T09:02:04.000Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="http://img.blog.csdn.net/20160226104502919?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="image"></p>
+<p><img src="http://img.blog.csdn.net/20160226104515395?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="image"></p>
+<p><img src="http://img.blog.csdn.net/20160226104538645?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="image"></p>
+<p>A页面写一个接受参数的方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function showAG(ag)&#123;  </div><div class="line">            document.getElementById(&quot;pa&quot;).innerHTML=ag;  </div><div class="line">        &#125;</div></pre></td></tr></table></figure></p>
+<p>B页面中按钮点击事件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">function rtnAg()&#123;  </div><div class="line">            var wvB=plus.webview.currentWebview();          //获取当前窗口的WebviewObject对象，即B  </div><div class="line">            var wvA=wvB.opener();                           //获取当前窗口的创建者，即A  </div><div class="line">            wvA.evalJS(&quot;showAG(&apos;&quot;+document.getElementById(&quot;pb&quot;).innerHTML+&quot;&apos;)&quot;);        //执行父窗口中的方法  A中的showAG方法  </div><div class="line">            wvB.close();                        //关闭B  </div><div class="line">        &#125;</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;http://img.blog.csdn.net/20160226104502919?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQk
+    
+    </summary>
+    
+      <category term="MUI" scheme="http://yoursite.com/categories/MUI/"/>
+    
+    
+      <category term="MUI" scheme="http://yoursite.com/tags/MUI/"/>
+    
+  </entry>
   
   <entry>
     <title>localStorage存储JSON对象</title>
@@ -608,402 +1074,6 @@
     
     
       <category term="APICould" scheme="http://yoursite.com/tags/APICould/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>移动端下，隐藏系统键盘的方法</title>
-    <link href="http://yoursite.com/2017/10/10/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E4%B8%8B%E9%9A%90%E8%97%8F%E7%B3%BB%E7%BB%9F%E9%94%AE%E7%9B%98%E7%9A%84%E6%96%B9%E6%B3%95/"/>
-    <id>http://yoursite.com/2017/10/10/移动端下隐藏系统键盘的方法/</id>
-    <published>2017-10-09T16:22:27.388Z</published>
-    <updated>2017-10-09T15:39:17.106Z</updated>
-    
-    <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var hideKeyboard = function() &#123;</div><div class="line">    document.activeElement.blur();</div><div class="line">    $(&quot;input&quot;).blur();</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">document.addEventListener(&apos;touchend&apos;, function()&#123;</div><div class="line">	$(&apos;textarea&apos;).blur();</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<p>在<code>document</code>上监听触摸事件，然后让<code>textarea</code>失去焦点即可！</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/di
-    
-    </summary>
-    
-      <category term="APICould" scheme="http://yoursite.com/categories/APICould/"/>
-    
-    
-      <category term="APICould" scheme="http://yoursite.com/tags/APICould/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>移动端一像素边框解决办法之一</title>
-    <link href="http://yoursite.com/2017/10/10/%E7%A7%BB%E5%8A%A8%E7%AB%AF1PX%E8%BE%B9%E6%A1%86%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
-    <id>http://yoursite.com/2017/10/10/移动端1PX边框解决方案/</id>
-    <published>2017-10-09T16:22:27.381Z</published>
-    <updated>2017-10-09T15:40:51.216Z</updated>
-    
-    <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">#item1mobile .mui-input-group:after &#123;</div><div class="line">	content: &quot; &quot;;</div><div class="line">  display: block;</div><div class="line">  width: 100%;</div><div class="line">  height: 100%;</div><div class="line">  position: absolute;</div><div class="line">  left: 0;</div><div class="line">  top: 0;</div><div class="line">  border: 1px solid #c8c7cc;</div><div class="line">	border-bottom: none;</div><div class="line">	border-radius: 4px;</div><div class="line">	background-color: transparent;</div><div class="line">&#125;</div><div class="line">@media screen and (-webkit-min-device-pixel-ratio : 2) &#123;</div><div class="line">	#item1mobile .mui-input-group:after &#123;</div><div class="line">		width: 200%;</div><div class="line">    height: 200%;</div><div class="line">    -webkit-transform-origin: 0 0;</div><div class="line">    transform-origin: 0 0;</div><div class="line">    -webkit-transform: scale(0.5);</div><div class="line">    transform: scale(0.5);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">@media screen and (-webkit-min-device-pixel-ratio : 3) &#123;</div><div class="line">	#item1mobile .mui-input-group:after &#123;</div><div class="line">		width: 200%;</div><div class="line">    height: 200%;</div><div class="line">    -webkit-transform-origin: 0 0;</div><div class="line">    transform-origin: 0 0;</div><div class="line">    -webkit-transform: scale(0.5);</div><div class="line">    transform: scale(0.5);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/di
-    
-    </summary>
-    
-      <category term="APICould" scheme="http://yoursite.com/categories/APICould/"/>
-    
-    
-      <category term="APICould" scheme="http://yoursite.com/tags/APICould/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>让浮动元素的父元素拥有高度</title>
-    <link href="http://yoursite.com/2017/10/10/%E8%AE%A9%E6%B5%AE%E5%8A%A8%E5%85%83%E7%B4%A0%E7%9A%84%E7%88%B6%E5%85%83%E7%B4%A0%E6%8B%A5%E6%9C%89%E9%AB%98%E5%BA%A6/"/>
-    <id>http://yoursite.com/2017/10/10/让浮动元素的父元素拥有高度/</id>
-    <published>2017-10-09T16:22:27.374Z</published>
-    <updated>2017-10-09T16:02:38.632Z</updated>
-    
-    <content type="html"><![CDATA[<ol>
-<li>在浮动元素后加个div设置：clear：both;height:0; overflow:hidden;</li>
-<li><p>使用clearfix;</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">.clearfix::after &#123;</div><div class="line">    content:&quot;&quot;;</div><div class="line">    display:block;</div><div class="line">    height:0;</div><div class="line">    clear:both;</div><div class="line">&#125;</div><div class="line">.clearfix &#123;</div><div class="line">    zoom:1;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>设置父元素浮动；</p>
-</li>
-</ol>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;ol&gt;
-&lt;li&gt;在浮动元素后加个div设置：clear：both;height:0; overflow:hidden;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;使用clearfix;&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td clas
-    
-    </summary>
-    
-      <category term="CSS知识" scheme="http://yoursite.com/categories/CSS%E7%9F%A5%E8%AF%86/"/>
-    
-    
-      <category term="CSS" scheme="http://yoursite.com/tags/CSS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>清除inline-block元素间距的方法</title>
-    <link href="http://yoursite.com/2017/10/10/%E6%B8%85%E9%99%A4inline-block%E5%85%83%E7%B4%A0%E9%97%B4%E8%B7%9D%E7%9A%84%E6%96%B9%E6%B3%95/"/>
-    <id>http://yoursite.com/2017/10/10/清除inline-block元素间距的方法/</id>
-    <published>2017-10-09T16:22:27.364Z</published>
-    <updated>2017-10-09T16:00:46.216Z</updated>
-    
-    <content type="html"><![CDATA[<ol>
-<li>移除空格</li>
-<li>使用margin负值</li>
-<li>让闭合标签吃胶囊</li>
-<li>父元素使用font-size:0</li>
-<li>使用letter-spacing</li>
-<li>使用word-spacing</li>
-</ol>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;ol&gt;
-&lt;li&gt;移除空格&lt;/li&gt;
-&lt;li&gt;使用margin负值&lt;/li&gt;
-&lt;li&gt;让闭合标签吃胶囊&lt;/li&gt;
-&lt;li&gt;父元素使用font-size:0&lt;/li&gt;
-&lt;li&gt;使用letter-spacing&lt;/li&gt;
-&lt;li&gt;使用word-spacing&lt;/li&gt;
-&lt;/ol&gt;
-
-    
-    </summary>
-    
-      <category term="CSS知识" scheme="http://yoursite.com/categories/CSS%E7%9F%A5%E8%AF%86/"/>
-    
-    
-      <category term="CSS" scheme="http://yoursite.com/tags/CSS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>关于定时器的this指向问题</title>
-    <link href="http://yoursite.com/2017/10/10/%E5%85%B3%E4%BA%8E%E5%AE%9A%E6%97%B6%E5%99%A8%E7%9A%84this%E6%8C%87%E5%90%91%E9%97%AE%E9%A2%98/"/>
-    <id>http://yoursite.com/2017/10/10/关于定时器的this指向问题/</id>
-    <published>2017-10-09T16:22:27.332Z</published>
-    <updated>2017-10-09T16:17:13.416Z</updated>
-    
-    <content type="html"><![CDATA[<p>使用js中的定时器（setInterval，setTimeout），很容易会遇到this指向的问题。</p>
-<p>直接上例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"> 1 var name = &apos;my name is window&apos;;</div><div class="line"> 2 var obj = &#123;</div><div class="line"> 3     name: &apos;my name is obj&apos;,</div><div class="line"> 4     fn: function () &#123;</div><div class="line"> 5         var timer = null;</div><div class="line"> 6         clearInterval(timer);</div><div class="line"> 7         timer = setInterval(function () &#123;</div><div class="line"> 8             console.log(this.name);  //my name is window</div><div class="line"> 9         &#125;, 1000)</div><div class="line">10     &#125;</div><div class="line">11 &#125;</div></pre></td></tr></table></figure>
-<p>在这里，从this.name可以看出this的指向是window。</p>
-<p>如果没有特殊指向，setInterval和setTimeout的回调函数中this的指向都是window。这是因为JS的定时器方法是定义在window下的。但是平时很多场景下，都需要修改this的指向。这里总结了几种：</p>
-<p>1、最常用的方法：在外部函数中将this存为一个变量，回调函数中使用该变量，而不是直接使用this。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"> 1 var name = &apos;my name is window&apos;;</div><div class="line"> 2 var obj = &#123;</div><div class="line"> 3     name: &apos;my name is obj&apos;,</div><div class="line"> 4     fn: function () &#123;</div><div class="line"> 5         var that = this;</div><div class="line"> 6         var timer = null;</div><div class="line"> 7         clearInterval(timer);</div><div class="line"> 8         timer = setInterval(function () &#123;</div><div class="line"> 9             console.log(that.name);   //my name is obj</div><div class="line">10         &#125;, 1000)</div><div class="line">11     &#125;</div><div class="line">12 &#125;</div></pre></td></tr></table></figure>
-<p>在fn中加了var that = this; 回调函数中使用that代替this即可。这种方法最常见，使用也最广泛。</p>
-<p>2、使用bind()方法（bind()为ES5的标准，低版本IE下有兼容问题，可以引入es5-shim.js解决）</p>
-<p>bind()的作用类似call和apply，都是修改this指向。但是call和apply是修改this指向后函数会立即执行，而bind则是返回一个新的函数，它会创建一个与原来函数主体相同的新函数，新函数中的this指向传入的对象。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"> 1 var name = &apos;my name is window&apos;;</div><div class="line"> 2 var obj = &#123;</div><div class="line"> 3     name: &apos;my name is obj&apos;,</div><div class="line"> 4     fn: function () &#123;</div><div class="line"> 5         var timer = null;</div><div class="line"> 6         clearInterval(timer);</div><div class="line"> 7         timer = setInterval(function () &#123;</div><div class="line"> 8             console.log(this.name);   //my name is obj</div><div class="line"> 9         &#125;.bind(this), 1000)</div><div class="line">10     &#125;</div><div class="line">11 &#125;</div></pre></td></tr></table></figure>
-<p>在这里为什么不能用call和apply，是因为call和apply不是返回函数，而是立即执行函数，那么，就失去了定时器的作用。</p>
-<p>3、使用es6的箭头函数：箭头函数的最大作用就是this指向。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"> 1 var name = &apos;my name is window&apos;;</div><div class="line"> 2 var obj = &#123;</div><div class="line"> 3     name: &apos;my name is obj&apos;,</div><div class="line"> 4     fn: function () &#123;</div><div class="line"> 5         var timer = null;</div><div class="line"> 6         clearInterval(timer);</div><div class="line"> 7         timer = setInterval(() =&gt; &#123;</div><div class="line"> 8             console.log(this.name);  //my name is obj</div><div class="line"> 9         &#125;, 1000)</div><div class="line">10     &#125;</div><div class="line">11 &#125;</div></pre></td></tr></table></figure>
-<p>箭头函数没有自己的this，它的this继承自外部函数的作用域。所以，在该例中，定时器回调函数中的this，是继承了fn的this。当然箭头函数也有兼容问题，要是兼容低版本ie，需要使用babel编译，并且引入es5-shim.js才可以。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;使用js中的定时器（setInterval，setTimeout），很容易会遇到this指向的问题。&lt;/p&gt;
-&lt;p&gt;直接上例子：&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;
-    
-    </summary>
-    
-      <category term="JavaScript知识" scheme="http://yoursite.com/categories/JavaScript%E7%9F%A5%E8%AF%86/"/>
-    
-    
-      <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>绑定事件的问题</title>
-    <link href="http://yoursite.com/2017/10/10/%E7%BB%91%E5%AE%9A%E4%BA%8B%E4%BB%B6%E7%9A%84%E9%97%AE%E9%A2%98/"/>
-    <id>http://yoursite.com/2017/10/10/绑定事件的问题/</id>
-    <published>2017-10-09T16:22:27.219Z</published>
-    <updated>2017-10-09T16:19:57.781Z</updated>
-    
-    <content type="html"><![CDATA[<p>今天项目中遇到动态生成元素，并且给元素添加点击事件的情况；</p>
-<p>我想都没想就直接在动态生成的标签上直接加 onclick 属性，没想到点击确没有用；</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html lang=&quot;en&quot;&gt;</div><div class="line">&lt;head&gt;</div><div class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</div><div class="line">    &lt;title&gt;demo&lt;/title&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">&lt;div id=&quot;demo&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;script&gt;</div><div class="line">    window.onload = function () &#123;</div><div class="line">        var html = &apos;&lt;button onclick=&quot;click();&quot;&gt;点击&lt;/button&gt;&apos;;</div><div class="line">        document.getElementById(&quot;demo&quot;).innerHTML = html;</div><div class="line">        document.getElementsByTagName(&apos;button&apos;)[0].onclick = function () &#123;</div><div class="line">            alert(&quot;我是后绑定的。&quot;);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    function click() &#123;</div><div class="line">        alert(&apos;点击&apos;);</div><div class="line">    &#125;</div><div class="line">&lt;/script&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
-<p>后来查证，需要添加之后再获取元素然后给他添加事件才能生效；</p>
-<p>这个使用jQuery的 on 绑定事件也能解决，动态添加的标签元素会自动绑定事件。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;今天项目中遇到动态生成元素，并且给元素添加点击事件的情况；&lt;/p&gt;
-&lt;p&gt;我想都没想就直接在动态生成的标签上直接加 onclick 属性，没想到点击确没有用；&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=
-    
-    </summary>
-    
-      <category term="JavaScript知识" scheme="http://yoursite.com/categories/JavaScript%E7%9F%A5%E8%AF%86/"/>
-    
-    
-      <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Vue中key使用场景</title>
-    <link href="http://yoursite.com/2017/10/09/Vue%E4%B8%ADkey%E4%BD%BF%E7%94%A8%E7%9A%84%E4%B8%80%E4%B8%AA%E5%B0%8F%E5%9C%BA%E6%99%AF/"/>
-    <id>http://yoursite.com/2017/10/09/Vue中key使用的一个小场景/</id>
-    <published>2017-10-09T15:14:23.165Z</published>
-    <updated>2017-10-09T15:14:14.557Z</updated>
-    
-    <content type="html"><![CDATA[<h4 id="今天写项目的时候发现的一个问题，在写路由的时候用v-for来渲染。"><a href="#今天写项目的时候发现的一个问题，在写路由的时候用v-for来渲染。" class="headerlink" title="今天写项目的时候发现的一个问题，在写路由的时候用v-for来渲染。"></a>今天写项目的时候发现的一个问题，在写路由的时候用<code>v-for</code>来渲染。</h4><p><img src="http://upload-images.jianshu.io/upload_images/3152923-7a65f3d9dd273fd9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="代码片段"></p>
-<p>突然出现红色的波浪线，然后我忽视它，直接<code>npm run dev</code> ，一顿操作之后，终端爆出一个警告：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">(Emitted value instead of an instance of Error) &lt;router-link v-for=&quot;item in products&quot;&gt;: component lists rendered with v-for should have explicit keys. See https://vuejs.org/guide/l</div><div class="line">ist.html#key for more info.</div></pre></td></tr></table></figure>
-<p>网上各种搜索之后，发现问题的原因：</p>
-<blockquote>
-<p>为了给 Vue 一个提示，以便它能跟踪每个节点的身份，从而重用和重新排序现有元素，你需要为每项提供一个唯一 key 属性。理想的 key 值是每项都有唯一 id。这个特殊的属性相当于 Vue 1.x 的 track-by ，但它的工作方式类似于一个属性，所以你需要用 v-bind 来绑定动态值.建议尽可能使用 v-for 来提供 key ，除非迭代 DOM 内容足够简单，或者你是故意要依赖于默认行为来获得性能提升。因为它是 Vue 识别节点的一个通用机制， key 并不特别与 v-for 关联，key 还具有其他用途，我们将在后面的指南中看到其他用途。</p>
-</blockquote>
-<p><strong>这是因为我们用v-for的时候   在vue组件上面使用的   这个时候  我们需要给它加上 :key=“xxx” </strong></p>
-<p>一个独一无二的表示来表示它的唯一性</p>
-<p><code>&lt;router-link v-for=&quot;n in 100&quot; :key=&quot;n&quot;&gt;&lt;/router-link&gt;</code></p>
-<p>这样子就不会报警告了。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h4 id=&quot;今天写项目的时候发现的一个问题，在写路由的时候用v-for来渲染。&quot;&gt;&lt;a href=&quot;#今天写项目的时候发现的一个问题，在写路由的时候用v-for来渲染。&quot; class=&quot;headerlink&quot; title=&quot;今天写项目的时候发现的一个问题，在写路由的时候用v-
-    
-    </summary>
-    
-      <category term="Vue.js" scheme="http://yoursite.com/categories/Vue-js/"/>
-    
-    
-      <category term="vue" scheme="http://yoursite.com/tags/vue/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Sass学习2</title>
-    <link href="http://yoursite.com/2017/10/09/Sass%E5%AD%A6%E4%B9%A0%E6%9F%A5%E7%BC%BA%E8%A1%A5%E6%BC%8F/"/>
-    <id>http://yoursite.com/2017/10/09/Sass学习查缺补漏/</id>
-    <published>2017-10-09T15:13:03.906Z</published>
-    <updated>2017-10-09T15:12:46.071Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="混合宏–多参数-单参数类似，还可以给参数指定默认值，当不传参数的时候会调用默认值。"><a href="#混合宏–多参数-单参数类似，还可以给参数指定默认值，当不传参数的时候会调用默认值。" class="headerlink" title="混合宏–多参数(单参数类似，还可以给参数指定默认值，当不传参数的时候会调用默认值。)"></a>混合宏–多参数(单参数类似，还可以给参数指定默认值，当不传参数的时候会调用默认值。)</h2><p>Sass混合宏传多个参数的使用方法，例如：一个垂直居中的例子</p>
-<ul>
-<li>HTML 代码</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div class=&quot;box&quot;&gt;</div><div class="line">	&lt;div class=&quot;center&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
-<ul>
-<li>Scss 代码</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">@mixin box-wrapper($width,$height) &#123;</div><div class="line">	width: $width;</div><div class="line">	height: $height;</div><div class="line">	background: gray;</div><div class="line">	margin: 50px auto;</div><div class="line">	position: relative;</div><div class="line">&#125;</div><div class="line">.box &#123;</div><div class="line">	@include box-wrapper(500px,500px);</div><div class="line">&#125;</div><div class="line">@mixin center($width,$height) &#123;</div><div class="line">	width: $width;</div><div class="line">	height: $height;</div><div class="line">	position: absolute;</div><div class="line">	top: 50%;</div><div class="line">	left: 50%;</div><div class="line">	background: red;</div><div class="line">	margin: &#123;</div><div class="line">		top: -($height) / 2;</div><div class="line">		left: -($width) / 2;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">.center &#123;</div><div class="line">	@include center(200px,200px);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>上面的Scss代码中，我创建了一个<code>box-wrapper</code> ，还有一个<code>center</code>的混合宏，并传递了宽高两个参数。</p>
-<ul>
-<li>编译后的CSS</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">.box &#123;</div><div class="line">  width: 500px;</div><div class="line">  height: 500px;</div><div class="line">  background: gray;</div><div class="line">  margin: 50px auto;</div><div class="line">  position: relative; &#125;</div><div class="line"></div><div class="line">.center &#123;</div><div class="line">  width: 200px;</div><div class="line">  height: 200px;</div><div class="line">  position: absolute;</div><div class="line">  top: 50%;</div><div class="line">  left: 50%;</div><div class="line">  background: red;</div><div class="line">  margin-top: -100px;</div><div class="line">  margin-left: -100px; &#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>浏览器运行结果</li>
-</ul>
-<p><img src="http://upload-images.jianshu.io/upload_images/3152923-69f845b550393181.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="垂直居中"></p>
-<p>从这个例子可以看出Sass代码的优势，当后面的页面中还需要垂直居中的样式，就可以直接给<strong>父元素盒子</strong>添加<code>@include box-wrapper(width,height);</code>,要<strong>垂直居中的盒子</strong>添加<code>@include center(width,height);</code>。这就好比写一个模板，等到需要使用的时候把模板套上去就好了，效率很高。</p>
-<h2 id="Sass继承-扩展"><a href="#Sass继承-扩展" class="headerlink" title="Sass继承/扩展"></a>Sass继承/扩展</h2><p>在Sass中的继承是通过<code>@extend</code>关键字来做到的；<br>例如： </p>
-<ul>
-<li>Scss</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">.btn &#123;</div><div class="line">	border: 1px solid #ccc;</div><div class="line">	padding: 6px 10px;</div><div class="line">	font-size: 14px;</div><div class="line">&#125;</div><div class="line">button &#123;</div><div class="line">	width: 500px;</div><div class="line">&#125;</div><div class="line">.btn-primary &#123;</div><div class="line">	background-color: #f36;</div><div class="line">	color: #fff;</div><div class="line">	@extend .btn;</div><div class="line">	@extend button;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>编译后的CSS</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">/*在 Sass 中的继承，可以继承类样式块中所有样式代码，</div><div class="line">而且编译出来的 CSS 会将选择器合并在一起，形成组合选择器*/</div><div class="line">.btn, .btn-primary &#123;</div><div class="line">  border: 1px solid #ccc;</div><div class="line">  padding: 6px 10px;</div><div class="line">  font-size: 14px; &#125;</div><div class="line"></div><div class="line">button, .btn-primary &#123;</div><div class="line">  width: 500px; &#125;</div><div class="line"></div><div class="line">.btn-primary &#123;</div><div class="line">  background-color: #f36;</div><div class="line">  color: #fff; &#125;</div></pre></td></tr></table></figure>
-<h2 id="占位符-placeholder"><a href="#占位符-placeholder" class="headerlink" title="占位符 %placeholder"></a>占位符 %placeholder</h2><p><code>%placeholder</code>声明的代码，如果不被 <code>@extend</code> 调用的话，不会产生任何代码，<strong>编译出来的代码会将相同的代码合并在一起。</strong>有效的解决代码冗余的问题。</p>
-<p>例如：</p>
-<ul>
-<li>Scss </li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">%mt5 &#123;</div><div class="line">  margin-top: 5px;</div><div class="line">&#125;</div><div class="line">%pt5&#123;</div><div class="line">  padding-top: 5px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.btn &#123;</div><div class="line">  @extend %mt5;</div><div class="line">  @extend %pt5;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.block &#123;</div><div class="line">  @extend %mt5;</div><div class="line"></div><div class="line">  span &#123;</div><div class="line">    @extend %pt5;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>编译后的CSS</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">.btn, .block &#123;</div><div class="line">  margin-top: 5px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.btn, .block span &#123;</div><div class="line">  padding-top: 5px;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="混合宏-VS-继承-VS-占位符"><a href="#混合宏-VS-继承-VS-占位符" class="headerlink" title="混合宏 VS 继承 VS 占位符"></a>混合宏 VS 继承 VS 占位符</h2><p>具体参考<a href="http://www.imooc.com/code/7041" target="_blank" rel="external">慕课网</a></p>
-<p> <img src="http://img.mukewang.com/55263aa30001913307940364.jpg" alt="三种方式选择的对比"></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;混合宏–多参数-单参数类似，还可以给参数指定默认值，当不传参数的时候会调用默认值。&quot;&gt;&lt;a href=&quot;#混合宏–多参数-单参数类似，还可以给参数指定默认值，当不传参数的时候会调用默认值。&quot; class=&quot;headerlink&quot; title=&quot;混合宏–多参数(单参
-    
-    </summary>
-    
-      <category term="CSS预编译器" scheme="http://yoursite.com/categories/CSS%E9%A2%84%E7%BC%96%E8%AF%91%E5%99%A8/"/>
-    
-    
-      <category term="CSS" scheme="http://yoursite.com/tags/CSS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Sass学习1</title>
-    <link href="http://yoursite.com/2017/10/09/Sass%E8%BF%9B%E9%98%B6%E7%AF%87---%E4%B9%8B%E4%B8%80/"/>
-    <id>http://yoursite.com/2017/10/09/Sass进阶篇---之一/</id>
-    <published>2017-10-09T15:13:03.902Z</published>
-    <updated>2017-10-09T15:12:37.841Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="if指令"><a href="#if指令" class="headerlink" title="@if指令"></a>@if指令</h3><p>@if 是一个SassScript，它可以根据条件来处理样式块，如果为true返回一个样式块，反之false返回另外一个样式块。在 Sass 中除了 @if 之，还可以配合 @else if 和 @else 一起使用。<br>例如：控制一个元素显示或隐藏</p>
-<ul>
-<li>Scss</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">@mixin blockOrHidden($boolean: true) &#123;</div><div class="line">  @if $boolean &#123;</div><div class="line">    display: block;</div><div class="line">  &#125;</div><div class="line">  @else &#123;</div><div class="line">    display: none;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">.block &#123;</div><div class="line">  @include blockOrHidden;</div><div class="line">&#125; </div><div class="line">.hidden &#123;</div><div class="line">  @include blockOrHidden(false); </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>用Sass定义一个混合宏，并且默认参数为true，在这个宏里面使用 <code>@if</code>、<code>@else</code>来判断传参的值，来分别设置对应的display值。</p>
-<ul>
-<li>编译后的CSS</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">.block &#123;</div><div class="line">  display: block;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.hidden &#123;</div><div class="line">  display: none;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="for循环"><a href="#for循环" class="headerlink" title="@for循环"></a>@for循环</h3><p>在Sass中的 @for 循环有两种方式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">@for $i from &lt;start&gt; through &lt;end&gt;</div><div class="line">@for $i from &lt;start&gt; to &lt;end&gt;</div></pre></td></tr></table></figure></p>
-<ul>
-<li><code>$i</code> 表示变量</li>
-<li><code>start</code> 表示起始站</li>
-<li><code>end</code> 表示结束值</li>
-</ul>
-<p><strong>这两个的区别是关键字<code>through</code> 表示包括 end 这个数，而<code>to</code>则不包括 end 这个数。</strong><br>举个栗子：</p>
-<ul>
-<li>Scss</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">@for $i from 1 through 3 &#123;  // through 可替换为 to</div><div class="line">  .col-#&#123;$i&#125; &#123;</div><div class="line">    width: 2px * $i; </div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>编译后的CSS</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">.col-1 &#123;</div><div class="line">  width: 2px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.col-2 &#123;</div><div class="line">  width: 4px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.col-3 &#123;</div><div class="line">  width: 6px;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>简直分分钟撸出来一个网格系统有木有，比起一行行写苦逼CSS，简直不要太爽。</p>
-<p>再举个栗子：</p>
-<ul>
-<li>Scss (占位符<code>%name</code> + 插值<code>#{}</code> + <code>@extend</code> + <code>@for</code>)</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">$grid-prefix: span !default;</div><div class="line">$grid-width: 60px !default;</div><div class="line">$grid-gutter: 20px !default;</div><div class="line">%grid &#123;</div><div class="line">  float: left;</div><div class="line">  margin: &#123;</div><div class="line">    left: $grid-gutter / 2;</div><div class="line">    right: $grid-gutter / 2;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">@for $i from 1 through 3 &#123; </div><div class="line">  .#&#123;$grid-prefix&#125;#&#123;$i&#125; &#123; </div><div class="line">    width: $grid-width * $i + $grid-gutter * ($i - 1);  </div><div class="line">    @extend %grid; </div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>编译后的CSS</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">.span1, .span2, .span3 &#123;</div><div class="line">  float: left;</div><div class="line">  margin-left: 10px;</div><div class="line">  margin-right: 10px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.span1 &#123;</div><div class="line">  width: 60px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.span2 &#123;</div><div class="line">  width: 140px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.span3 &#123;</div><div class="line">  width: 220px;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="while"><a href="#while" class="headerlink" title="@while"></a>@while</h3><p>只要 @while 后面的条件为 true 就会执行</p>
-<p>上栗子：</p>
-<ul>
-<li>Scss</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$types: 4;</div><div class="line">$width: 20px;</div><div class="line">@while $types &gt; 0 &#123;</div><div class="line">  .while-#&#123;$types&#125; &#123;</div><div class="line">    width: $width + $types;</div><div class="line">  &#125;</div><div class="line">  $types: $types - 1; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>编译后的CSS</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">.while-4 &#123;</div><div class="line">  width: 24px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.while-3 &#123;</div><div class="line">  width: 23px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.while-2 &#123;</div><div class="line">  width: 22px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.while-1 &#123;</div><div class="line">  width: 21px;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="each"><a href="#each" class="headerlink" title="@each"></a>@each</h3><p><code>@each</code>循环指令的形式：<code>@each $var in &lt;list&gt;</code><br><code>&lt;list&gt;</code>是一个列表，<code>$var</code> 遍历出里面的值。</p>
-<p>上栗子：</p>
-<ul>
-<li>Scss</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$names: john tom leo dave;</div><div class="line">@mixin user-names &#123;</div><div class="line">  @each $name in $names &#123;</div><div class="line">    .user-#&#123;$name&#125;:after &#123;</div><div class="line">      content: $name;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">@include user-names;</div></pre></td></tr></table></figure>
-<ul>
-<li>编译后CSS</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">.user-john:after &#123;</div><div class="line">  content: john;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.user-tom:after &#123;</div><div class="line">  content: tom;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.user-leo:after &#123;</div><div class="line">  content: leo;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.user-dave:after &#123;</div><div class="line">  content: dave;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="Sass函数部分"><a href="#Sass函数部分" class="headerlink" title="Sass函数部分"></a>Sass函数部分</h2><h3 id="1-字符串函数"><a href="#1-字符串函数" class="headerlink" title="1. 字符串函数"></a>1. 字符串函数</h3><ul>
-<li>unquote($string)：删除字符串中的引号；</li>
-<li>quote($string)：给字符串添加引号。<br>上栗子：</li>
-<li>Scss</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">.test1 &#123;</div><div class="line">    content:  unquote(&apos;Hello Sass!&apos;) ;</div><div class="line">&#125;</div><div class="line">.test2 &#123;</div><div class="line">    content: unquote(&quot;&apos;Hello Sass!&quot;);</div><div class="line">&#125;</div><div class="line">.test3 &#123;</div><div class="line">    content: unquote(&quot;I&apos;m Web Designer&quot;);</div><div class="line">&#125;</div><div class="line">.test4 &#123;</div><div class="line">    content: unquote(&quot;&apos;Hello Sass!&apos;&quot;);</div><div class="line">&#125;</div><div class="line">.test5 &#123;</div><div class="line">    content: unquote(&apos;&quot;Hello Sass!&quot;&apos;);</div><div class="line">&#125;</div><div class="line">.test6 &#123;</div><div class="line">    content: unquote(Hello Sass);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>编译后CSS</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">.test1 &#123;</div><div class="line">  content: Hello Sass!; </div><div class="line">&#125;</div><div class="line"></div><div class="line">.test2 &#123;</div><div class="line">  content: &apos;Hello Sass!; </div><div class="line">&#125;</div><div class="line"></div><div class="line">.test3 &#123;</div><div class="line">  content: I&apos;m Web Designer; </div><div class="line">&#125;</div><div class="line"></div><div class="line">.test4 &#123;</div><div class="line">  content: &apos;Hello Sass!&apos;; </div><div class="line">&#125;</div><div class="line"></div><div class="line">.test5 &#123;</div><div class="line">  content: &quot;Hello Sass!&quot;; </div><div class="line">&#125;</div><div class="line"></div><div class="line">.test6 &#123;</div><div class="line">  content: Hello Sass; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>从结果来看：<strong>unquote( ) 函数只能删除字符串最前和最后的引号（双引号或单引号），而无法删除字符串中间的引号。如果字符没有带引号，返回的将是字符串本身。</strong></p>
-<blockquote>
-<p>quote 和它刚好相反，且只能两边增加<em>双引号</em></p>
-</blockquote>
-<h3 id="2-数字函数"><a href="#2-数字函数" class="headerlink" title="2. 数字函数"></a>2. 数字函数</h3><ul>
-<li><code>percentage($value)</code>：将一个不带单位的数转换成百分比值；-</li>
-<li><code>round($value)</code>：将数值四舍五入，转换成一个最接近的整数；</li>
-<li><code>ceil($value)</code>：将大于自己的小数转换成下一位整数；</li>
-<li><code>floor($value)</code>：将一个数去除他的小数部分；</li>
-<li><code>abs($value)</code>：返回一个数的绝对值；</li>
-<li><code>min($numbers…)</code>：找出几个数值之间的最小值；</li>
-<li><code>max($numbers…)</code>：找出几个数值之间的最大值；</li>
-<li><code>random()</code> : 获取随机数<blockquote>
-<p>类似于javascript里面的<strong>Math</strong>对象</p>
-</blockquote>
-</li>
-</ul>
-<h3 id="3-列表函数"><a href="#3-列表函数" class="headerlink" title="3. 列表函数"></a>3. 列表函数</h3><ul>
-<li><code>length($list)</code>：返回一个列表的长度值；</li>
-<li><code>nth($list, $n)</code>：返回一个列表中指定的某个标签值</li>
-<li><code>join($list1, $list2, [$separator])</code>：将两个列给连接在一起，变成一个列表；</li>
-<li><code>append($list1, $val, [$separator])</code>：将某个值放在列表的最后；</li>
-<li><code>zip($lists…)</code>：将几个列表结合成一个多维的列表；</li>
-<li><code>index($list, $value)</code>：返回一个值在列表中的位置值。</li>
-</ul>
-<p>具体如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">// length() 函数中的列表参数之间使用空格隔开，不能使用逗号，否则函数将会出错</div><div class="line">length(5px 88px (border 66px solid) 4em  (border 8em solid))</div><div class="line">// 输出 5</div><div class="line"></div><div class="line">// nth($list,$n) $n必须是大于0的整数</div><div class="line">nth(border-bottom (4px solid blue) black,2)</div><div class="line">// 输出 (4px solid blue)</div><div class="line"></div><div class="line">// 只能讲两个列表合并，超过将报错，第三个参数表示列表的链接方式有“空格”和“逗号”。`comma `和 `space` 两个值，为了统一建议</div><div class="line">join(blue,(red orange),space)</div><div class="line">// blue red orange</div></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;if指令&quot;&gt;&lt;a href=&quot;#if指令&quot; class=&quot;headerlink&quot; title=&quot;@if指令&quot;&gt;&lt;/a&gt;@if指令&lt;/h3&gt;&lt;p&gt;@if 是一个SassScript，它可以根据条件来处理样式块，如果为true返回一个样式块，反之false返回另外一个
-    
-    </summary>
-    
-      <category term="CSS预编译器" scheme="http://yoursite.com/categories/CSS%E9%A2%84%E7%BC%96%E8%AF%91%E5%99%A8/"/>
-    
-    
-      <category term="CSS" scheme="http://yoursite.com/tags/CSS/"/>
     
   </entry>
   
